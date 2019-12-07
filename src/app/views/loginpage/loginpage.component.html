@@ -1,0 +1,34 @@
+<app-entryheader></app-entryheader>
+<div id="formContainer">
+  <form #userForm="ngForm">
+    <div class="form-group row" id="formContents">
+      <div>
+        <input
+          name="admissionNumber"
+          [(ngModel)]="admissionNumber"
+          type="text"
+          placeholder="Admission Number"
+          (focus)="alterEmptyFieldState()"
+        />
+      </div>
+
+      <div>
+        <input
+          name="password"
+          [(ngModel)]="password"
+          type="password"
+          placeholder="Password"
+          (focus)="alterEmptyFieldState()"
+        />
+      </div>
+
+      <div>
+        <input type="submit" value="Login" (click)="routeToHomePage()" />
+      </div>
+    </div>
+  </form>
+  <br />
+  <div *ngIf="emptyField == true" class="alert alert-danger">
+    Empty Field!
+  </div>
+</div>

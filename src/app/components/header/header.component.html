@@ -1,0 +1,19 @@
+<div [@sidenavOpenClose]="sideNavState" id="sidenav">
+  <ul>
+    <a href="home"><li>Home</li></a>
+    <a href=""><li>Cart</li></a>
+    <a href="/"><li>Logout</li></a>
+  </ul>
+</div>
+<div class="container-fluid" id="header">
+  <div class="row" id="headerContainer">
+    <div class="col">
+      <button (click)="toggleSideNav()" id="menuButton">
+        <i class="material-icons">menu</i>
+      </button>
+    </div>
+    <div class="col" id="titleText">
+      Gyanmitra 2020
+    </div>
+  </div>
+</div>

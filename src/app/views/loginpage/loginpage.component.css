@@ -1,0 +1,47 @@
+#formContainer {
+  border: solid;
+  padding: 5%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 6%;
+}
+#formContents {
+  margin-top: 5%;
+}
+input[type="text"],
+input[type="password"] {
+  border: none;
+  border-bottom-width: 2.5px;
+  border-bottom: solid;
+  width: 90%;
+  height: 50px;
+}
+
+input:focus {
+  outline: none;
+  border-width: 5px;
+  border-bottom-color: green;
+}
+input[type="submit"] {
+  background: none;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  border: solid;
+  border-width: 2px;
+  border-color: black;
+  height: 50px;
+  width: 80px;
+  font-size: 1.2em;
+}
+input[type="submit"]:hover {
+  background-color: rgb(129, 125, 125);
+  box-shadow: 2px 2px 2px gray;
+}
+a {
+  color: black;
+}
+a:hover {
+  color: grey;
+}

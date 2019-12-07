@@ -1,0 +1,46 @@
+#header {
+  background-color: rgb(51, 53, 52);
+  height: 100px;
+  color: white;
+}
+#headerContainer {
+  padding: 2%;
+}
+#titleText {
+  font-size: 30px;
+  text-align: end;
+}
+#menuButton {
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+}
+#sidenav {
+  color: white;
+  position: absolute;
+  background-color: rgb(61, 61, 63);
+  height: 100%;
+  width: 15%;
+  box-shadow: 2px 0px 1px rgb(52, 52, 53);
+  padding-top: 10%;
+}
+ul {
+  list-style-type: none;
+  font-size: 20px;
+  overflow: hidden;
+  padding-left: 0;
+}
+li {
+  padding: 5%;
+  padding-left: 25%;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+li:hover {
+  background-color: rgb(32, 32, 32);
+  font-weight: bolder;
+}

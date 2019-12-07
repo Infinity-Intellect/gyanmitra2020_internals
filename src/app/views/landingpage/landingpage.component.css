@@ -1,0 +1,47 @@
+#header {
+  padding: 3%;
+}
+#buttonsContainer {
+  margin-top: 210px;
+}
+#loginButton {
+  background: none;
+  border: none;
+  outline: none;
+  background-color: grey;
+  color: white;
+  width: 170px;
+  height: 100px;
+  border-radius: 15px;
+  margin-left: 70%;
+  font-size: 1.5em;
+}
+#loginButton:hover {
+  background-color: black;
+  box-shadow: 2px 2px 2px gray;
+}
+#loginButton:active {
+  background-color: rgba(0, 0, 0, 0.424);
+}
+#signupButton {
+  background: none;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+  border: solid;
+  border-width: 4px;
+  border-color: black;
+  width: 170px;
+  height: 100px;
+  border-radius: 15px;
+  font-size: 1.5em;
+  margin-left: 10%;
+}
+#signupButton:hover {
+  background-color: rgb(129, 125, 125);
+  box-shadow: 2px 2px 2px gray;
+}
+#signupButton:active {
+  background-color: rgba(0, 0, 0, 0.424);
+}
