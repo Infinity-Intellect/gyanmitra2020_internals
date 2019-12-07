@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Animations } from "../../animations/animations";
+import { Animations } from "../../../misc_assets/animations/animations";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",

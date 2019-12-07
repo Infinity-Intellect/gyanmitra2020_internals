@@ -2,8 +2,15 @@
   padding: 3%;
 }
 a {
-  color: black;
+  color: white;
 }
 a:hover {
-  color: gray;
+  color: var(--secondary-color);
+}
+.outercontainer {
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
 }

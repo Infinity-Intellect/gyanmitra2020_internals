@@ -8,3 +8,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+:root {
+  --primary-color: rgba(0, 0, 255, 0.678);
+  --secondary-color: purple;
+}

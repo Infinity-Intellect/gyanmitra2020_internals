@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Animations } from "../../animations/animations";
+import { Animations } from "../../../misc_assets/animations/animations";
 
 @Component({
   selector: "app-loginpage",

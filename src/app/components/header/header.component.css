@@ -1,5 +1,9 @@
 #header {
-  background-color: rgb(51, 53, 52);
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   height: 100px;
   color: white;
 }
@@ -19,10 +23,14 @@
 #sidenav {
   color: white;
   position: absolute;
-  background-color: rgb(61, 61, 63);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(62, 16, 149),
+    var(--secondary-color)
+  );
   height: 100%;
   width: 15%;
-  box-shadow: 2px 0px 1px rgb(52, 52, 53);
+  box-shadow: 1px 0px 1px rgb(12, 12, 144);
   padding-top: 10%;
 }
 ul {
@@ -41,6 +49,6 @@ a {
 }
 
 li:hover {
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(107, 10, 187);
   font-weight: bolder;
 }
