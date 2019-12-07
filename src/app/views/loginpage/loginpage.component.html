@@ -1,8 +1,8 @@
 <app-entryheader></app-entryheader>
-<div id="formContainer">
+<div id="formContainer" [@swoopIn]>
   <form #userForm="ngForm">
-    <div class="form-group row" id="formContents">
-      <div>
+    <div class="container innerFormContainer" id="formContents">
+      <div class="row-4 text-center formElement">
         <input
           name="admissionNumber"
           [(ngModel)]="admissionNumber"
@@ -12,7 +12,7 @@
         />
       </div>
 
-      <div>
+      <div class="row-4 text-center formElement">
         <input
           name="password"
           [(ngModel)]="password"
@@ -22,13 +22,12 @@
         />
       </div>
 
-      <div>
+      <div class="row-4 text-center formElement">
         <input type="submit" value="Login" (click)="routeToHomePage()" />
       </div>
     </div>
+    <div *ngIf="emptyField == true" class="alert alert-danger col-4 offset-4">
+      Empty Field!
+    </div>
   </form>
-  <br />
-  <div *ngIf="emptyField == true" class="alert alert-danger">
-    Empty Field!
-  </div>
 </div>
