@@ -1,5 +1,6 @@
 import {
   animation,
+  group,
   trigger,
   transition,
   style,
@@ -8,6 +9,14 @@ import {
 } from "@angular/animations";
 
 export const Animations = {
+  /*Used in HomepageComponent for shift content on navbar slide*/
+  shiftContents: trigger("shiftContents", [
+    state("open", style({ marginLeft: "21%" })),
+    state("closed,void", style({ marginLeft: "13%" })),
+    transition("closed<=>open", animate("0.2s")),
+    transition("void=>*", animate("0.2s"))
+  ]),
+  /*Used in LoginComponent and SignupComponent for the containers*/
   swoopIn: trigger("swoopIn", [
     transition("void=>*", [
       style({
@@ -16,21 +25,23 @@ export const Animations = {
       animate("0.2s")
     ])
   ]),
+  /*Used for the side nav in HeaderComponent*/
   sidenavOpenClose: trigger("sidenavOpenClose", [
     state(
       "open",
       style({
         opacity: 1,
-        transform: "translateX(0)"
+        transform: "translateX(0%)"
       })
     ),
     state(
-      "closed",
+      "closed,void",
       style({
         opacity: 0,
         transform: "translateX(-50%)"
       })
     ),
-    transition("closed<=>open", [animate("0.2s")])
+    transition("closed<=>open", [animate("0.2s")]),
+    transition("void=>open", animate("0.2s"))
   ])
 };

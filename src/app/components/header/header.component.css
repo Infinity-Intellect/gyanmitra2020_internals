@@ -4,8 +4,8 @@
     var(--primary-color),
     var(--secondary-color)
   );
-  height: 100px;
   color: white;
+  z-index: 1;
 }
 #headerContainer {
   padding: 2%;
@@ -22,7 +22,7 @@
 }
 #sidenav {
   color: white;
-  position: absolute;
+  position: fixed;
   background-image: linear-gradient(
     to bottom,
     rgb(62, 16, 149),
@@ -30,7 +30,6 @@
   );
   height: 100%;
   width: 15%;
-  box-shadow: 1px 0px 1px rgb(12, 12, 144);
   padding-top: 10%;
 }
 ul {

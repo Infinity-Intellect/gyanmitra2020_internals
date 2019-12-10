@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Animations } from "../../../misc_assets/animations/animations";
 @Component({
   selector: "app-header",
@@ -12,8 +12,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   sideNavState: string = "open";
+
+  @Output() navbarStateEvent = new EventEmitter();
+
   toggleSideNav() {
     this.sideNavState = this.sideNavState === "open" ? "closed" : "open";
-    console.log(this.sideNavState);
+    this.navbarStateEvent.emit(this.sideNavState);
   }
 }

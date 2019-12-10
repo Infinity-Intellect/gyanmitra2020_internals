@@ -15,6 +15,9 @@ import { FormsModule } from "@angular/forms";
 import { HomepageComponent } from "./views/homepage/homepage.component";
 import { SignuppageComponent } from "./views/signuppage/signuppage.component";
 import { EntryheaderComponent } from "./components/entryheader/entryheader.component";
+import { HttpClientModule } from "@angular/common/http";
+import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
+import { HomepageService } from "./components/homepage.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { EntryheaderComponent } from "./components/entryheader/entryheader.compo
     LoginpageComponent,
     HomepageComponent,
     SignuppageComponent,
-    EntryheaderComponent
+    EntryheaderComponent,
+    DisplaycardComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +37,10 @@ import { EntryheaderComponent } from "./components/entryheader/entryheader.compo
     MatToolbarModule,
     NgbModule,
     MatSidenavModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HomepageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

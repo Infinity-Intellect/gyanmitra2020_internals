@@ -1,1 +1,61 @@
-<app-header></app-header>
+<app-header (navbarStateEvent)="receiveNavbarState($event)"></app-header>
+<div [@shiftContents]="navbarState" class="container col-9 cardContainer">
+  <div class="row justify-content-center navContainer">
+    <div class="col-6 text-right">
+      <button
+        [@eventclick]="activeButton"
+        class="eventsButton"
+        name="event"
+        (click)="currentButton($event)"
+      >
+        Events
+      </button>
+    </div>
+    <div class="col-6 align-items-end">
+      <button
+        [@workshopclick]="activeButton"
+        class="workshopButton"
+        name="workshop"
+        (click)="currentButton($event)"
+      >
+        Workshops
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-between searchBarRow">
+    <div class="col-1 cartItemCount">Cart:{{ cartCount }}</div>
+    <div class="col-5">
+      <div class="row justify-content-end searchBarContainer">
+        <div class="col-10">
+          <input type="text" placeholder="Search" />
+        </div>
+        <div class="col-1"><i class="material-icons">search</i></div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle  drop"
+          type="button"
+          data-toggle="dropdown"
+        >
+          <span class="deptText">Departments</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="width:100%">
+          <li><a href="#">CSE</a></li>
+          <li><a href="#">IT</a></li>
+          <li><a href="#">Mechanical</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-around innerCardContainer">
+    <div class="col-5 text-center" *ngFor="let item of data">
+      <app-displaycard
+        [data]="item"
+        (cartCount)="changeCartCount($event)"
+      ></app-displaycard>
+    </div>
+  </div>
+</div>

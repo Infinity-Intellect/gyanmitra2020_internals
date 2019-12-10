@@ -9,6 +9,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 :root {
-  --primary-color: rgba(0, 0, 255, 0.678);
+  --primary-color: rgb(39, 39, 149);
   --secondary-color: purple;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
 }

@@ -23,10 +23,13 @@ input[type="password"] {
   height: 50px;
 }
 
-input:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   outline: none;
-  border-width: 5px;
-  border-bottom-color: green;
+  animation-name: border-change;
+  animation-duration: 0.09s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
 }
 input[type="submit"] {
   background: none;
@@ -50,4 +53,14 @@ a {
 }
 a:hover {
   color: grey;
+}
+@keyframes border-change {
+  from {
+    border-bottom-color: black;
+    border-width: 2.5px;
+  }
+  to {
+    border-bottom-color: green;
+    border-width: 5px;
+  }
 }

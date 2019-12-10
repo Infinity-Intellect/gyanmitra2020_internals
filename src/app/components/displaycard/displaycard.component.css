@@ -1,0 +1,25 @@
+.displayCardContainer {
+  border: none;
+  border-width: 2px;
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border-radius: 35px;
+  box-shadow: 2px 0px 2px grey;
+  margin: 6%;
+}
+div {
+  padding: 4%;
+  color: white;
+}
+.alertMessage {
+  background-color: rgba(79, 241, 79, 0.568);
+  padding: 2%;
+  border: none;
+  border-radius: 24px;
+}
+button {
+  border: none;
+}

@@ -1,0 +1,76 @@
+.cardContainer {
+  margin-left: 21%;
+  margin-top: 2%;
+  /* background-color: aliceblue; */
+}
+.navContainer {
+  padding: 2%;
+}
+.eventsButton,
+.workshopButton {
+  outline: none;
+  border: none;
+  border-bottom: solid;
+  border-width: 3px;
+  border-color: grey;
+  background-color: white;
+  font-size: 1.5em;
+}
+.searchBarRow {
+  margin-top: 3%;
+}
+.searchBarContainer {
+  border: solid;
+  border-radius: 15px;
+  padding-right: 4%;
+  border-image: linear-gradient(
+      to right,
+      var(--primary-color),
+      var(--secondary-color)
+    )
+    30%;
+  border-image-width: 3px;
+}
+.cartItemCount {
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  padding: 1%;
+  cursor: pointer;
+  user-select: none;
+}
+input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+}
+.drop {
+  width: 100%;
+}
+li {
+  text-align: center;
+}
+a {
+  color: grey;
+}
+
+li:hover {
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  font-size: 1.5em;
+  font-style: normal;
+}
+li:hover a {
+  color: white;
+}
+.innerCardContainer {
+  margin-top: 5%;
+}

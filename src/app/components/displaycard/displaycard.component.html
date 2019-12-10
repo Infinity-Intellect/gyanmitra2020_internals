@@ -1,0 +1,30 @@
+<div class="container justify-content-center displayCardContainer">
+  <div class="row justify-content-center" style="font-size: 1.5em;">
+    {{ data.message }}
+  </div>
+  <div class="row justify-content-around">
+    <div class="col-6">
+      Date and Time:19-02-2019
+    </div>
+    <div class="col-6">
+      Venue:Valluvar Arangam
+    </div>
+  </div>
+  <div
+    class="row justify-content-center"
+    *ngIf="data.checkout == false; else alreadyAddedTemplate"
+  >
+    <button
+      [@buttonStyle]="cartStatus"
+      (click)="cartStatusChange()"
+      class="btn btn-primary"
+    >
+      {{ data.cartStatus }}
+    </button>
+  </div>
+  <ng-template #alreadyAddedTemplate>
+    <div class="row justify-content-center">
+      <div class="col-5 alertMessage">Added !</div>
+    </div>
+  </ng-template>
+</div>
