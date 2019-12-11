@@ -17,7 +17,7 @@ import { SignuppageComponent } from "./views/signuppage/signuppage.component";
 import { EntryheaderComponent } from "./components/entryheader/entryheader.component";
 import { HttpClientModule } from "@angular/common/http";
 import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
-import { HomepageService } from "./components/homepage.service";
+import { HomepageService } from "./views/homepage/homepage.service";
 
 @NgModule({
   declarations: [

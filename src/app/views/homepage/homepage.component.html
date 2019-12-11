@@ -33,21 +33,12 @@
       </div>
     </div>
     <div class="col-5">
-      <div class="dropdown">
-        <button
-          class="btn btn-primary dropdown-toggle  drop"
-          type="button"
-          data-toggle="dropdown"
-        >
-          <span class="deptText">Departments</span>
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" style="width:100%">
-          <li><a href="#">CSE</a></li>
-          <li><a href="#">IT</a></li>
-          <li><a href="#">Mechanical</a></li>
-        </ul>
-      </div>
+      <select [(ngModel)]="selectedDepartment">
+        <option>CSE</option>
+        <option>IT</option>
+        <option>Mechanical</option>
+        <option>Biotech</option>
+      </select>
     </div>
   </div>
   <div class="row justify-content-around innerCardContainer">

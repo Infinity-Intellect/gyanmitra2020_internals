@@ -33,6 +33,7 @@ export class DisplaycardComponent implements OnInit {
   constructor() {}
 
   @Input() data;
+
   @Output() cartCount = new EventEmitter();
   cartStatus = "add";
   ngOnInit() {}

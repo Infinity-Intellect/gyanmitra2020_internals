@@ -67,6 +67,7 @@ li:hover {
   );
   font-size: 1.5em;
   font-style: normal;
+  cursor: pointer;
 }
 li:hover a {
   color: white;

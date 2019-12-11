@@ -7,7 +7,9 @@ import {
   style
 } from "@angular/animations";
 import { Animations } from "../../../misc_assets/animations/animations";
-import { HomepageService } from "src/app/components/homepage.service";
+import { HomepageService } from "src/app/views/homepage/homepage.service";
+import { event } from "../../models/event";
+import { workshop } from "../../models/workshop";
 
 @Component({
   selector: "app-homepage",
@@ -31,17 +33,35 @@ import { HomepageService } from "src/app/components/homepage.service";
 })
 export class HomepageComponent implements OnInit {
   constructor(private service: HomepageService) {}
-  data = [
-    { message: "DBMania", cartStatus: "Add to Cart", checkout: true },
-    { message: "Code Builder", cartStatus: "Add to Cart", checkout: false },
-    { message: "Hackathon", cartStatus: "Add to Cart", checkout: false }
-  ];
-  ngOnInit() {}
+  someDate = new Date();
+  eventData: event[];
+  data;
+  workshopData: workshop[];
+  ngOnInit() {
+    console.log("Inside constructor");
+    this.fetchEventDetails();
+    this.fetchWorkshopDetails();
+  }
+
+  fetchEventDetails() {
+    this.service.getEvents().subscribe(res => {
+      this.eventData = res;
+      this.data = this.eventData;
+    });
+  }
+  fetchWorkshopDetails() {
+    this.service.getWorkshops().subscribe(res => {
+      this.workshopData = res;
+    });
+  }
 
   cartCount: number = 0;
+  selectedDepartment: string;
+
   /*Animation state variable declaration*/
   navbarState = "";
   activeButton = "event";
+
   /*End of animation state variable declaration*/
 
   /*Function definitions to handle animation state variables*/
@@ -50,6 +70,12 @@ export class HomepageComponent implements OnInit {
   }
   currentButton($event) {
     this.activeButton = $event.target.name;
+    console.log(this.activeButton);
+    if (this.activeButton === "event") {
+      this.data = this.eventData;
+    } else {
+      this.data = this.workshopData;
+    }
   }
   /*End of function definitions to handle animation state variables*/
   changeCartCount($event) {
