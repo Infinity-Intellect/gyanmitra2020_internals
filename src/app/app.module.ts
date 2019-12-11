@@ -18,6 +18,7 @@ import { EntryheaderComponent } from "./components/entryheader/entryheader.compo
 import { HttpClientModule } from "@angular/common/http";
 import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
 import { HomepageService } from "./views/homepage/homepage.service";
+import { AdminpageComponent } from './views/adminpage/adminpage.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomepageService } from "./views/homepage/homepage.service";
     HomepageComponent,
     SignuppageComponent,
     EntryheaderComponent,
-    DisplaycardComponent
+    DisplaycardComponent,
+    AdminpageComponent
   ],
   imports: [
     BrowserModule,
