@@ -10,9 +10,9 @@ import { workshop } from "src/app/models/workshop";
 export class HomepageService {
   constructor(private http: HttpClient) {}
   public getEvents() {
-    return this.http.get<event[]>("http://localhost:8000/getEvents");
+    return this.http.get<any[]>("http://localhost:8000/getEvents");
   }
   public getWorkshops() {
-    return this.http.get<workshop[]>("http://localhost:8000/getworkshops");
+    return this.http.get<any[]>("http://localhost:8000/getWorkshops");
   }
 }

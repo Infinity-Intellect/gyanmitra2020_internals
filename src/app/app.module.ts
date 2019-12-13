@@ -18,7 +18,10 @@ import { EntryheaderComponent } from "./components/entryheader/entryheader.compo
 import { HttpClientModule } from "@angular/common/http";
 import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
 import { HomepageService } from "./views/homepage/homepage.service";
-import { AdminpageComponent } from './views/adminpage/adminpage.component';
+import { AdminpageComponent } from "./views/adminpage/adminpage.component";
+import { MatDialogModule } from "@angular/material";
+import { DescriptiondialogComponent } from "./components/descriptiondialog/descriptiondialog.component";
+import { CartdialogComponent } from "./components/cartdialog/cartdialog.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { AdminpageComponent } from './views/adminpage/adminpage.component';
     SignuppageComponent,
     EntryheaderComponent,
     DisplaycardComponent,
-    AdminpageComponent
+    AdminpageComponent,
+    DescriptiondialogComponent,
+    CartdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +45,11 @@ import { AdminpageComponent } from './views/adminpage/adminpage.component';
     NgbModule,
     MatSidenavModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [HomepageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DescriptiondialogComponent, CartdialogComponent]
 })
 export class AppModule {}

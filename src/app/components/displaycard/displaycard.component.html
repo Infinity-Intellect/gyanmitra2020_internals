@@ -1,4 +1,7 @@
-<div class="container justify-content-center displayCardContainer">
+<div
+  class="container justify-content-center displayCardContainer"
+  (click)="openDescriptionDialog()"
+>
   <div class="row justify-content-center" style="font-size: 1.5em;">
     {{ data.name }}
   </div>
@@ -9,16 +12,23 @@
     </div>
   </div>
   <div
-    class="row justify-content-center"
+    class="row justify-content-between"
     *ngIf="data.checkout == false; else alreadyAddedTemplate"
   >
-    <button
-      [@buttonStyle]="cartStatus"
-      (click)="cartStatusChange()"
-      class="btn btn-primary"
-    >
-      {{ data.cartStatus }}
-    </button>
+    <div class="col-3">
+      <button class="btn btn-info" (click)="openDescriptionDialog()">
+        Details
+      </button>
+    </div>
+    <div class="col-9 text-right">
+      <button
+        [@buttonStyle]="cartStatus"
+        (click)="cartStatusChange()"
+        class="btn btn-primary"
+      >
+        {{ data.cartStatus }}
+      </button>
+    </div>
   </div>
   <ng-template #alreadyAddedTemplate>
     <div class="row justify-content-center">

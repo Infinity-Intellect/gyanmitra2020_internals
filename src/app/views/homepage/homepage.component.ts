@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgModule } from "@angular/core";
 import {
   trigger,
   state,
@@ -6,10 +6,12 @@ import {
   animate,
   style
 } from "@angular/animations";
+import { MatDialog, MatDialogRef } from "@angular/material";
 import { Animations } from "../../../misc_assets/animations/animations";
 import { HomepageService } from "src/app/views/homepage/homepage.service";
 import { event } from "../../models/event";
 import { workshop } from "../../models/workshop";
+import { CartdialogComponent } from "src/app/components/cartdialog/cartdialog.component";
 
 @Component({
   selector: "app-homepage",
@@ -32,13 +34,12 @@ import { workshop } from "../../models/workshop";
   ]
 })
 export class HomepageComponent implements OnInit {
-  constructor(private service: HomepageService) {}
+  constructor(private service: HomepageService, public dialog: MatDialog) {}
   someDate = new Date();
   eventData: event[];
   data;
   workshopData: workshop[];
   ngOnInit() {
-    console.log("Inside constructor");
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
   }
@@ -52,6 +53,7 @@ export class HomepageComponent implements OnInit {
   fetchWorkshopDetails() {
     this.service.getWorkshops().subscribe(res => {
       this.workshopData = res;
+      console.log(this.workshopData);
     });
   }
 
@@ -80,5 +82,8 @@ export class HomepageComponent implements OnInit {
   /*End of function definitions to handle animation state variables*/
   changeCartCount($event) {
     this.cartCount += $event;
+  }
+  openCartDialog() {
+    this.dialog.open(CartdialogComponent);
   }
 }

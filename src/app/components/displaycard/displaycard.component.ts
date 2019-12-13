@@ -6,6 +6,8 @@ import {
   transition,
   animate
 } from "@angular/animations";
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondialog.component";
 
 @Component({
   selector: "app-displaycard",
@@ -30,12 +32,13 @@ import {
   ]
 })
 export class DisplaycardComponent implements OnInit {
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   @Input() data;
 
   @Output() cartCount = new EventEmitter();
   cartStatus = "add";
+
   ngOnInit() {}
   cartStatusChange() {
     this.data.cartStatus =
@@ -48,5 +51,9 @@ export class DisplaycardComponent implements OnInit {
     } else {
       this.cartCount.emit(-1);
     }
+  }
+  openDescriptionDialog() {
+    const dialogConfig = new MatDialogConfig();
+    this.dialog.open(DescriptiondialogComponent, dialogConfig);
   }
 }
