@@ -6,10 +6,10 @@ import { url } from "../../../url";
 })
 export class LoginpageService {
   constructor(private http: HttpClient) {}
-  public getStudentPresent(admissionNumber, password) {
-    var _url = url + "/student/login";
+  public getAccountPresent(username, password) {
+    var _url = url + "/account/login";
     return this.http.post<any>(_url, {
-      admissionNumber: admissionNumber,
+      username: username,
       password: password
     });
   }

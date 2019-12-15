@@ -20,7 +20,7 @@ export class LoginpageComponent implements OnInit {
     private authservice: AuthService,
     private cookie: CookieService
   ) {}
-  admissionNumber: string;
+  username: string;
   password: string;
   incorrectInputData: boolean = false;
 
@@ -28,26 +28,32 @@ export class LoginpageComponent implements OnInit {
 
   ngOnInit() {}
   routeToHomePage = () => {
-    if (!this.admissionNumber || !this.password) {
+    if (!this.username || !this.password) {
       this.emptyField = true;
     } else {
       this.service
-        .getStudentPresent(this.admissionNumber, this.password)
+        .getAccountPresent(this.username, this.password)
         .subscribe(data => {
-          if (data.admissionNumber !== -1) {
-            this.authservice.setLoggedIn(true);
-            this.setCookies(data);
-            this.router.navigateByUrl("/home");
+          if (data.username !== -1) {
+            if (data.role === "admin") {
+              this.authservice.setLoggedIn(true);
+              this.setUserCookies(data);
+              this.router.navigateByUrl("/admin");
+            }
+            if (data.role === "user") {
+              this.authservice.setLoggedIn(true);
+              this.setUserCookies(data);
+              this.router.navigateByUrl("/home");
+            }
           } else {
             this.incorrectInputData = true;
           }
         });
     }
   };
-  setCookies(data) {
-    this.cookie.set("admissionNumber", data.admissionNumber);
-    this.cookie.set("name", data.name);
-    this.cookie.set("department", data.program);
+  setUserCookies(data) {
+    this.cookie.set("username", data.username);
+    this.cookie.set("role", data.role);
   }
   alterEmptyFieldState = () => {
     this.emptyField = false;

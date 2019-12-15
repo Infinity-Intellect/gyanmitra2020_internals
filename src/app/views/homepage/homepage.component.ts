@@ -40,26 +40,30 @@ export class HomepageComponent implements OnInit {
   eventData: event[];
   student: any;
   studentData: any;
+  studentAdmissionNumber: string;
   constructor(
     private service: HomepageService,
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private cookie: CookieService
   ) {
-    this.studentData = {
-      admissionNumber: this.cookie.get("admissionNumber"),
-      name: this.cookie.get("name"),
-      program: this.cookie.get("program")
-    };
+    this.studentAdmissionNumber = this.cookie.get("username");
   }
 
   data;
   workshopData: workshop[];
   ngOnInit() {
+    this.fetchStudentDetails();
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
   }
-
+  fetchStudentDetails() {
+    this.service.getStudent(this.studentAdmissionNumber).subscribe(res => {
+      this.studentData = res;
+      this.cookie.set("name", this.studentData.name);
+      this.cookie.set("program", this.studentData.program);
+    });
+  }
   fetchEventDetails() {
     this.service.getEvents().subscribe(res => {
       this.eventData = res;

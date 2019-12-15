@@ -16,18 +16,18 @@ import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondial
   animations: [
     trigger("buttonStyle", [
       state(
-        "add",
+        "Add",
         style({
           backgroundColor: "green"
         })
       ),
       state(
-        "remove",
+        "Remove",
         style({
           backgroundColor: "red"
         })
       ),
-      transition("add => remove", animate("0.1s"))
+      transition("Add => Remove", animate("0.1s"))
     ])
   ]
 })
@@ -39,14 +39,14 @@ export class DisplaycardComponent implements OnInit {
 
   @Output() cartCount = new EventEmitter();
 
-  cartStatus = "add";
+  cartStatus = "Add";
   checkout: boolean = true;
 
   ngOnInit() {}
   cartStatusChange(event: any) {
     event.stopPropagation();
-    this.cartStatus = this.cartStatus === "add" ? "remove" : "add";
-    if (this.cartStatus === "remove") {
+    this.cartStatus = this.cartStatus === "Add" ? "Remove" : "Add";
+    if (this.cartStatus === "Remove") {
       this.cartCount.emit(1);
     } else {
       this.cartCount.emit(-1);
