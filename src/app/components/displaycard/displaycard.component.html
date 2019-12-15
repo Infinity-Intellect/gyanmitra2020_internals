@@ -1,9 +1,9 @@
 <div
   class="container justify-content-center displayCardContainer"
-  (click)="openDescriptionDialog()"
+  (click)="openDescriptionDialog($event)"
 >
   <div class="row justify-content-center" style="font-size: 1.5em;">
-    {{ data.name }}
+    {{ event_workshopdata.name }}
   </div>
   <div class="row justify-content-around">
     <div class="col-6">Date and Time:<span>19/02/19</span></div>
@@ -13,20 +13,20 @@
   </div>
   <div
     class="row justify-content-between"
-    *ngIf="data.checkout == false; else alreadyAddedTemplate"
+    *ngIf="checkout; else alreadyAddedTemplate"
   >
     <div class="col-3">
-      <button class="btn btn-info" (click)="openDescriptionDialog()">
+      <button class="btn btn-info" (click)="openDescriptionDialog($event)">
         Details
       </button>
     </div>
     <div class="col-9 text-right">
       <button
         [@buttonStyle]="cartStatus"
-        (click)="cartStatusChange()"
+        (click)="cartStatusChange($event)"
         class="btn btn-primary"
       >
-        {{ data.cartStatus }}
+        {{ cartStatus }}
       </button>
     </div>
   </div>

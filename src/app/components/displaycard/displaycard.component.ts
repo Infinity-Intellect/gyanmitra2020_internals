@@ -34,17 +34,17 @@ import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondial
 export class DisplaycardComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
-  @Input() data;
+  @Input() event_workshopdata;
+  @Input() cartData;
 
   @Output() cartCount = new EventEmitter();
+
   cartStatus = "add";
+  checkout: boolean = true;
 
   ngOnInit() {}
-  cartStatusChange() {
-    this.data.cartStatus =
-      this.data.cartStatus === "Add to Cart"
-        ? "Remove from Cart"
-        : "Add to Cart";
+  cartStatusChange(event: any) {
+    event.stopPropagation();
     this.cartStatus = this.cartStatus === "add" ? "remove" : "add";
     if (this.cartStatus === "remove") {
       this.cartCount.emit(1);
@@ -52,7 +52,8 @@ export class DisplaycardComponent implements OnInit {
       this.cartCount.emit(-1);
     }
   }
-  openDescriptionDialog() {
+  openDescriptionDialog(event: any) {
+    event.stopPropagation();
     const dialogConfig = new MatDialogConfig();
     this.dialog.open(DescriptiondialogComponent, dialogConfig);
   }

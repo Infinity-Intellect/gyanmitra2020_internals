@@ -6,12 +6,14 @@ import {
   animate,
   style
 } from "@angular/animations";
+import { ActivatedRoute } from "@angular/router";
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { Animations } from "../../../misc_assets/animations/animations";
-import { HomepageService } from "src/app/views/homepage/homepage.service";
+import { HomepageService } from "src/app/service/homepage/homepage.service";
 import { event } from "../../models/event";
 import { workshop } from "../../models/workshop";
 import { CartdialogComponent } from "src/app/components/cartdialog/cartdialog.component";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: "app-homepage",
@@ -34,9 +36,23 @@ import { CartdialogComponent } from "src/app/components/cartdialog/cartdialog.co
   ]
 })
 export class HomepageComponent implements OnInit {
-  constructor(private service: HomepageService, public dialog: MatDialog) {}
   someDate = new Date();
   eventData: event[];
+  student: any;
+  studentData: any;
+  constructor(
+    private service: HomepageService,
+    public dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+    private cookie: CookieService
+  ) {
+    this.studentData = {
+      admissionNumber: this.cookie.get("admissionNumber"),
+      name: this.cookie.get("name"),
+      program: this.cookie.get("program")
+    };
+  }
+
   data;
   workshopData: workshop[];
   ngOnInit() {
@@ -53,7 +69,6 @@ export class HomepageComponent implements OnInit {
   fetchWorkshopDetails() {
     this.service.getWorkshops().subscribe(res => {
       this.workshopData = res;
-      console.log(this.workshopData);
     });
   }
 
@@ -72,7 +87,6 @@ export class HomepageComponent implements OnInit {
   }
   currentButton($event) {
     this.activeButton = $event.target.name;
-    console.log(this.activeButton);
     if (this.activeButton === "event") {
       this.data = this.eventData;
     } else {

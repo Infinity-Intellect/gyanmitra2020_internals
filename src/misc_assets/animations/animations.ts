@@ -43,5 +43,13 @@ export const Animations = {
     ),
     transition("closed<=>open", [animate("0.2s")]),
     transition("void=>open", animate("0.2s"))
+  ]),
+  /*Used for alert messages */
+  fadeInOut: trigger("fadeInOut", [
+    transition(":enter", [
+      style({ opacity: 0 }),
+      animate(500, style({ opacity: 1 }))
+    ]),
+    transition(":leave", [animate(500, style({ opacity: 0 }))])
   ])
 };

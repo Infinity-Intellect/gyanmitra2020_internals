@@ -2,22 +2,28 @@
   padding: 3%;
 }
 #buttonsContainer {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 #loginButton {
   background: none;
   border: none;
   outline: none;
-  background-color: grey;
+  background-color: var(--primary-color);
   color: white;
-  width: 170px;
-  height: 100px;
-  border-radius: 15px;
+  width: 180px;
+  height: 170px;
+  border-radius: 50%;
   font-size: 1.5em;
+  animation: floatLogin 1.8s ease-in-out infinite;
+  transition-duration: 0.5s;
 }
 #loginButton:hover {
-  background-color: black;
   box-shadow: 2px 2px 2px gray;
+  background-color: white;
+  border: solid;
+  border-width: 4px;
+  border-color: var(--primary-color);
+  color: black;
 }
 #loginButton:active {
   background-color: rgba(0, 0, 0, 0.424);
@@ -30,16 +36,50 @@
   color: black;
   border: solid;
   border-width: 4px;
-  border-color: black;
+  border-color: var(--secondary-color);
   width: 170px;
   height: 100px;
   border-radius: 15px;
   font-size: 1.5em;
+  transition-duration: 0.5s;
+  animation: floatSignup 1.5s ease-in-out infinite;
 }
 #signupButton:hover {
-  background-color: rgb(129, 125, 125);
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
   box-shadow: 2px 2px 2px gray;
 }
 #signupButton:active {
   background-color: rgba(0, 0, 0, 0.424);
+}
+
+@keyframes floatLogin {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 15px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-8px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+}
+
+@keyframes floatSignup {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(-8px);
+  }
+  50% {
+    box-shadow: 0 15px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(0px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(-8px);
+  }
 }

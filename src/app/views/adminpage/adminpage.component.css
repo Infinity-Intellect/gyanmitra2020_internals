@@ -1,46 +1,46 @@
-.ToggleSelector{
-    width: 50%;
-    border: none;
-    background-color: rgb(111,111,221)
+.contentRow {
+  margin: 1%;
+  border-style: none;
+  border-width: 10px;
+  box-shadow: 3px 3px 3px grey;
+  border-radius: 25px;
+  padding: 2%;
+  background-color: aliceblue;
 }
-a{
-    align-items: center;
+select {
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  border-width: 5px;
+  border-color: seagreen;
+  width: min-content;
+  list-style-image: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
 }
-.row{
-    margin: 1%;
-    border-style: none;
-    border-width: 10px;
-    box-shadow: 3px 3px 3px grey;
-    border-radius: 25px;
-    padding: 3%;
+select:hover {
+  border-color: red;
 }
-select{
-    border-top-style: none;
-    border-right-style: none;
-    border-left-style: none;
-    border-width: 5px;
-    border-color: seagreen;
-    width: min-content;
-    list-style-image: linear-gradient(to right,var(--primary-color),var(--secondary-color));
-}
-select:hover{
-    border-color: red;
-}
-button{
-    padding: 2%;
-    background: none;
-    border: none;
-    outline: none;
-    background-color: blueviolet;
-    color: white;
-    border-radius: 10px;
-    font-weight: bolder;
-    box-shadow: 2px 2px 2px gray;
+/* button {
+  padding: 2%;
+  background: none;
+  border: none;
+  outline: none;
+  background-color: blueviolet;
+  color: white;
+  border-radius: 10px;
+  font-weight: bolder;
+  box-shadow: 2px 2px 2px gray;
 }
 button:hover {
-    background-color: blue;
-    box-shadow: 2px 2px 2px gray;
+  background-color: blue;
+  box-shadow: 2px 2px 2px gray;
 }
-button:active{
-    box-shadow: 0px 0px 0px gray;
+button:active {
+  box-shadow: 0px 0px 0px gray;
+} */
+input {
+  width: 100%;
 }

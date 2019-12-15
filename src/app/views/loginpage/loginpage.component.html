@@ -25,9 +25,22 @@
       <div class="row-4 text-center formElement">
         <input type="submit" value="Login" (click)="routeToHomePage()" />
       </div>
-    </div>
-    <div *ngIf="emptyField == true" class="alert alert-danger col-4 offset-4">
-      Empty Field!
+      <div class="row justify-content-center alertRow">
+        <div
+          *ngIf="emptyField == true"
+          class="alert alert-danger align-self-center col-6 text-center"
+          [@fadeInOut]
+        >
+          Sensing Empty Field(s)!
+        </div>
+        <div
+          *ngIf="incorrectInputData"
+          class="alert alert-danger col-6 text-center"
+          [@fadeInOut]
+        >
+          Username/Password Mismatch!
+        </div>
+      </div>
     </div>
   </form>
 </div>

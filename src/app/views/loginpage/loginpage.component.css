@@ -12,7 +12,11 @@
   padding: 4%;
 }
 .alert {
-  width: 40%;
+  width: 80%;
+}
+.alertRow {
+  margin-top: 5%;
+  margin-bottom: 1%;
 }
 input[type="text"],
 input[type="password"] {
@@ -27,7 +31,7 @@ input[type="text"]:focus,
 input[type="password"]:focus {
   outline: none;
   animation-name: border-change;
-  animation-duration: 0.09s;
+  animation-duration: 0.1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in;
 }

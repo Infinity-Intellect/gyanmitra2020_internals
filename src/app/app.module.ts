@@ -17,11 +17,15 @@ import { SignuppageComponent } from "./views/signuppage/signuppage.component";
 import { EntryheaderComponent } from "./components/entryheader/entryheader.component";
 import { HttpClientModule } from "@angular/common/http";
 import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
-import { HomepageService } from "./views/homepage/homepage.service";
+import { HomepageService } from "./service/homepage/homepage.service";
 import { AdminpageComponent } from "./views/adminpage/adminpage.component";
 import { MatDialogModule } from "@angular/material";
 import { DescriptiondialogComponent } from "./components/descriptiondialog/descriptiondialog.component";
 import { CartdialogComponent } from "./components/cartdialog/cartdialog.component";
+import { LoginpageService } from "./service/loginpage/loginpage.service";
+import { GradientbuttonComponent } from "./components/gradientbutton/gradientbutton.component";
+import { AuthGuard } from "./auth.guard";
+import { CookieService } from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { CartdialogComponent } from "./components/cartdialog/cartdialog.componen
     DisplaycardComponent,
     AdminpageComponent,
     DescriptiondialogComponent,
-    CartdialogComponent
+    CartdialogComponent,
+    GradientbuttonComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import { CartdialogComponent } from "./components/cartdialog/cartdialog.componen
     HttpClientModule,
     MatDialogModule
   ],
-  providers: [HomepageService],
+  providers: [HomepageService, LoginpageService, AuthGuard, CookieService],
   bootstrap: [AppComponent],
   entryComponents: [DescriptiondialogComponent, CartdialogComponent]
 })

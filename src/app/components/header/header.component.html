@@ -1,8 +1,8 @@
 <div [@sidenavOpenClose]="sideNavState" id="sidenav">
   <ul>
     <a href="home"><li>Home</li></a>
-    <a href="#"><li (click)="openCartDialog()">Cart</li></a>
-    <a href="/"><li>Logout</li></a>
+    <a><li (click)="openCartDialog()">Cart</li></a>
+    <a href="/"><li (click)="setLoggedIn()">Logout</li></a>
   </ul>
 </div>
 <div class="container-fluid" id="header">

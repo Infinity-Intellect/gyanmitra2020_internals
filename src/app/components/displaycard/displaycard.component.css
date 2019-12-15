@@ -9,6 +9,7 @@
   border-radius: 35px;
   box-shadow: 2px 0px 2px grey;
   margin: 6%;
+  cursor: pointer;
 }
 div {
   padding: 4%;

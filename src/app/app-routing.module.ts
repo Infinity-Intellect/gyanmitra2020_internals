@@ -6,13 +6,14 @@ import { LoginpageComponent } from "./views/loginpage/loginpage.component";
 import { HomepageComponent } from "./views/homepage/homepage.component";
 import { SignuppageComponent } from "./views/signuppage/signuppage.component";
 import { AdminpageComponent } from "./views/adminpage/adminpage.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
   { path: "", component: LandingpageComponent },
   { path: "login", component: LoginpageComponent },
-  { path: "home", component: HomepageComponent },
+  { path: "home", component: HomepageComponent, canActivate: [AuthGuard] },
   { path: "signup", component: SignuppageComponent },
-  { path: "admin", component: AdminpageComponent },
+  { path: "admin", component: AdminpageComponent }
 ];
 
 @NgModule({

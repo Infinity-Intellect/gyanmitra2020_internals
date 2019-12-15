@@ -1,5 +1,8 @@
 <app-header (navbarStateEvent)="receiveNavbarState($event)"></app-header>
 <div [@shiftContents]="navbarState" class="container col-9 cardContainer">
+  <div class="row justify-content-end">
+    <div class="col-6">Welcome {{ studentData?.name }}</div>
+  </div>
   <div class="row justify-content-center navContainer">
     <div class="col-6 text-right">
       <button
@@ -46,7 +49,7 @@
   <div class="row justify-content-around innerCardContainer">
     <div class="col-5 text-center" *ngFor="let item of data">
       <app-displaycard
-        [data]="item"
+        [event_workshopdata]="item"
         (cartCount)="changeCartCount($event)"
       ></app-displaycard>
     </div>
