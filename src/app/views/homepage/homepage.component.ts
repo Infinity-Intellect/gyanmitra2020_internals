@@ -47,6 +47,7 @@ export class HomepageComponent implements OnInit {
   cartCount: number = 0;
   selectedDepartment: string;
   hasItemPresenceCalculated: boolean = false;
+  loading: Boolean = true;
   constructor(
     private service: HomepageService,
     public dialog: MatDialog,
@@ -61,6 +62,7 @@ export class HomepageComponent implements OnInit {
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
     this.fetchRegistrationDetails();
+    this.loading = false;
   }
   fetchStudentDetails() {
     this.service.getStudent(this.studentAdmissionNumber).subscribe(res => {
@@ -84,12 +86,14 @@ export class HomepageComponent implements OnInit {
       .getWorkshopRegisteredDetails(this.studentAdmissionNumber)
       .subscribe(res => {
         this.cartWorkshopData = res;
+        this.cookie.set("workshopCart", JSON.stringify(this.cartWorkshopData));
         this.isWorkshopItemPresent();
       });
     this.service
       .getEventRegisteredDetails(this.studentAdmissionNumber)
       .subscribe(res => {
         this.cartEventData = res;
+        this.cookie.set("eventCart", JSON.stringify(this.cartEventData));
         this.isEventItemPresent();
       });
   }
@@ -152,6 +156,13 @@ export class HomepageComponent implements OnInit {
     this.cartCount += $event;
   }
   openCartDialog() {
-    this.dialog.open(CartdialogComponent);
+    this.dialog.open(CartdialogComponent, {
+      height: "500px",
+      width: "500px",
+      data: {
+        eventCart: this.cartEventData,
+        workshopData: this.cartWorkshopData
+      }
+    });
   }
 }

@@ -6,7 +6,7 @@ import {
   transition,
   animate
 } from "@angular/animations";
-import { MatDialog, MatDialogConfig } from "@angular/material";
+import { MatDialog, MatDialogConfig, MatSnackBar } from "@angular/material";
 import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondialog.component";
 import { DisplaycardService } from "src/app/service/displaycard/displaycard.service";
 import { CookieService } from "ngx-cookie-service";
@@ -37,7 +37,8 @@ export class DisplaycardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: DisplaycardService,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private snackBar: MatSnackBar
   ) {}
 
   @Input() event_workshopdata;
@@ -55,6 +56,11 @@ export class DisplaycardComponent implements OnInit {
       this.cartStatus = "Remove";
     }
     this.hasCheckedOut = this.event_workshopdata.hasCheckedOut;
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000
+    });
   }
   cartStatusChange(event: any) {
     event.stopPropagation();
@@ -85,10 +91,15 @@ export class DisplaycardComponent implements OnInit {
             }
           });
       }
+      this.openSnackBar("Removed from Cart", "Close");
     } else {
       if (this.event_workshopdata.id[0] === "W") {
         this.service
-          .addWorkshopToCart(this.admissionNumber, this.event_workshopdata.id)
+          .addWorkshopToCart(
+            this.admissionNumber,
+            this.event_workshopdata.id,
+            this.event_workshopdata.name
+          )
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Remove";
@@ -99,7 +110,11 @@ export class DisplaycardComponent implements OnInit {
           });
       } else if (this.event_workshopdata.id[0] === "E") {
         this.service
-          .addEventToCart(this.admissionNumber, this.event_workshopdata.id)
+          .addEventToCart(
+            this.admissionNumber,
+            this.event_workshopdata.id,
+            this.event_workshopdata.name
+          )
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Remove";
@@ -109,6 +124,7 @@ export class DisplaycardComponent implements OnInit {
             }
           });
       }
+      this.openSnackBar("Please confirm from cart", "Close");
     }
   }
   openDescriptionDialog(event: any) {

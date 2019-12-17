@@ -1,1 +1,29 @@
-<p>cartdialog works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 mat-dialog-title>{{ user }}'s Cart</h2>
+  </div>
+  <mat-dialog-content>
+    <table class="table">
+      <thead>
+        <th>Title</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <th>Event</th>
+        <ng-container *ngFor="let event of eventCart">
+          <tr>
+            <td>{{ event.name }}</td>
+            <td>{{ event.hasCheckedOut }}</td>
+          </tr>
+        </ng-container>
+        <th>Workshop</th>
+        <ng-container *ngFor="let workshop of workshopCart">
+          <tr>
+            <td>{{ workshop.name }}</td>
+            <td>{{ workshop.hasCheckedOut }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </mat-dialog-content>
+</div>

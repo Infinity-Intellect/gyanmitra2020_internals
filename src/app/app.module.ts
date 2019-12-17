@@ -19,7 +19,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
 import { HomepageService } from "./service/homepage/homepage.service";
 import { AdminpageComponent } from "./views/adminpage/adminpage.component";
-import { MatDialogModule } from "@angular/material";
+import { MatDialogModule, MatSnackBarModule } from "@angular/material";
 import { DescriptiondialogComponent } from "./components/descriptiondialog/descriptiondialog.component";
 import { CartdialogComponent } from "./components/cartdialog/cartdialog.component";
 import { LoginpageService } from "./service/loginpage/loginpage.service";
@@ -53,7 +53,8 @@ import { ParticlesModule } from "angular-particle";
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    ParticlesModule
+    ParticlesModule,
+    MatSnackBarModule
   ],
   providers: [HomepageService, LoginpageService, AuthGuard, CookieService],
   bootstrap: [AppComponent],

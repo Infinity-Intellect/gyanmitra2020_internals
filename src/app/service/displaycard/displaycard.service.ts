@@ -7,11 +7,16 @@ import { url } from "src/url";
 })
 export class DisplaycardService {
   constructor(private http: HttpClient) {}
-  public addWorkshopToCart(admissionNumber: String, workshopId: String) {
+  public addWorkshopToCart(
+    admissionNumber: String,
+    workshopId: String,
+    name: String
+  ) {
     const _url = url + "/workshopregister/addToCart";
     return this.http.post<any>(_url, {
       admissionNumber: admissionNumber,
-      workshopId: workshopId
+      workshopId: workshopId,
+      name: name
     });
   }
   public deleteWorkshopFromCart(admissionNumber: String, workshopId: String) {
@@ -21,11 +26,16 @@ export class DisplaycardService {
       workshopId: workshopId
     });
   }
-  public addEventToCart(admissionNumber: String, eventId: String) {
+  public addEventToCart(
+    admissionNumber: String,
+    eventId: String,
+    name: String
+  ) {
     const _url = url + "/eventregister/addToCart";
     return this.http.post<any>(_url, {
       admissionNumber: admissionNumber,
-      eventId: eventId
+      eventId: eventId,
+      name: name
     });
   }
   public deleteEventFromCart(admissionNumber: String, eventId: String) {
