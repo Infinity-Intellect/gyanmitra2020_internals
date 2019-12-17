@@ -5,16 +5,34 @@ import { Injectable } from "@angular/core";
 })
 export class AuthService {
   constructor() {}
-  loggedInStatus = JSON.parse(localStorage.getItem("loggedIn") || "false");
+  userLoggedInStatus = JSON.parse(
+    localStorage.getItem("userLoggedIn") || "false"
+  );
 
-  get isLoggedIn() {
+  adminLoggedInStatus = JSON.parse(
+    localStorage.getItem("adminLoggedIn") || "false"
+  );
+
+  get isUserLoggedIn() {
     return JSON.parse(
-      localStorage.getItem("loggedIn") || this.loggedInStatus.toString()
+      localStorage.getItem("userLoggedIn") || this.userLoggedInStatus.toString()
     );
   }
 
-  setLoggedIn(value: boolean) {
-    this.loggedInStatus = value;
-    localStorage.setItem("loggedIn", "true");
+  get isAdminLoggedIn() {
+    return JSON.parse(
+      localStorage.getItem("adminLoggedIn") ||
+        this.adminLoggedInStatus.toString()
+    );
+  }
+
+  setUserLoggedIn(value: boolean) {
+    this.userLoggedInStatus = value;
+    localStorage.setItem("userLoggedIn", "true");
+  }
+
+  setAdminLoggedIn(value: boolean) {
+    this.userLoggedInStatus = value;
+    localStorage.setItem("adminLoggedIn", "true");
   }
 }

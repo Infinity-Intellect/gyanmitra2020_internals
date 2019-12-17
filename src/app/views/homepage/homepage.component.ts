@@ -36,11 +36,17 @@ import { CookieService } from "ngx-cookie-service";
   ]
 })
 export class HomepageComponent implements OnInit {
-  someDate = new Date();
-  eventData: event[];
+  eventData: any[];
+  workshopData: any[];
+  cartWorkshopData: any[];
+  cartEventData: any[];
+  data: any;
   student: any;
   studentData: any;
   studentAdmissionNumber: string;
+  cartCount: number = 0;
+  selectedDepartment: string;
+  hasItemPresenceCalculated: boolean = false;
   constructor(
     private service: HomepageService,
     public dialog: MatDialog,
@@ -50,12 +56,11 @@ export class HomepageComponent implements OnInit {
     this.studentAdmissionNumber = this.cookie.get("username");
   }
 
-  data;
-  workshopData: workshop[];
   ngOnInit() {
     this.fetchStudentDetails();
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
+    this.fetchRegistrationDetails();
   }
   fetchStudentDetails() {
     this.service.getStudent(this.studentAdmissionNumber).subscribe(res => {
@@ -67,7 +72,6 @@ export class HomepageComponent implements OnInit {
   fetchEventDetails() {
     this.service.getEvents().subscribe(res => {
       this.eventData = res;
-      this.data = this.eventData;
     });
   }
   fetchWorkshopDetails() {
@@ -75,9 +79,60 @@ export class HomepageComponent implements OnInit {
       this.workshopData = res;
     });
   }
-
-  cartCount: number = 0;
-  selectedDepartment: string;
+  fetchRegistrationDetails() {
+    this.service
+      .getWorkshopRegisteredDetails(this.studentAdmissionNumber)
+      .subscribe(res => {
+        this.cartWorkshopData = res;
+        this.isWorkshopItemPresent();
+      });
+    this.service
+      .getEventRegisteredDetails(this.studentAdmissionNumber)
+      .subscribe(res => {
+        this.cartEventData = res;
+        this.isEventItemPresent();
+      });
+  }
+  isEventItemPresent() {
+    for (let i = 0; i < this.eventData.length; i++) {
+      var found = false;
+      for (let j = 0; j < this.cartEventData.length; j++) {
+        if (this.eventData[i].id === this.cartEventData[j].eventId) {
+          this.eventData[i]["isPresent"] = true;
+          this.eventData[i]["hasCheckedOut"] = this.cartEventData[j][
+            "hasCheckedOut"
+          ];
+          this.cartCount += 1;
+          found = true;
+          break;
+        }
+      }
+      if (found === false) {
+        this.eventData[i]["isPresent"] = false;
+      }
+    }
+    this.hasItemPresenceCalculated = true;
+  }
+  isWorkshopItemPresent() {
+    var found = false;
+    for (let i = 0; i < this.workshopData.length; i++) {
+      found = false;
+      for (let j = 0; j < this.cartWorkshopData.length; j++) {
+        if (this.workshopData[i].id === this.cartWorkshopData[j].workshopId) {
+          this.workshopData[i]["isPresent"] = true;
+          this.workshopData[i]["hasCheckedOut"] = this.cartWorkshopData[j][
+            "hasCheckedOut"
+          ];
+          this.cartCount += 1;
+          found = true;
+          break;
+        }
+      }
+      if (found === false) {
+        this.workshopData[i]["isPresent"] = false;
+      }
+    }
+  }
 
   /*Animation state variable declaration*/
   navbarState = "";
@@ -91,11 +146,6 @@ export class HomepageComponent implements OnInit {
   }
   currentButton($event) {
     this.activeButton = $event.target.name;
-    if (this.activeButton === "event") {
-      this.data = this.eventData;
-    } else {
-      this.data = this.workshopData;
-    }
   }
   /*End of function definitions to handle animation state variables*/
   changeCartCount($event) {

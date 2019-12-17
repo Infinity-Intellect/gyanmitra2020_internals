@@ -36,12 +36,12 @@ export class LoginpageComponent implements OnInit {
         .subscribe(data => {
           if (data.username !== -1) {
             if (data.role === "admin") {
-              this.authservice.setLoggedIn(true);
+              this.authservice.setAdminLoggedIn(true);
               this.setUserCookies(data);
               this.router.navigateByUrl("/admin");
             }
             if (data.role === "user") {
-              this.authservice.setLoggedIn(true);
+              this.authservice.setUserLoggedIn(true);
               this.setUserCookies(data);
               this.router.navigateByUrl("/home");
             }

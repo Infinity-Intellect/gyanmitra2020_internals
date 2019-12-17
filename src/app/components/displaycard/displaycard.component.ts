@@ -8,6 +8,8 @@ import {
 } from "@angular/animations";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondialog.component";
+import { DisplaycardService } from "src/app/service/displaycard/displaycard.service";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: "app-displaycard",
@@ -32,7 +34,11 @@ import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondial
   ]
 })
 export class DisplaycardComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private service: DisplaycardService,
+    private cookie: CookieService
+  ) {}
 
   @Input() event_workshopdata;
   @Input() cartData;
@@ -40,16 +46,69 @@ export class DisplaycardComponent implements OnInit {
   @Output() cartCount = new EventEmitter();
 
   cartStatus = "Add";
-  checkout: boolean = true;
+  hasCheckedOut: boolean = false;
+  currentCard: any;
+  admissionNumber = this.cookie.get("username");
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.event_workshopdata.isPresent) {
+      this.cartStatus = "Remove";
+    }
+    this.hasCheckedOut = this.event_workshopdata.hasCheckedOut;
+  }
   cartStatusChange(event: any) {
     event.stopPropagation();
-    this.cartStatus = this.cartStatus === "Add" ? "Remove" : "Add";
     if (this.cartStatus === "Remove") {
-      this.cartCount.emit(1);
+      if (this.event_workshopdata.id[0] === "W") {
+        this.service
+          .deleteWorkshopFromCart(
+            this.admissionNumber,
+            this.event_workshopdata.id
+          )
+          .subscribe(res => {
+            if (res.message === "Success") {
+              this.cartStatus = "Add";
+              this.cartCount.emit(-1);
+            } else {
+              console.log(res.message);
+            }
+          });
+      } else if (this.event_workshopdata.id[0] === "E") {
+        this.service
+          .deleteEventFromCart(this.admissionNumber, this.event_workshopdata.id)
+          .subscribe(res => {
+            if (res.message === "Success") {
+              this.cartStatus = "Add";
+              this.cartCount.emit(-1);
+            } else {
+              console.log(res.message);
+            }
+          });
+      }
     } else {
-      this.cartCount.emit(-1);
+      if (this.event_workshopdata.id[0] === "W") {
+        this.service
+          .addWorkshopToCart(this.admissionNumber, this.event_workshopdata.id)
+          .subscribe(res => {
+            if (res.message === "Success") {
+              this.cartStatus = "Remove";
+              this.cartCount.emit(1);
+            } else {
+              console.log(res.message);
+            }
+          });
+      } else if (this.event_workshopdata.id[0] === "E") {
+        this.service
+          .addEventToCart(this.admissionNumber, this.event_workshopdata.id)
+          .subscribe(res => {
+            if (res.message === "Success") {
+              this.cartStatus = "Remove";
+              this.cartCount.emit(1);
+            } else {
+              console.log(res.message);
+            }
+          });
+      }
     }
   }
   openDescriptionDialog(event: any) {

@@ -26,6 +26,7 @@ import { LoginpageService } from "./service/loginpage/loginpage.service";
 import { GradientbuttonComponent } from "./components/gradientbutton/gradientbutton.component";
 import { AuthGuard } from "./auth.guard";
 import { CookieService } from "ngx-cookie-service";
+import { ParticlesModule } from "angular-particle";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CookieService } from "ngx-cookie-service";
     MatSidenavModule,
     FormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    ParticlesModule
   ],
   providers: [HomepageService, LoginpageService, AuthGuard, CookieService],
   bootstrap: [AppComponent],

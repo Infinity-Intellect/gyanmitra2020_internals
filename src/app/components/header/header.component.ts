@@ -26,6 +26,6 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(CartdialogComponent);
   }
   setLoggedIn() {
-    this.authservice.setLoggedIn(false);
+    this.authservice.setUserLoggedIn(false);
   }
 }

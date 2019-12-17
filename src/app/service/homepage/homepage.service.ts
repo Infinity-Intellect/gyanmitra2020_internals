@@ -17,4 +17,16 @@ export class HomepageService {
     const _url = url + "/student/getByAdmissionNumber/";
     return this.http.get<any>(_url, { params: { admissionNumber: admNumber } });
   }
+  public getWorkshopRegisteredDetails(amdissionNumber) {
+    const _url = url + "/workshopregister/getRegisteredWorkshops";
+    return this.http.get<any>(_url, {
+      params: { admissionNumber: amdissionNumber }
+    });
+  }
+  public getEventRegisteredDetails(admissionNumber) {
+    const _url = url + "/eventregister/getRegisteredEvents";
+    return this.http.get<any>(_url, {
+      params: { admissionNumber: admissionNumber }
+    });
+  }
 }

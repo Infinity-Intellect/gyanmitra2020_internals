@@ -7,32 +7,30 @@
   </div>
   <div class="row justify-content-around">
     <div class="col-6">Date and Time:<span>19/02/19</span></div>
-    <div class="col-6">
-      Venue:Valluvar Arangam
-    </div>
+    <div class="col-6">Venue:{{ event_workshopdata.venue }}</div>
   </div>
-  <div
-    class="row justify-content-between"
-    *ngIf="checkout; else alreadyAddedTemplate"
-  >
-    <div class="col-3">
-      <button class="btn btn-info" (click)="openDescriptionDialog($event)">
-        Details
-      </button>
+  <ng-container *ngIf="!hasCheckedOut">
+    <div class="row justify-content-between">
+      <div class="col-3">
+        <button class="btn btn-info" (click)="openDescriptionDialog($event)">
+          Details
+        </button>
+      </div>
+      <div class="col-9 text-right">
+        <button
+          [@buttonStyle]="cartStatus"
+          (click)="cartStatusChange($event)"
+          class="btn btn-primary"
+        >
+          {{ cartStatus }}
+        </button>
+      </div>
     </div>
-    <div class="col-9 text-right">
-      <button
-        [@buttonStyle]="cartStatus"
-        (click)="cartStatusChange($event)"
-        class="btn btn-primary"
-      >
-        {{ cartStatus }}
-      </button>
-    </div>
-  </div>
-  <ng-template #alreadyAddedTemplate>
+  </ng-container>
+
+  <ng-container *ngIf="hasCheckedOut">
     <div class="row justify-content-center">
       <div class="col-5 alertMessage">Added !</div>
     </div>
-  </ng-template>
+  </ng-container>
 </div>

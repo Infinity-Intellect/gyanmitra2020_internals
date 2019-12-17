@@ -47,11 +47,21 @@
     </div>
   </div>
   <div class="row justify-content-around innerCardContainer">
-    <div class="col-5 text-center" *ngFor="let item of data">
-      <app-displaycard
-        [event_workshopdata]="item"
-        (cartCount)="changeCartCount($event)"
-      ></app-displaycard>
-    </div>
+    <ng-container *ngIf="activeButton === 'event' && hasItemPresenceCalculated">
+      <div class="col-5 text-center" *ngFor="let item of eventData">
+        <app-displaycard
+          [event_workshopdata]="item"
+          (cartCount)="changeCartCount($event)"
+        ></app-displaycard>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeButton === 'workshop'">
+      <div class="col-5 text-center" *ngFor="let item of workshopData">
+        <app-displaycard
+          [event_workshopdata]="item"
+          (cartCount)="changeCartCount($event)"
+        ></app-displaycard>
+      </div>
+    </ng-container>
   </div>
 </div>
