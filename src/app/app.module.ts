@@ -28,6 +28,9 @@ import { AuthGuard } from "./auth.guard";
 import { CookieService } from "ngx-cookie-service";
 import { ParticlesModule } from "angular-particle";
 import { ManageteamdialogComponent } from "./components/manageteamdialog/manageteamdialog.component";
+import { AdminService } from "./service/admin/admin.service";
+import { AttendanceButtonComponent } from "./components/attendance-button/attendance-button.component";
+import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { ManageteamdialogComponent } from "./components/manageteamdialog/managet
     DescriptiondialogComponent,
     CartdialogComponent,
     GradientbuttonComponent,
-    ManageteamdialogComponent
+    ManageteamdialogComponent,
+    AttendanceButtonComponent,
+    PaymentButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +61,16 @@ import { ManageteamdialogComponent } from "./components/manageteamdialog/managet
     HttpClientModule,
     MatDialogModule,
     ParticlesModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
-  providers: [HomepageService, LoginpageService, AuthGuard, CookieService],
+  providers: [
+    HomepageService,
+    LoginpageService,
+    AuthGuard,
+    CookieService,
+    AdminService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     DescriptiondialogComponent,
