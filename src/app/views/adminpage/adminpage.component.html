@@ -1,28 +1,40 @@
 <app-entryheader></app-entryheader>
 <div class="row contentRow">
-  <div class="col-2">
+  <div class="col-4">
     Event/Workshop
-    <select>
-      <option>Event</option>
-      <option>Workshop</option>
+    <select [(ngModel)] = "Name">
+      <option *ngFor = "let event of eventData" value = {{event.id}}>{{event.name}}</option>
+      <option *ngFor = "let workshop of workshopData" value = {{workshop.id}}>{{workshop.name}}</option>
     </select>
   </div>
   <div class="col-2">
-    <div>Department</div>
-    <select>
-      <option>CSE</option>
-      <option>Mechanical</option>
-      <option>Civil</option>
+  Department: 
+    <select [(ngModel)] = "Department">
+      <option selected value = "ALL">ALL</option>
+      <option value = "BE/CSE">BE/CSE</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
     </select>
   </div>
-  <div class="col-2">
-    Content 3:
-    <select>
-      <option>Choose option 3</option>
-    </select>
+  <div class="col-4 text-right"><input type="text" /></div>
+  <div class="col-2 text-right">
+    <button class="btn btn-primary" (click)="getStudentDetailsByFilter()">Fetch Results</button>
   </div>
-  <div class="col-4"><input type="text" /></div>
-  <div class="col-2">
-    <button class="btn btn-primary">Fetch Results</button>
-  </div>
+</div>
+<div>
+  <table>
+    <th>Admission No.</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Event/Workshop</th>
+    <tr *ngFor = "let student of studentData">
+      <td>{{student.admissionNumber}}</td>
+      <td>{{student.studentName}}</td>
+      <td>{{student.program}}</td>
+      <td *ngIf = "student.workshopId != null">{{student.workshopId}}</td>
+      <td *ngIf = "student.eventId != null">{{student.eventId}}</td>
+      <td *ngIf = "student.workshopId != null"><app-payment-button [studentData] = "student"></app-payment-button></td>
+      <td *ngIf = "student.workshopId != null"><app-attendance-button [studentData] = "student"></app-attendance-button></td>
+      <td *ngIf = "student.eventId != null"><app-attendance-button [studentData] = "student"></app-attendance-button></td>
+    </tr>
+  </table>
 </div>

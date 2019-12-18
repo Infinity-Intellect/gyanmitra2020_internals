@@ -8,10 +8,12 @@ import { url } from "../../../url";
 export class HomepageService {
   constructor(private http: HttpClient) {}
   public getEvents() {
-    return this.http.get<any[]>("http://localhost:3000/event/getAll");
+    const _url = url +"/event/getAll";
+    return this.http.get<any[]>(_url);
   }
   public getWorkshops() {
-    return this.http.get<any[]>("http://localhost:3000/workshop/getAll");
+    const _url = url+"/workshop/getAll";
+    return this.http.get<any[]>(_url);
   }
   public getStudent(admNumber) {
     const _url = url + "/student/getByAdmissionNumber/";

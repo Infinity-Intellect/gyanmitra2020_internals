@@ -27,6 +27,9 @@ import { GradientbuttonComponent } from "./components/gradientbutton/gradientbut
 import { AuthGuard } from "./auth.guard";
 import { CookieService } from "ngx-cookie-service";
 import { ParticlesModule } from "angular-particle";
+import { AdminService } from './service/admin/admin.service';
+import { AttendanceButtonComponent } from './components/attendance-button/attendance-button.component';
+import { PaymentButtonComponent } from './components/payment-button/payment-button.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { ParticlesModule } from "angular-particle";
     AdminpageComponent,
     DescriptiondialogComponent,
     CartdialogComponent,
-    GradientbuttonComponent
+    GradientbuttonComponent,
+    AttendanceButtonComponent,
+    PaymentButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +59,10 @@ import { ParticlesModule } from "angular-particle";
     HttpClientModule,
     MatDialogModule,
     ParticlesModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
-  providers: [HomepageService, LoginpageService, AuthGuard, CookieService],
+  providers: [HomepageService, LoginpageService, AuthGuard, CookieService, AdminService],
   bootstrap: [AppComponent],
   entryComponents: [DescriptiondialogComponent, CartdialogComponent]
 })
