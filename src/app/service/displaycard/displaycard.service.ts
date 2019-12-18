@@ -29,13 +29,15 @@ export class DisplaycardService {
   public addEventToCart(
     admissionNumber: String,
     eventId: String,
-    name: String
+    name: String,
+    teamSize: Number
   ) {
     const _url = url + "/eventregister/addToCart";
     return this.http.post<any>(_url, {
       admissionNumber: admissionNumber,
       eventId: eventId,
-      name: name
+      name: name,
+      teamSize: teamSize
     });
   }
   public deleteEventFromCart(admissionNumber: String, eventId: String) {

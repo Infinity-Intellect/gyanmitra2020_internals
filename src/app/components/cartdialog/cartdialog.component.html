@@ -1,22 +1,54 @@
+<mat-dialog-actions align="end">
+  <span mat-button mat-dialog-close style="background: none;border:none"
+    >X</span
+  >
+</mat-dialog-actions>
 <div class="container">
   <div class="row justify-content-center">
-    <h2 mat-dialog-title>{{ user }}'s Cart</h2>
+    <h3>{{ user }}'s Cart</h3>
   </div>
+  <hr />
   <mat-dialog-content>
+    <h5 style="text-align: center;">Events</h5>
     <table class="table">
       <thead>
         <th>Title</th>
         <th>Status</th>
       </thead>
       <tbody>
-        <th>Event</th>
         <ng-container *ngFor="let event of eventCart">
           <tr>
             <td>{{ event.name }}</td>
-            <td>{{ event.hasCheckedOut }}</td>
+            <ng-container *ngIf="!event.hasCheckedOut && event.teamSize === 1">
+              <td>
+                <button class="btn btn-success btn-sm">Confirm</button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="!event.hasCheckedOut && event.teamSize > 1">
+              <td>
+                <button
+                  class="btn btn-primary btn-sm"
+                  (click)="openTeamDialog()"
+                >
+                  Create Team+
+                </button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="event.hasCheckedOut">
+              <td>Confirmed !</td>
+            </ng-container>
           </tr>
         </ng-container>
-        <th>Workshop</th>
+      </tbody>
+    </table>
+    <hr />
+    <h5 style="text-align: center;">Workshops</h5>
+    <table class="table">
+      <thead>
+        <th>Title</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
         <ng-container *ngFor="let workshop of workshopCart">
           <tr>
             <td>{{ workshop.name }}</td>

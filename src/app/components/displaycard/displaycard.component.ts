@@ -10,6 +10,7 @@ import { MatDialog, MatDialogConfig, MatSnackBar } from "@angular/material";
 import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondialog.component";
 import { DisplaycardService } from "src/app/service/displaycard/displaycard.service";
 import { CookieService } from "ngx-cookie-service";
+import { HomepageService } from "src/app/service/homepage/homepage.service";
 
 @Component({
   selector: "app-displaycard",
@@ -74,7 +75,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Add";
-              this.cartCount.emit(-1);
+              //this.cartCount.emit(-1);
             } else {
               console.log(res.message);
             }
@@ -85,7 +86,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Add";
-              this.cartCount.emit(-1);
+              //this.cartCount.emit(-1);
             } else {
               console.log(res.message);
             }
@@ -103,7 +104,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Remove";
-              this.cartCount.emit(1);
+              //this.cartCount.emit(1);
             } else {
               console.log(res.message);
             }
@@ -113,12 +114,13 @@ export class DisplaycardComponent implements OnInit {
           .addEventToCart(
             this.admissionNumber,
             this.event_workshopdata.id,
-            this.event_workshopdata.name
+            this.event_workshopdata.name,
+            this.event_workshopdata.teamSize
           )
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Remove";
-              this.cartCount.emit(1);
+              //this.cartCount.emit(1);
             } else {
               console.log(res.message);
             }
@@ -129,7 +131,10 @@ export class DisplaycardComponent implements OnInit {
   }
   openDescriptionDialog(event: any) {
     event.stopPropagation();
-    const dialogConfig = new MatDialogConfig();
-    this.dialog.open(DescriptiondialogComponent, dialogConfig);
+    this.dialog.open(DescriptiondialogComponent, {
+      width: "500px",
+      height: "500px",
+      data: { description: this.event_workshopdata.description }
+    });
   }
 }

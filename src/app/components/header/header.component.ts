@@ -3,6 +3,7 @@ import { Animations } from "../../../misc_assets/animations/animations";
 import { MatDialog } from "@angular/material";
 import { CartdialogComponent } from "../cartdialog/cartdialog.component";
 import { AuthService } from "src/app/auth.service";
+import { ManageteamdialogComponent } from "../manageteamdialog/manageteamdialog.component";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -29,6 +30,12 @@ export class HeaderComponent implements OnInit {
       height: "500px",
       width: "500px",
       data: { eventCart: this.eventData, workshopCart: this.workshopData }
+    });
+  }
+  openManageTeamDialog() {
+    this.dialog.open(ManageteamdialogComponent, {
+      height: "500px",
+      width: "500px"
     });
   }
   setLoggedIn() {

@@ -27,6 +27,7 @@ import { GradientbuttonComponent } from "./components/gradientbutton/gradientbut
 import { AuthGuard } from "./auth.guard";
 import { CookieService } from "ngx-cookie-service";
 import { ParticlesModule } from "angular-particle";
+import { ManageteamdialogComponent } from "./components/manageteamdialog/manageteamdialog.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ParticlesModule } from "angular-particle";
     AdminpageComponent,
     DescriptiondialogComponent,
     CartdialogComponent,
-    GradientbuttonComponent
+    GradientbuttonComponent,
+    ManageteamdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,10 @@ import { ParticlesModule } from "angular-particle";
   ],
   providers: [HomepageService, LoginpageService, AuthGuard, CookieService],
   bootstrap: [AppComponent],
-  entryComponents: [DescriptiondialogComponent, CartdialogComponent]
+  entryComponents: [
+    DescriptiondialogComponent,
+    CartdialogComponent,
+    ManageteamdialogComponent
+  ]
 })
 export class AppModule {}

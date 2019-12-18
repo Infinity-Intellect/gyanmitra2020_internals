@@ -67,7 +67,7 @@ export class HomepageComponent implements OnInit {
   fetchStudentDetails() {
     this.service.getStudent(this.studentAdmissionNumber).subscribe(res => {
       this.studentData = res;
-      this.cookie.set("name", this.studentData.name);
+      this.cookie.set("name", this.studentData.studentName);
       this.cookie.set("program", this.studentData.program);
     });
   }
@@ -106,7 +106,7 @@ export class HomepageComponent implements OnInit {
           this.eventData[i]["hasCheckedOut"] = this.cartEventData[j][
             "hasCheckedOut"
           ];
-          this.cartCount += 1;
+          // this.cartCount += 1;
           found = true;
           break;
         }
@@ -127,7 +127,7 @@ export class HomepageComponent implements OnInit {
           this.workshopData[i]["hasCheckedOut"] = this.cartWorkshopData[j][
             "hasCheckedOut"
           ];
-          this.cartCount += 1;
+          // this.cartCount += 1;
           found = true;
           break;
         }
@@ -150,6 +150,7 @@ export class HomepageComponent implements OnInit {
   }
   currentButton($event) {
     this.activeButton = $event.target.name;
+    this.fetchRegistrationDetails();
   }
   /*End of function definitions to handle animation state variables*/
   changeCartCount($event) {
