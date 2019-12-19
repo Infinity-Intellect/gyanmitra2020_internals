@@ -10,52 +10,98 @@
   <hr />
   <mat-dialog-content>
     <h5 style="text-align: center;">Events</h5>
-    <table class="table">
-      <thead>
-        <th>Title</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let event of eventCart">
-          <tr>
-            <td>{{ event.name }}</td>
-            <ng-container *ngIf="!event.hasCheckedOut && event.teamSize === 1">
-              <td>
-                <button class="btn btn-success btn-sm">Confirm</button>
-              </td>
-            </ng-container>
-            <ng-container *ngIf="!event.hasCheckedOut && event.teamSize > 1">
-              <td>
-                <button
-                  class="btn btn-primary btn-sm"
-                  (click)="openTeamDialog()"
-                >
-                  Create Team+
-                </button>
-              </td>
-            </ng-container>
-            <ng-container *ngIf="event.hasCheckedOut">
-              <td>Confirmed !</td>
-            </ng-container>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
+    <hr />
+    <ng-container *ngIf="eventCartSize === 0">
+      <div class="row justify-content-center">---NIL---</div>
+    </ng-container>
+    <ng-container *ngIf="eventCartSize !== 0">
+      <table class="table">
+        <thead>
+          <th>Title</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let event of eventCart">
+            <tr>
+              <td>{{ event.name }}</td>
+              <ng-container
+                *ngIf="!event.hasCheckedOut && event.teamSize === 1"
+              >
+                <td>
+                  <button
+                    class="btn btn-success btn-sm"
+                    (click)="confirmEvent(event)"
+                  >
+                    Confirm
+                  </button>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="!event.hasCheckedOut && event.teamSize > 1">
+                <td>
+                  <button
+                    class="btn btn-primary btn-sm"
+                    (click)="toggleTeamClicked(event)"
+                  >
+                    Create Team+
+                  </button>
+                </td>
+              </ng-container>
+
+              <!-- <ng-container *ngIf="createTeamClicked">
+                    <ng-container *ngFor="let member of teamSizeArray">
+                      Member:{{ member }}<input type="text" placeholder="Member" />
+                    </ng-container>
+                  </ng-container> -->
+              <ng-container *ngIf="event.hasCheckedOut">
+                <td>
+                  <div class="alert alert-success text-center">
+                    Added !
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </ng-container>
+
     <hr />
     <h5 style="text-align: center;">Workshops</h5>
-    <table class="table">
-      <thead>
-        <th>Title</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let workshop of workshopCart">
-          <tr>
-            <td>{{ workshop.name }}</td>
-            <td>{{ workshop.hasCheckedOut }}</td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
+    <hr />
+    <ng-container *ngIf="workshopCartSize === 0">
+      <div class="row justify-content-center">---NIL---</div>
+    </ng-container>
+    <ng-container *ngIf="workshopCartSize !== 0">
+      <table class="table">
+        <thead>
+          <th>Title</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let workshop of workshopCart">
+            <tr>
+              <td>{{ workshop.name }}</td>
+              <ng-container *ngIf="!workshop.hasCheckedOut">
+                <td>
+                  <button
+                    class="btn btn-success btn-sm"
+                    (click)="confirmWorkshop(workshop)"
+                  >
+                    Confirm
+                  </button>
+                </td>
+              </ng-container>
+              <ng-container *ngIf="workshop.hasCheckedOut">
+                <td>
+                  <div class="alert alert-success text-center">
+                    Added !
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </ng-container>
   </mat-dialog-content>
 </div>

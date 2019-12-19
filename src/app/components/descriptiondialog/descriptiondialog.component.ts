@@ -9,5 +9,7 @@ import { MAT_DIALOG_DATA } from "@angular/material";
 export class DescriptiondialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
   description = this.data.description;
-  ngOnInit() {}
+  ngOnInit() {
+    this.description = this.description.split("\\n");
+  }
 }

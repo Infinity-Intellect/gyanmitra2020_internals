@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderComponent } from "./components/header/header.component";
 
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatInputModule } from "@angular/material/input";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { LandingpageComponent } from "./views/landingpage/landingpage.component";
@@ -19,7 +20,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { DisplaycardComponent } from "./components/displaycard/displaycard.component";
 import { HomepageService } from "./service/homepage/homepage.service";
 import { AdminpageComponent } from "./views/adminpage/adminpage.component";
-import { MatDialogModule, MatSnackBarModule } from "@angular/material";
+import {
+  MatDialogModule,
+  MatSnackBarModule,
+  MatButtonModule
+} from "@angular/material";
 import { DescriptiondialogComponent } from "./components/descriptiondialog/descriptiondialog.component";
 import { CartdialogComponent } from "./components/cartdialog/cartdialog.component";
 import { LoginpageService } from "./service/loginpage/loginpage.service";
@@ -62,7 +67,9 @@ import { PaymentButtonComponent } from "./components/payment-button/payment-butt
     MatDialogModule,
     ParticlesModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     HomepageService,

@@ -1,12 +1,11 @@
-<div [@sidenavOpenClose]="sideNavState" id="sidenav">
+<div [@sidenavOpenClose]="sideNavState" id="sidenav" style="top:0px">
   <ul>
     <a href="home"><li>Home</li></a>
     <a><li (click)="openCartDialog()">Cart</li></a>
-    <a><li (click)="openManageTeamDialog()">Manage Team</li></a>
     <a href="/"><li (click)="setLoggedIn()">Logout</li></a>
   </ul>
 </div>
-<div class="container-fluid" id="header">
+<div class="container-fluid" id="header" style="position: fixed; top:0px">
   <div class="row" id="headerContainer">
     <div class="col">
       <button (click)="toggleSideNav()" id="menuButton">

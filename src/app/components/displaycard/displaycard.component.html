@@ -6,16 +6,19 @@
     {{ event_workshopdata.name }}
   </div>
   <div class="row justify-content-around">
-    <div class="col-6">Date and Time:<span>19/02/19</span></div>
-    <div class="col-6">Venue:{{ event_workshopdata.venue }}</div>
+    Venue:{{ event_workshopdata.venue }}
   </div>
+  <div>Date and Time:<span>24/01/2020</span></div>
+
   <ng-container *ngIf="event_workshopdata.teamSize">
     <div class="row justify-content-center">
-      <ng-container *ngIf="event_workshopdata.teamSize">
-        Team Size:{{ event_workshopdata.teamSize }}
-      </ng-container>
+      Team Size:{{ event_workshopdata.teamSize }}
     </div>
   </ng-container>
+
+  <div class="row justify-content-center">
+    Team Size:{{ event_workshopdata.department }}
+  </div>
 
   <ng-container *ngIf="!hasCheckedOut">
     <div class="row justify-content-between">

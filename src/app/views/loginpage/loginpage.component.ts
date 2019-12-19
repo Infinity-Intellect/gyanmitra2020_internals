@@ -23,6 +23,7 @@ export class LoginpageComponent implements OnInit {
   username: string;
   password: string;
   incorrectInputData: boolean = false;
+  ripples: Boolean = true;
 
   emptyField: boolean = false;
 

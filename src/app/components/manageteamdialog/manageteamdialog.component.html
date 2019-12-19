@@ -1,1 +1,68 @@
-<p>manageteamdialog works!</p>
+<mat-dialog-actions align="end">
+  <span mat-button mat-dialog-close style="background: none;border:none"
+    >X</span
+  >
+</mat-dialog-actions>
+<div class="container-fluid justify-content-center">
+  <div class="row" style="padding-bottom: 4%;">
+    <div class="col-4">
+      Member 1:
+    </div>
+    <div class="col-4">
+      {{ currentUserAdmissionNumber }}
+    </div>
+    <div class="col-4">
+      {{ currentUserName }}
+    </div>
+  </div>
+  <ng-container *ngFor="let member of teamSizeArray; let index = index">
+    <div class="row justify-content-center">
+      <div class="col-4">Member {{ index + 2 }}:</div>
+
+      <div class="col-4">
+        <mat-form-field>
+          <input
+            [(ngModel)]="membersAdmissionNumber[index]"
+            required
+            type="text"
+            placeholder="Admission Number"
+            (focus)="resetStatus()"
+            matInput
+          />
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngIf="membersSize > 0">
+        <br />
+        <div class="col-4">
+          {{ membersName[index] }}
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div class="row justify-content-center" *ngIf="!hasRequested">
+    <ng-container *ngIf="buttonStatus === 'Check'">
+      <button class="btn btn-success" (click)="handleRequest()">
+        {{ buttonStatus }}
+      </button>
+    </ng-container>
+    <ng-container *ngIf="buttonStatus === 'Request'">
+      <button class="btn btn-success" (click)="postRequest()">
+        {{ buttonStatus }}
+      </button>
+    </ng-container>
+  </div>
+  <div *ngIf="matchingFieldFound" style="padding-top:4%">
+    <div class="alert alert-danger text-center">Sensing Invalid Fields !</div>
+  </div>
+  <div *ngIf="isThereNonExistentAdmissionNumber" style="padding-top:4%">
+    <div class="alert alert-danger">Please Enter Valid Admission Number !</div>
+  </div>
+  <!-- <div
+    *ngIf="hasRequested && !isThereNonExistentAdmissionNumber"
+    style="padding-top:4%"
+  >
+    <div class="alert alert-success">Request Sent !</div>
+  </div> -->
+</div>

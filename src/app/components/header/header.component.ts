@@ -32,12 +32,7 @@ export class HeaderComponent implements OnInit {
       data: { eventCart: this.eventData, workshopCart: this.workshopData }
     });
   }
-  openManageTeamDialog() {
-    this.dialog.open(ManageteamdialogComponent, {
-      height: "500px",
-      width: "500px"
-    });
-  }
+
   setLoggedIn() {
     this.authservice.setUserLoggedIn(false);
   }
