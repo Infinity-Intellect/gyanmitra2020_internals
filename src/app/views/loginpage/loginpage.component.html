@@ -1,61 +1,66 @@
 <app-entryheader></app-entryheader>
-<div id="formContainer" [@swoopIn]>
-  <form #userForm="ngForm">
-    <div class="container innerFormContainer" id="formContents">
-      <form>
-        <div class="row-4 text-center formElement">
-          <mat-form-field>
-            <input
-              name="username"
-              [(ngModel)]="username"
-              type="text"
-              placeholder="Username"
-              (focus)="alterEmptyFieldState()"
-              matInput
-            />
-          </mat-form-field>
-        </div>
+<div class="card">
+  <div class="card-header text-center">
+    <h3>Login</h3>
+  </div>
+  <div class="card-body">
+    <form #userForm="ngForm">
+      <div class="container innerFormContainer" id="formContents">
+        <form>
+          <div class="row-4 text-center formElement">
+            <mat-form-field>
+              <input
+                name="username"
+                [(ngModel)]="username"
+                type="text"
+                placeholder="Username"
+                (focus)="alterEmptyFieldState()"
+                matInput
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="row-4 text-center formElement">
+            <mat-form-field>
+              <input
+                name="password"
+                type="password"
+                [(ngModel)]="password"
+                placeholder="Password"
+                (focus)="alterEmptyFieldState()"
+                matInput
+              />
+            </mat-form-field>
+          </div>
+        </form>
 
         <div class="row-4 text-center formElement">
-          <mat-form-field>
-            <input
-              name="password"
-              type="password"
-              [(ngModel)]="password"
-              placeholder="Password"
-              (focus)="alterEmptyFieldState()"
-              matInput
-            />
-          </mat-form-field>
+          <button
+            mat-button
+            [disableRipple]="!ripples"
+            (click)="routeToHomePage()"
+            style="background-color: rgb(77, 187, 77);color:white"
+          >
+            Login
+          </button>
         </div>
-      </form>
-
-      <div class="row-4 text-center formElement">
-        <button
-          mat-button
-          [disableRipple]="!ripples"
-          (click)="routeToHomePage()"
-          style="background-color: rgb(77, 187, 77);color:white"
-        >
-          Login
-        </button>
+        <!-- <div class="row justify-content-center alertRow">
+          <div
+            *ngIf="emptyField == true"
+            class="alert alert-danger align-self-center col-6 text-center"
+            [@fadeInOut]
+          >
+            Sensing Empty Field(s)!
+          </div>
+          <div
+            *ngIf="incorrectInputData"
+            class="alert alert-danger col-6 text-center"
+            [@fadeInOut]
+          >
+            Username/Password Mismatch!
+          </div>
+        </div> -->
       </div>
-      <div class="row justify-content-center alertRow">
-        <div
-          *ngIf="emptyField == true"
-          class="alert alert-danger align-self-center col-6 text-center"
-          [@fadeInOut]
-        >
-          Sensing Empty Field(s)!
-        </div>
-        <div
-          *ngIf="incorrectInputData"
-          class="alert alert-danger col-6 text-center"
-          [@fadeInOut]
-        >
-          Username/Password Mismatch!
-        </div>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

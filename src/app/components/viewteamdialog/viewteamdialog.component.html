@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4>Your Team</h4>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Member</th>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of teamMembersDetails; let i = index">
+          <th>{{ i + 1 }}</th>
+          <td>{{ member.admissionNumber }}</td>
+          <td>
+            {{ member.studentName
+            }}<span *ngIf="member.addedBy === 'self'" style="color:red"
+              >(L)</span
+            >
+          </td>
+          <td *ngIf="member.hasConfirmed === true">
+            <div class="alert alert-success">Joined!</div>
+          </td>
+          <td
+            *ngIf="
+              member.hasConfirmed === false &&
+              member.admissionNumber !== currentUserAdmissionNumber
+            "
+          >
+            <div class="alert alert-info">Pending</div>
+          </td>
+          <td
+            *ngIf="
+              member.admissionNumber === currentUserAdmissionNumber &&
+              member.hasConfirmed === false
+            "
+          >
+            <button
+              class="btn btn-success"
+              (click)="confirmParticipation(member)"
+            >
+              Confirm
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="row justify-content-center"
+    *ngIf="teamLeader === currentUserAdmissionNumber"
+  >
+    <button class="btn btn-success btn-lg" *ngIf="teamStatus">
+      Confirm Team
+    </button>
+    <button
+      class="btn btn-secondary btn-lg"
+      disabled
+      *ngIf="teamStatus === false"
+    >
+      Confirm Team
+    </button>
+  </div>
+</div>

@@ -23,7 +23,9 @@ import { AdminpageComponent } from "./views/adminpage/adminpage.component";
 import {
   MatDialogModule,
   MatSnackBarModule,
-  MatButtonModule
+  MatButtonModule,
+  MatTooltipModule,
+  MatSelectModule
 } from "@angular/material";
 import { DescriptiondialogComponent } from "./components/descriptiondialog/descriptiondialog.component";
 import { CartdialogComponent } from "./components/cartdialog/cartdialog.component";
@@ -36,6 +38,7 @@ import { ManageteamdialogComponent } from "./components/manageteamdialog/managet
 import { AdminService } from "./service/admin/admin.service";
 import { AttendanceButtonComponent } from "./components/attendance-button/attendance-button.component";
 import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
+import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdialog.component";
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { PaymentButtonComponent } from "./components/payment-button/payment-butt
     GradientbuttonComponent,
     ManageteamdialogComponent,
     AttendanceButtonComponent,
-    PaymentButtonComponent
+    PaymentButtonComponent,
+    ViewteamdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,9 @@ import { PaymentButtonComponent } from "./components/payment-button/payment-butt
     MatSnackBarModule,
     FormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule,
+    MatSelectModule
   ],
   providers: [
     HomepageService,
@@ -82,7 +88,8 @@ import { PaymentButtonComponent } from "./components/payment-button/payment-butt
   entryComponents: [
     DescriptiondialogComponent,
     CartdialogComponent,
-    ManageteamdialogComponent
+    ManageteamdialogComponent,
+    ViewteamdialogComponent
   ]
 })
 export class AppModule {}

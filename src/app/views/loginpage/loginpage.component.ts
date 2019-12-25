@@ -6,6 +6,7 @@ import { LoginpageService } from "../../service/loginpage/loginpage.service";
 import { trigger, transition, style, animate } from "@angular/animations";
 import { AuthService } from "src/app/auth.service";
 import { CookieService } from "ngx-cookie-service";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: "app-loginpage",
@@ -18,7 +19,8 @@ export class LoginpageComponent implements OnInit {
     private router: Router,
     private service: LoginpageService,
     private authservice: AuthService,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private snackbar: MatSnackBar
   ) {}
   username: string;
   password: string;
@@ -31,6 +33,10 @@ export class LoginpageComponent implements OnInit {
   routeToHomePage = () => {
     if (!this.username || !this.password) {
       this.emptyField = true;
+      this.snackbar.open("Sensing Empty Fields !", "Close", {
+        duration: 3000,
+        panelClass: ["red-snackbar"]
+      });
     } else {
       this.service
         .getAccountPresent(this.username, this.password)
@@ -47,7 +53,10 @@ export class LoginpageComponent implements OnInit {
               this.router.navigateByUrl("/home");
             }
           } else {
-            this.incorrectInputData = true;
+            this.snackbar.open("Username/Password Mismatch !", "Close", {
+              duration: 3000,
+              panelClass: ["red-snackbar"]
+            });
           }
         });
     }

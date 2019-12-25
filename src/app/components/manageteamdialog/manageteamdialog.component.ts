@@ -2,11 +2,13 @@ import { Component, OnInit, Inject, Output, EventEmitter } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material";
 import { CookieService } from "ngx-cookie-service";
 import { ManageteamdialogService } from "./manageteamdialog.service";
+import { Animations } from "src/misc_assets/animations/animations";
 
 @Component({
   selector: "app-manageteamdialog",
   templateUrl: "./manageteamdialog.component.html",
-  styleUrls: ["./manageteamdialog.component.css"]
+  styleUrls: ["./manageteamdialog.component.css"],
+  animations: [Animations.fadeInOut]
 })
 export class ManageteamdialogComponent implements OnInit {
   constructor(
@@ -27,9 +29,10 @@ export class ManageteamdialogComponent implements OnInit {
   membersName: any[];
   membersSize: any = 0;
 
+  isThereDuplicate: Boolean = false;
   isThereNonExistentAdmissionNumber: Boolean = false;
-
-  matchingFieldFound: Boolean = false;
+  isThereEmptyField: Boolean = false;
+  isThereIneligibleMember: Boolean = false;
 
   hasRequested: Boolean = false;
 
@@ -45,77 +48,103 @@ export class ManageteamdialogComponent implements OnInit {
     this.postAdmissionNumbers.push(this.currentUserAdmissionNumber);
   }
 
-  async handleRequest() {
-    for (let i = 0; i < this.membersAdmissionNumber.length - 1; i++) {
+  handleRequest() {
+    this.membersAdmissionNumber.forEach(member => {
+      if (member === "") {
+        this.isThereEmptyField = true;
+        return;
+      }
+    });
+    if (!this.isThereEmptyField) {
+      this.checkDuplicates();
+    }
+    this.postRequest();
+  }
+  checkDuplicates() {
+    if (this.membersAdmissionNumber.length === 1) {
+      if (this.membersAdmissionNumber[0] === this.currentUserAdmissionNumber) {
+        this.isThereDuplicate = true;
+        this.membersName = [];
+        return;
+      }
+    }
+    for (let i = 0; i < this.membersAdmissionNumber.length; i++) {
       if (
         this.membersAdmissionNumber[i] === this.currentUserAdmissionNumber ||
         this.membersAdmissionNumber[i + 1] === this.currentUserAdmissionNumber
       ) {
-        this.matchingFieldFound = true;
-        break;
+        this.isThereDuplicate = true;
+        this.membersName = [];
+        return;
       }
       for (let j = i + 1; j < this.membersAdmissionNumber.length; j++) {
-        if (this.membersAdmissionNumber[j] === this.membersAdmissionNumber[i]) {
-          this.matchingFieldFound = true;
-          break;
+        if (this.membersAdmissionNumber[i] === this.membersAdmissionNumber[j]) {
+          this.isThereDuplicate = true;
+          this.membersName = [];
+          return;
         }
       }
     }
-    if (!this.matchingFieldFound) {
-      this.membersSize = 0;
-      this.postAdmissionNumbers = [];
-      this.postAdmissionNumbers.push(this.currentUserAdmissionNumber);
-      for (let i = 0; i < this.membersAdmissionNumber.length; i++) {
-        await this.doesStudentExist(this.membersAdmissionNumber[i], i);
-      }
-      //while (this.membersSize !== this.data.teamEvent.teamSize);
-      console.log(this.data.teamEvent.eventId);
+  }
+  postRequest() {
+    this.postAdmissionNumbers = [];
+    this.postAdmissionNumbers.push(this.currentUserAdmissionNumber);
 
-      console.log(this.postAdmissionNumbers.length);
-
-      console.log(this.data.teamEvent.teamSize);
-
-      /**Call Service */
-      // this.service.createTeam(
-      //   this.membersAdmissionNumber,
-      //   this.data.teamEvent.eventId
-      // );
-      //this.hasRequested = true;
+    if (!this.isThereEmptyField && !this.isThereDuplicate) {
+      this.membersAdmissionNumber.forEach(member => {
+        this.postAdmissionNumbers.push(member);
+      });
+      this.service
+        .doStudentsExist(this.postAdmissionNumbers)
+        .subscribe(data => {
+          if (data.message === "Not found") {
+            this.isThereNonExistentAdmissionNumber = true;
+            this.membersName = [];
+            console.log(data);
+          } else {
+            const members = data.members;
+            this.membersSize = 1;
+            for (let i = 1; i < members.length; i++) {
+              this.membersName[i - 1] = members[i].studentName;
+              console.log(this.membersName);
+              this.membersSize += 1;
+            }
+            this.buttonStatus = "Request";
+          }
+        });
     }
   }
+  requestMembers() {
+    this.service
+      .isInTeam(this.postAdmissionNumbers, this.data.teamEvent.eventId)
+      .subscribe(data => {
+        if (data.message === "Disallow") {
+          this.isThereIneligibleMember = true;
+        } else {
+          this.service
+            .createTeam(this.postAdmissionNumbers, this.data.teamEvent.eventId)
+            .subscribe(data => {
+              if (data.message === "Added") {
+                this.buttonStatus = "Added";
+              }
+            });
+        }
+      });
+  }
   resetStatus() {
-    this.buttonStatus = "Check";
-
-    if (this.matchingFieldFound) {
-      this.matchingFieldFound = !this.matchingFieldFound;
+    if (this.isThereEmptyField) {
+      this.isThereEmptyField = !this.isThereEmptyField;
+    }
+    if (this.isThereDuplicate) {
+      this.isThereDuplicate = !this.isThereDuplicate;
     }
     if (this.isThereNonExistentAdmissionNumber) {
       this.isThereNonExistentAdmissionNumber = !this
         .isThereNonExistentAdmissionNumber;
     }
-  }
-
-  doesStudentExist(admissionNumber, i) {
-    this.service.isStudentPresent(admissionNumber).subscribe(receivedData => {
-      if (receivedData.message === "Not Found") {
-        this.isThereNonExistentAdmissionNumber = true;
-        return;
-      } else {
-        this.postAdmissionNumbers.push(admissionNumber);
-      }
-      //console.log(receivedData);
-      this.membersName[i] = receivedData.student.studentName;
-      this.membersSize += 1;
-      console.log(this.membersSize);
-
-      if (this.membersSize === this.data.teamEvent.teamSize - 1) {
-        this.buttonStatus = "Request";
-      }
-    });
-  }
-
-  postRequest() {
-    console.log(this.postAdmissionNumbers);
-    console.log("Posting ...");
+    if (this.isThereIneligibleMember) {
+      this.isThereIneligibleMember = !this.isThereIneligibleMember;
+    }
+    this.buttonStatus = "Check";
   }
 }

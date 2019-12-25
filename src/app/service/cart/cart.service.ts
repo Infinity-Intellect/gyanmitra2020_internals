@@ -20,4 +20,10 @@ export class CartService {
       params: { admissionNumber: amdissionNumber }
     });
   }
+  public doesTeamExist(admissionNumber: any, eventId: string) {
+    const _url = url + "/team/doesTeamExist";
+    return this.http.get<any>(_url, {
+      params: { admissionNumber: admissionNumber, eventId: eventId }
+    });
+  }
 }

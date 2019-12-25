@@ -32,7 +32,7 @@
         </mat-form-field>
       </div>
 
-      <ng-container *ngIf="membersSize > 0">
+      <ng-container *ngIf="membersSize > 0" [@fadeInOut]>
         <br />
         <div class="col-4">
           {{ membersName[index] }}
@@ -43,21 +43,49 @@
 
   <div class="row justify-content-center" *ngIf="!hasRequested">
     <ng-container *ngIf="buttonStatus === 'Check'">
-      <button class="btn btn-success" (click)="handleRequest()">
-        {{ buttonStatus }}
-      </button>
+      <input
+        type="submit"
+        class="btn btn-success"
+        (click)="handleRequest()"
+        value="{{ buttonStatus }}"
+      />
     </ng-container>
     <ng-container *ngIf="buttonStatus === 'Request'">
-      <button class="btn btn-success" (click)="postRequest()">
+      <button class="btn btn-success" (click)="requestMembers()">
         {{ buttonStatus }}
       </button>
     </ng-container>
+    <ng-container *ngIf="buttonStatus === 'Added'">
+      <div class="alert alert-success text-center">
+        Request has been sent, come back once request is accepted
+      </div>
+    </ng-container>
   </div>
-  <div *ngIf="matchingFieldFound" style="padding-top:4%">
-    <div class="alert alert-danger text-center">Sensing Invalid Fields !</div>
+  <div *ngIf="isThereEmptyField" style="padding-top:4%" [@fadeInOut]>
+    <div class="alert alert-danger text-center">
+      You forgot to fill in something !
+    </div>
   </div>
-  <div *ngIf="isThereNonExistentAdmissionNumber" style="padding-top:4%">
+
+  <div *ngIf="isThereDuplicate" style="padding-top:4%" [@fadeInOut]>
+    <div class="alert alert-danger text-center">
+      Sensing Invalid/Duplicate Fields !
+    </div>
+  </div>
+  <div *ngIf="isThereIneligibleMember" style="padding-top:4%" [@fadeInOut]>
+    <div class="alert alert-danger text-center">
+      A member seems to be in another team !
+    </div>
+  </div>
+  <div
+    *ngIf="isThereNonExistentAdmissionNumber"
+    style="padding-top:4%"
+    [@fadeInOut]
+  >
     <div class="alert alert-danger">Please Enter Valid Admission Number !</div>
+  </div>
+  <div *ngIf="isAlreadyInTeam" style="padding-top:4%" [@fadeInOut]>
+    <div class="alert alert-danger">Oops, member is part of another team !</div>
   </div>
   <!-- <div
     *ngIf="hasRequested && !isThereNonExistentAdmissionNumber"

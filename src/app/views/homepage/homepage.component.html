@@ -31,24 +31,32 @@
   </div>
 
   <div class="row justify-content-between searchBarRow">
-    <div class="col-1 cartItemCount" (click)="openCartDialog()">
-      Cart
-    </div>
-    <div class="col-5">
-      <div class="row justify-content-end searchBarContainer">
-        <div class="col-10">
-          <input type="text" placeholder="Search" />
-        </div>
-        <div class="col-1"><i class="material-icons">search</i></div>
+    <div class="col-2">
+      <div class="row justify-content-center">
+        <button mat-raised-button color="accent" (click)="openCartDialog()">
+          Cart
+        </button>
       </div>
     </div>
     <div class="col-5">
-      <select [(ngModel)]="selectedDepartment">
-        <option>CSE</option>
-        <option>IT</option>
-        <option>Mechanical</option>
-        <option>Biotech</option>
-      </select>
+      <div class="row justify-content-end">
+        <div class="col-10">
+          <mat-form-field>
+            <input matInput placeholder="Search" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <mat-form-field>
+        <mat-label>Department</mat-label>
+        <mat-select [(ngModel)]="selectedDepartment">
+          <mat-option value="CSE">CSE</mat-option>
+          <mat-option value="IT">IT</mat-option>
+          <mat-option value="Mechanical">Mechanical</mat-option>
+          <mat-option value="Biotech">Biotech</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
   <div class="row justify-content-around innerCardContainer">
