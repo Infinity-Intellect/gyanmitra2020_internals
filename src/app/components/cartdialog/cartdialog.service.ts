@@ -10,14 +10,14 @@ export class CartdialogService {
 
   public confirmEvent(admissionNumber: String, eventId: String) {
     const _url = url + "/eventregister/checkout";
-    return this.http.post(_url, {
+    return this.http.post<any>(_url, {
       admissionNumber: admissionNumber,
       eventId: eventId
     });
   }
   public confirmWorkshop(admissionNumber: String, eventId: String) {
     const _url = url + "/workshopregister/checkout";
-    return this.http.post(_url, {
+    return this.http.post<any>(_url, {
       admissionNumber: admissionNumber,
       eventId: eventId
     });

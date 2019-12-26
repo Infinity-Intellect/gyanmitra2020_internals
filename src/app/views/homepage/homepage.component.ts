@@ -7,7 +7,7 @@ import {
   style
 } from "@angular/animations";
 import { ActivatedRoute } from "@angular/router";
-import { MatDialog, MatDialogRef } from "@angular/material";
+import { MatDialog, MatDialogRef, MatSnackBar } from "@angular/material";
 import { Animations } from "../../../misc_assets/animations/animations";
 import { HomepageService } from "src/app/service/homepage/homepage.service";
 import { event } from "../../models/event";
@@ -52,7 +52,8 @@ export class HomepageComponent implements OnInit {
     private service: HomepageService,
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private snackbar: MatSnackBar
   ) {
     this.studentAdmissionNumber = this.cookie.get("username");
   }
@@ -106,6 +107,18 @@ export class HomepageComponent implements OnInit {
           this.eventData[i]["hasCheckedOut"] = this.cartEventData[j][
             "hasCheckedOut"
           ];
+          if (
+            this.eventData[i]["hasCheckedOut"] === false &&
+            this.eventData[i].teamSize > 1
+          ) {
+            this.snackbar.open(
+              "You have pending team requests, head over to your cart",
+              "Close",
+              {
+                duration: 2500
+              }
+            );
+          }
           // this.cartCount += 1;
           found = true;
           break;

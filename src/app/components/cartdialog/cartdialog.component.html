@@ -60,8 +60,22 @@
 
               <ng-container *ngIf="event.hasCheckedOut">
                 <td>
-                  <div class="alert alert-success text-center">
-                    Added !
+                  <div class="row">
+                    <div class="col">
+                      <button
+                        class="btn btn-success btn-sm"
+                        (click)="openViewTeamDialog(event)"
+                        matTooltip="View your team"
+                        *ngIf="event.isInTeam === 'Yes'"
+                      >
+                        View Team
+                      </button>
+                    </div>
+                    <div class="col">
+                      <div class="alert alert-success text-center">
+                        Added !
+                      </div>
+                    </div>
                   </div>
                 </td>
               </ng-container>

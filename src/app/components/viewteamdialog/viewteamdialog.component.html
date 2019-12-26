@@ -54,15 +54,25 @@
     class="row justify-content-center"
     *ngIf="teamLeader === currentUserAdmissionNumber"
   >
-    <button class="btn btn-success btn-lg" *ngIf="teamStatus">
+    <button
+      class="btn btn-success btn-lg"
+      *ngIf="teamStatus && haveAllMembersCheckedOut === false"
+      (click)="confirmTeamParticipation()"
+    >
       Confirm Team
     </button>
     <button
       class="btn btn-secondary btn-lg"
       disabled
-      *ngIf="teamStatus === false"
+      *ngIf="teamStatus === false && haveAllMembersCheckedOut === false"
     >
       Confirm Team
     </button>
+  </div>
+  <div
+    class="row justify-content-center"
+    *ngIf="haveAllMembersCheckedOut === true"
+  >
+    <div class="alert alert-success">Your Team is In !</div>
   </div>
 </div>

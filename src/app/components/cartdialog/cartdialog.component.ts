@@ -91,7 +91,7 @@ export class CartdialogComponent implements OnInit {
 
   /**When 'view team' is clicked, this dialog box opens, allowing users to view team status */
   openViewTeamDialog(event) {
-    this.dialog.open(ViewteamdialogComponent, {
+    const dialogref = this.dialog.open(ViewteamdialogComponent, {
       width: "500px",
       height: "400px",
       data: { teamEvent: event, admissionNumber: this.admissionNumber }
