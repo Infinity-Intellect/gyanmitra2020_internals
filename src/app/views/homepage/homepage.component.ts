@@ -38,6 +38,8 @@ import { CookieService } from "ngx-cookie-service";
 export class HomepageComponent implements OnInit {
   eventData: any[];
   workshopData: any[];
+  filteredEventData: any[];
+  filteredWorkshopData: any[];
   cartWorkshopData: any[];
   cartEventData: any[];
   data: any;
@@ -45,7 +47,7 @@ export class HomepageComponent implements OnInit {
   studentData: any;
   studentAdmissionNumber: string;
   cartCount: number = 0;
-  selectedDepartment: string;
+  selectedDepartment: string = "All";
   hasItemPresenceCalculated: boolean = false;
   loading: Boolean = true;
   constructor(
@@ -89,6 +91,7 @@ export class HomepageComponent implements OnInit {
         this.cartWorkshopData = res;
         this.cookie.set("workshopCart", JSON.stringify(this.cartWorkshopData));
         this.isWorkshopItemPresent();
+        this.filterData();
       });
     this.service
       .getEventRegisteredDetails(this.studentAdmissionNumber)
@@ -96,6 +99,7 @@ export class HomepageComponent implements OnInit {
         this.cartEventData = res;
         this.cookie.set("eventCart", JSON.stringify(this.cartEventData));
         this.isEventItemPresent();
+        this.filterData();
       });
   }
   isEventItemPresent() {
@@ -129,6 +133,7 @@ export class HomepageComponent implements OnInit {
       }
     }
     this.hasItemPresenceCalculated = true;
+    this.filteredEventData = this.eventData;
   }
   isWorkshopItemPresent() {
     var found = false;
@@ -149,6 +154,7 @@ export class HomepageComponent implements OnInit {
         this.workshopData[i]["isPresent"] = false;
       }
     }
+    this.filteredWorkshopData = this.workshopData;
   }
 
   /*Animation state variable declaration*/
@@ -178,5 +184,24 @@ export class HomepageComponent implements OnInit {
         workshopData: this.cartWorkshopData
       }
     });
+  }
+  filterData() {
+    if (this.selectedDepartment === "All") {
+      this.filteredEventData = this.eventData;
+      this.filteredWorkshopData = this.workshopData;
+    } else {
+      this.filteredEventData = [];
+      this.filteredWorkshopData = [];
+      this.eventData.forEach(event => {
+        if (event.department === this.selectedDepartment) {
+          this.filteredEventData.push(event);
+        }
+      });
+      this.workshopData.forEach(workshop => {
+        if (workshop.department === this.selectedDepartment) {
+          this.filteredWorkshopData.push(workshop);
+        }
+      });
+    }
   }
 }

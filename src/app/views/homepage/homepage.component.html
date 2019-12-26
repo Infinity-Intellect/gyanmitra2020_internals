@@ -50,7 +50,11 @@
     <div class="col-5">
       <mat-form-field>
         <mat-label>Department</mat-label>
-        <mat-select [(ngModel)]="selectedDepartment">
+        <mat-select
+          [(ngModel)]="selectedDepartment"
+          (selectionChange)="filterData()"
+        >
+          <mat-option value="All">All</mat-option>
           <mat-option value="CSE">CSE</mat-option>
           <mat-option value="IT">IT</mat-option>
           <mat-option value="Mechanical">Mechanical</mat-option>
@@ -61,7 +65,7 @@
   </div>
   <div class="row justify-content-around innerCardContainer">
     <ng-container *ngIf="activeButton === 'event' && hasItemPresenceCalculated">
-      <div class="col-5 text-center" *ngFor="let item of eventData">
+      <div class="col-5 text-center" *ngFor="let item of filteredEventData">
         <app-displaycard
           [event_workshopdata]="item"
           (cartCount)="changeCartCount($event)"
@@ -69,7 +73,7 @@
       </div>
     </ng-container>
     <ng-container *ngIf="activeButton === 'workshop'">
-      <div class="col-5 text-center" *ngFor="let item of workshopData">
+      <div class="col-5 text-center" *ngFor="let item of filteredWorkshopData">
         <app-displaycard
           [event_workshopdata]="item"
           (cartCount)="changeCartCount($event)"
