@@ -42,7 +42,7 @@
       <div class="row justify-content-end">
         <div class="col-10">
           <mat-form-field>
-            <input matInput placeholder="Search" />
+            <input matInput placeholder="Search" [(ngModel)]="searchText" />
           </mat-form-field>
         </div>
       </div>
@@ -63,9 +63,13 @@
       </mat-form-field>
     </div>
   </div>
+  <div class="row justify-content-center loadingDiv" *ngIf="loading">
+    <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode">
+    </mat-progress-spinner>
+  </div>
   <div class="row justify-content-around innerCardContainer">
     <ng-container *ngIf="activeButton === 'event' && hasItemPresenceCalculated">
-      <div class="col-5 text-center" *ngFor="let item of filteredEventData">
+      <div class="col-5 text-center" *ngFor="let item of filteredEventData| filterByTitle:searchText">
         <app-displaycard
           [event_workshopdata]="item"
           (cartCount)="changeCartCount($event)"
@@ -73,8 +77,9 @@
       </div>
     </ng-container>
     <ng-container *ngIf="activeButton === 'workshop'">
-      <div class="col-5 text-center" *ngFor="let item of filteredWorkshopData">
-        <app-displaycard
+      <div class="col-5 text-center" *ngFor="let item of filteredWorkshopData | filterByTitle:searchText" >
+        
+        <app-displaycard 
           [event_workshopdata]="item"
           (cartCount)="changeCartCount($event)"
         ></app-displaycard>

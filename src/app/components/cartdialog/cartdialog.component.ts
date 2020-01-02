@@ -93,7 +93,7 @@ export class CartdialogComponent implements OnInit {
   openViewTeamDialog(event) {
     const dialogref = this.dialog.open(ViewteamdialogComponent, {
       width: "500px",
-      height: "400px",
+      height: "500px",
       data: { teamEvent: event, admissionNumber: this.admissionNumber }
     });
   }

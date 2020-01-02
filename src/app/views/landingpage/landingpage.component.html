@@ -1,16 +1,21 @@
-<particles
-  [params]="myParams"
-  [style]="myStyle"
-  [width]="width"
-  [height]="height"
-></particles>
-<div class="container-fluid">
-  <div class="row justify-content-center" id="header">
-    <h1>Gyanmitra 2020</h1>
-  </div>
-  <div class="row justify-content-center" id="buttonsContainer">
-    <div class="col text-center" id="login">
-      <a href="login"><button id="loginButton">Login</button></a>
+<div style="background-color: white;height: 100%;">
+  <particles
+    [params]="myParams"
+    [style]="myStyle"
+    [width]="width"
+    [height]="height"
+  ></particles>
+  <div class="container-fluid">
+    <div class="row justify-content-center" id="header">
+      <h1 style="z-index: 2;">GyanMitra 2020</h1>
     </div>
+    <div class="row justify-content-center" id="buttonsContainer">
+      <div class="col text-center" id="login" style="z-index: 2;">
+        <a href="login"><button id="loginButton">Login</button></a>
+      </div>
+    </div>
+    <!-- <div class="row justify-content-center">
+      Countdown  {{remainingDays}}:{{remainingSeconds}}:{{width}}
+    </div> -->
   </div>
 </div>

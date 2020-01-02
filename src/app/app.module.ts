@@ -25,7 +25,8 @@ import {
   MatSnackBarModule,
   MatButtonModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 import { DescriptiondialogComponent } from "./components/descriptiondialog/descriptiondialog.component";
 import { CartdialogComponent } from "./components/cartdialog/cartdialog.component";
@@ -39,6 +40,7 @@ import { AdminService } from "./service/admin/admin.service";
 import { AttendanceButtonComponent } from "./components/attendance-button/attendance-button.component";
 import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
 import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdialog.component";
+import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdia
     ManageteamdialogComponent,
     AttendanceButtonComponent,
     PaymentButtonComponent,
-    ViewteamdialogComponent
+    ViewteamdialogComponent,
+    FilterByTitlePipe
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdia
     MatInputModule,
     MatButtonModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     HomepageService,

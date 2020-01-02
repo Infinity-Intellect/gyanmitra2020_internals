@@ -10,8 +10,6 @@ import { ActivatedRoute } from "@angular/router";
 import { MatDialog, MatDialogRef, MatSnackBar } from "@angular/material";
 import { Animations } from "../../../misc_assets/animations/animations";
 import { HomepageService } from "src/app/service/homepage/homepage.service";
-import { event } from "../../models/event";
-import { workshop } from "../../models/workshop";
 import { CartdialogComponent } from "src/app/components/cartdialog/cartdialog.component";
 import { CookieService } from "ngx-cookie-service";
 
@@ -50,6 +48,13 @@ export class HomepageComponent implements OnInit {
   selectedDepartment: string = "All";
   hasItemPresenceCalculated: boolean = false;
   loading: Boolean = true;
+  searchText: String = "";
+
+  workshopItem: any;
+
+  color = "primary";
+  mode = "indeterminate";
+
   constructor(
     private service: HomepageService,
     public dialog: MatDialog,
@@ -65,7 +70,6 @@ export class HomepageComponent implements OnInit {
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
     this.fetchRegistrationDetails();
-    this.loading = false;
   }
   fetchStudentDetails() {
     this.service.getStudent(this.studentAdmissionNumber).subscribe(res => {
@@ -99,6 +103,7 @@ export class HomepageComponent implements OnInit {
         this.cartEventData = res;
         this.cookie.set("eventCart", JSON.stringify(this.cartEventData));
         this.isEventItemPresent();
+        this.loading = false;
         this.filterData();
       });
   }
