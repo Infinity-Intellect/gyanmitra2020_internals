@@ -30,12 +30,7 @@
         </button>
       </div>
       <div class="col-9 text-right">
-        <ng-container
-          *ngIf="
-            !event_workshopdata.allow && cartStatus === 'Add';
-            else displayAddRemove
-          "
-        >
+        <ng-container *ngIf="!event_workshopdata.allow; else displayAddRemove">
           <span
             class="alert alertMessage"
             style="padding: 4%;background-color: rgb(241, 96, 0);"

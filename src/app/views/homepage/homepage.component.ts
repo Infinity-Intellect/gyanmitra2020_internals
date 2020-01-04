@@ -34,12 +34,13 @@ import { CookieService } from "ngx-cookie-service";
   ]
 })
 export class HomepageComponent implements OnInit {
-  eventData: any[];
-  workshopData: any[];
-  filteredEventData: any[];
-  filteredWorkshopData: any[];
-  cartWorkshopData: any[];
-  cartEventData: any[];
+  eventData: any[] = [];
+  workshopData: any[] = [];
+  filteredEventData: any[] = [];
+  filteredWorkshopData: any[] = [];
+  cartWorkshopData: any[] = [];
+  cartEventData: any[] = [];
+
   data: any;
   student: any;
   studentData: any;
@@ -70,6 +71,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
     this.hasProcessed = false;
+    this.loading = true;
     console.log("In ngOnit");
     this.fetchStudentDetails();
     this.fetchEventDetails();
@@ -125,7 +127,8 @@ export class HomepageComponent implements OnInit {
           for (let l = 0; l < this.cartEventData[j].timeSlot.length; l++) {
             if (
               this.eventData[i].timeSlot[k] ===
-              this.cartEventData[j].timeSlot[l]
+                this.cartEventData[j].timeSlot[l] &&
+              this.eventData[i].id !== this.cartEventData[j].eventId
             ) {
               this.eventData[i]["allow"] = false;
               break;
@@ -142,13 +145,16 @@ export class HomepageComponent implements OnInit {
             this.eventData[i]["hasCheckedOut"] === false &&
             this.eventData[i].teamSize > 1
           ) {
-            this.snackbar.open(
-              "You have pending team requests, head over to your cart",
-              "Close",
-              {
-                duration: 2500
-              }
-            );
+            if (this.cookie.get("hasNotified") === "false") {
+              this.cookie.set("hasNotified", "true");
+              this.snackbar.open(
+                "You have pending team requests, head over to your cart",
+                "Close",
+                {
+                  duration: 2500
+                }
+              );
+            }
           }
           // this.cartCount += 1;
           found = true;
@@ -209,7 +215,7 @@ export class HomepageComponent implements OnInit {
   }
   refreshData($event) {
     console.log($event);
-    this.ngOnInit();
+    this.fetchRegistrationDetails();
   }
 
   openCartDialog() {

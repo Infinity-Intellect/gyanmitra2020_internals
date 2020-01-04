@@ -59,20 +59,32 @@ export class DisplaycardComponent implements OnInit, OnChanges {
 
   // @Output() hasDoneCartOperation = new EventEmitter();
 
-  cartStatus: String = "Add";
+  cartStatus: String;
   hasCheckedOut: boolean = false;
   currentCard: any;
   admissionNumber = this.cookie.get("username");
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.event_workshopdata);
+    //console.log(changes.event_workshopdata.currentValue);
+    //console.log(changes.event_workshopdata.currentValue.isPresent);
+    this.enableCartButtonStatus(changes.event_workshopdata.currentValue);
   }
 
   ngOnInit() {
-    if (this.event_workshopdata.isPresent) {
-      this.cartStatus = "Remove";
-    }
+    //console.log(this.event_workshopdata);
+    //console.log("Display card on init");
+    this.enableCartButtonStatus(this.event_workshopdata);
+    //console.log(this.event_workshopdata.isPresent + " " + this.cartStatus);
     this.hasCheckedOut = this.event_workshopdata.hasCheckedOut;
+  }
+  enableCartButtonStatus(data) {
+    //console.log(data);
+    console.log(data.isPresent);
+    if (data.isPresent) {
+      this.cartStatus = "Remove";
+    } else {
+      this.cartStatus = "Add";
+    }
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

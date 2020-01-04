@@ -64,6 +64,7 @@ export class LoginpageComponent implements OnInit {
   setUserCookies(data) {
     this.cookie.set("username", data.username);
     this.cookie.set("role", data.role);
+    this.cookie.set("hasNotified", "false");
   }
   alterEmptyFieldState = () => {
     this.emptyField = false;
