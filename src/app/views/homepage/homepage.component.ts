@@ -180,9 +180,12 @@ export class HomepageComponent implements OnInit {
           this.workshopData[i]["hasCheckedOut"] = this.cartWorkshopData[j][
             "hasCheckedOut"
           ];
+          this.workshopData[i]["allow"] = true;
           // this.cartCount += 1;
           found = true;
           break;
+        } else {
+          this.workshopData[i]["allow"] = false;
         }
       }
       if (found === false) {
