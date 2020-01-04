@@ -8,7 +8,9 @@
   <div class="row justify-content-around">
     Venue:{{ event_workshopdata.venue }}
   </div>
-  <div>Date and Time:<span>24/01/2020</span></div>
+  <div>
+    Date and Time:<span>{{ event_workshopdata.date }}</span>
+  </div>
 
   <ng-container *ngIf="event_workshopdata.teamSize">
     <div class="row justify-content-center">
@@ -28,13 +30,27 @@
         </button>
       </div>
       <div class="col-9 text-right">
-        <button
-          [@buttonStyle]="cartStatus"
-          (click)="cartStatusChange($event)"
-          class="btn btn-primary"
+        <ng-container
+          *ngIf="
+            !event_workshopdata.allow && cartStatus === 'Add';
+            else displayAddRemove
+          "
         >
-          {{ cartStatus }}
-        </button>
+          <span
+            class="alert alertMessage"
+            style="padding: 4%;background-color: rgb(241, 96, 0);"
+            >Parallel Registration !</span
+          >
+        </ng-container>
+        <ng-template #displayAddRemove>
+          <button
+            [@buttonStyle]="cartStatus"
+            (click)="cartStatusChange($event)"
+            class="btn btn-primary"
+          >
+            {{ cartStatus }}
+          </button>
+        </ng-template>
       </div>
     </div>
   </ng-container>

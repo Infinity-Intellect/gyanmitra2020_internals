@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges
+} from "@angular/core";
 import {
   trigger,
   state,
@@ -11,6 +19,7 @@ import { DescriptiondialogComponent } from "../descriptiondialog/descriptiondial
 import { DisplaycardService } from "src/app/service/displaycard/displaycard.service";
 import { CookieService } from "ngx-cookie-service";
 import { HomepageService } from "src/app/service/homepage/homepage.service";
+import { ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-displaycard",
@@ -30,11 +39,11 @@ import { HomepageService } from "src/app/service/homepage/homepage.service";
           backgroundColor: "red"
         })
       ),
-      transition("Add => Remove", animate("0.1s"))
+      transition("Add <=> Remove", animate("0.1s"))
     ])
   ]
 })
-export class DisplaycardComponent implements OnInit {
+export class DisplaycardComponent implements OnInit, OnChanges {
   constructor(
     private dialog: MatDialog,
     private service: DisplaycardService,
@@ -46,11 +55,18 @@ export class DisplaycardComponent implements OnInit {
   @Input() cartData;
 
   @Output() cartCount = new EventEmitter();
+  @Output() hasDoneCartOperation = new EventEmitter();
 
-  cartStatus = "Add";
+  // @Output() hasDoneCartOperation = new EventEmitter();
+
+  cartStatus: String = "Add";
   hasCheckedOut: boolean = false;
   currentCard: any;
   admissionNumber = this.cookie.get("username");
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.event_workshopdata);
+  }
 
   ngOnInit() {
     if (this.event_workshopdata.isPresent) {
@@ -65,7 +81,9 @@ export class DisplaycardComponent implements OnInit {
   }
   cartStatusChange(event: any) {
     event.stopPropagation();
+    //this.cartCount.emit(true);
     if (this.cartStatus === "Remove") {
+      //this.cartStatus = "Add";
       if (this.event_workshopdata.id[0] === "W") {
         this.service
           .deleteWorkshopFromCart(
@@ -75,6 +93,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Add";
+              this.hasDoneCartOperation.emit(true);
               //this.cartCount.emit(-1);
             } else {
               console.log(res.message);
@@ -86,6 +105,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Add";
+              this.hasDoneCartOperation.emit(true);
               //this.cartCount.emit(-1);
             } else {
               console.log(res.message);
@@ -93,7 +113,8 @@ export class DisplaycardComponent implements OnInit {
           });
       }
       this.openSnackBar("Removed from Cart", "Close");
-    } else {
+    } else if (this.cartStatus === "Add") {
+      //this.cartStatus = "Remove";
       if (this.event_workshopdata.id[0] === "W") {
         this.service
           .addWorkshopToCart(
@@ -104,6 +125,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Remove";
+              this.hasDoneCartOperation.emit(true);
               //this.cartCount.emit(1);
             } else {
               console.log(res.message);
@@ -120,6 +142,7 @@ export class DisplaycardComponent implements OnInit {
           .subscribe(res => {
             if (res.message === "Success") {
               this.cartStatus = "Remove";
+              this.hasDoneCartOperation.emit(true);
               //this.cartCount.emit(1);
             } else {
               console.log(res.message);

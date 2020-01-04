@@ -59,6 +59,9 @@
           <mat-option value="IT">IT</mat-option>
           <mat-option value="Mechanical">Mechanical</mat-option>
           <mat-option value="Biotech">Biotech</mat-option>
+          <mat-option value="Science and Humanities"
+            >Science and Humanities</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </div>
@@ -68,20 +71,37 @@
     </mat-progress-spinner>
   </div>
   <div class="row justify-content-around innerCardContainer">
-    <ng-container *ngIf="activeButton === 'event' && hasItemPresenceCalculated">
-      <div class="col-5 text-center" *ngFor="let item of filteredEventData| filterByTitle:searchText">
+    <ng-container
+      *ngIf="
+        activeButton === 'event' &&
+        hasEventItemPresenceCalculated &&
+        hasProcessed
+      "
+    >
+      <div
+        class="col-5 text-center"
+        *ngFor="let item of filteredEventData | filterByTitle: searchText"
+      >
         <app-displaycard
           [event_workshopdata]="item"
-          (cartCount)="changeCartCount($event)"
+          (hasDoneCartOperation)="refreshData($event)"
         ></app-displaycard>
       </div>
     </ng-container>
-    <ng-container *ngIf="activeButton === 'workshop'">
-      <div class="col-5 text-center" *ngFor="let item of filteredWorkshopData | filterByTitle:searchText" >
-        
-        <app-displaycard 
+    <ng-container
+      *ngIf="
+        activeButton === 'workshop' &&
+        hasWorkshopItemPresenceCalculated &&
+        hasProcessed
+      "
+    >
+      <div
+        class="col-5 text-center"
+        *ngFor="let item of filteredWorkshopData | filterByTitle: searchText"
+      >
+        <app-displaycard
           [event_workshopdata]="item"
-          (cartCount)="changeCartCount($event)"
+          (hasDoneCartOperation)="refreshData($event)"
         ></app-displaycard>
       </div>
     </ng-container>
