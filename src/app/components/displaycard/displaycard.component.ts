@@ -64,22 +64,16 @@ export class DisplaycardComponent implements OnInit, OnChanges {
   currentCard: any;
   admissionNumber = this.cookie.get("username");
 
-  ngOnChanges(changes: SimpleChanges) {
-    //console.log(changes.event_workshopdata.currentValue);
-    //console.log(changes.event_workshopdata.currentValue.isPresent);
-    this.enableCartButtonStatus(changes.event_workshopdata.currentValue);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   ngOnInit() {
     //console.log(this.event_workshopdata);
-    //console.log("Display card on init");
     this.enableCartButtonStatus(this.event_workshopdata);
-    //console.log(this.event_workshopdata.isPresent + " " + this.cartStatus);
     this.hasCheckedOut = this.event_workshopdata.hasCheckedOut;
   }
   enableCartButtonStatus(data) {
     //console.log(data);
-    console.log(data.isPresent);
+    //console.log(data.isPresent);
     if (data.isPresent) {
       this.cartStatus = "Remove";
     } else {
@@ -165,11 +159,27 @@ export class DisplaycardComponent implements OnInit, OnChanges {
     }
   }
   openDescriptionDialog(event: any) {
+    console.log(event);
     event.stopPropagation();
     this.dialog.open(DescriptiondialogComponent, {
       width: "500px",
       height: "500px",
       data: { description: this.event_workshopdata.description }
+    });
+  }
+
+  confetti(args: any) {
+    return window["confetti"].apply(this, arguments);
+  }
+  fireConfetti(event: any) {
+    this.confetti({
+      angle: 180,
+      spread: 100,
+      particleCount: 100,
+      origin: {
+        x: 0.5,
+        y: 0.5
+      }
     });
   }
 }

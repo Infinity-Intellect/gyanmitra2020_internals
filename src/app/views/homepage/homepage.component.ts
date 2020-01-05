@@ -58,6 +58,10 @@ export class HomepageComponent implements OnInit {
   color = "primary";
   mode = "indeterminate";
 
+  confetti(args: any) {
+    return window["confetti"].apply(this, arguments);
+  }
+
   constructor(
     private service: HomepageService,
     public dialog: MatDialog,
@@ -68,8 +72,31 @@ export class HomepageComponent implements OnInit {
   ) {
     this.studentAdmissionNumber = this.cookie.get("username");
   }
-
+  confettiAnimation() {
+    let date = Date.now();
+    this.confetti({
+      angle: 180,
+      spread: 1000,
+      particleCount: 700,
+      origin: {
+        x: 0.5,
+        y: 0.5
+      }
+    });
+  }
+  fireConfetti(event: any) {
+    this.confetti({
+      angle: 180,
+      spread: 100,
+      particleCount: 100,
+      origin: {
+        x: 0.5,
+        y: 0.5
+      }
+    });
+  }
   ngOnInit() {
+    this.confettiAnimation();
     this.hasProcessed = false;
     this.loading = true;
     console.log("In ngOnit");
@@ -78,6 +105,7 @@ export class HomepageComponent implements OnInit {
     this.fetchWorkshopDetails();
     this.fetchRegistrationDetails();
   }
+
   fetchStudentDetails() {
     this.service.getStudent(this.studentAdmissionNumber).subscribe(res => {
       this.studentData = res;
@@ -169,7 +197,6 @@ export class HomepageComponent implements OnInit {
     this.filteredEventData = this.eventData;
   }
   isWorkshopItemPresent() {
-    console.log("Here");
     var found = false;
     for (let i = 0; i < this.workshopData.length; i++) {
       this.workshopData[i]["allow"] = true;
@@ -232,6 +259,7 @@ export class HomepageComponent implements OnInit {
     });
   }
   filterData() {
+    console.log(this.selectedDepartment);
     if (this.selectedDepartment === "All") {
       this.filteredEventData = this.eventData;
       this.filteredWorkshopData = this.workshopData;

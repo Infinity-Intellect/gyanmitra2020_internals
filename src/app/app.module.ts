@@ -41,6 +41,7 @@ import { AttendanceButtonComponent } from "./components/attendance-button/attend
 import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
 import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdialog.component";
 import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
+import { TimerComponent } from './components/timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
     AttendanceButtonComponent,
     PaymentButtonComponent,
     ViewteamdialogComponent,
-    FilterByTitlePipe
+    FilterByTitlePipe,
+    TimerComponent
   ],
   imports: [
     BrowserModule,

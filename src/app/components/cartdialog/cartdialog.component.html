@@ -12,7 +12,11 @@
     <h5 style="text-align: center;">Events</h5>
     <hr />
     <ng-container *ngIf="eventCartSize === 0">
-      <div class="row justify-content-center">---NIL---</div>
+      <div class="row justify-content-center">
+        <div class="alert alert-warning">
+          Don't miss out on the fun, register for something soon!
+        </div>
+      </div>
     </ng-container>
     <ng-container *ngIf="eventCartSize !== 0">
       <table class="table">
@@ -89,7 +93,11 @@
     <h5 style="text-align: center;">Workshops</h5>
     <hr />
     <ng-container *ngIf="workshopCartSize === 0">
-      <div class="row justify-content-center">---NIL---</div>
+      <div class="row justify-content-center">
+        <div class="alert alert-warning">
+          Wanna learn something cool, check out what we have to offer!
+        </div>
+      </div>
     </ng-container>
     <ng-container *ngIf="workshopCartSize !== 0">
       <table class="table">

@@ -17,6 +17,11 @@
       Team Size:{{ event_workshopdata.teamSize }}
     </div>
   </ng-container>
+  <ng-container *ngIf="event_workshopdata.amount">
+    <div class="row justify-content-center">
+      Amount:{{ event_workshopdata.amount }}
+    </div>
+  </ng-container>
 
   <div class="row justify-content-center">
     Department: {{ event_workshopdata.department }}
@@ -34,7 +39,7 @@
           <span
             class="alert alertMessage"
             style="padding: 4%;background-color: rgb(241, 96, 0);"
-            >Parallel Registration !</span
+            >You've added a parallel event !</span
           >
         </ng-container>
         <ng-template #displayAddRemove>

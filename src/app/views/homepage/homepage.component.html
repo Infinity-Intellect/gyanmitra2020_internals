@@ -3,9 +3,10 @@
   [eventData]="cartEventData"
   [workshopData]="cartWorkshopData"
 ></app-header>
+
 <div [@shiftContents]="navbarState" class="container col-9 cardContainer">
-  <div class="row justify-content-end">
-    <div class="col-6">Welcome {{ studentData?.studentName }}</div>
+  <div class="row justify-content-center welcomeBar">
+    <div class="offset-1">Welcome {{ studentData?.studentName }}</div>
   </div>
   <div class="row justify-content-center navContainer">
     <div class="col-6 text-right">
@@ -55,10 +56,13 @@
           (selectionChange)="filterData()"
         >
           <mat-option value="All">All</mat-option>
-          <mat-option value="CSE">CSE</mat-option>
-          <mat-option value="IT">IT</mat-option>
+          <mat-option value="CSE/IT">CSE/IT</mat-option>
           <mat-option value="Mechanical">Mechanical</mat-option>
           <mat-option value="Biotech">Biotech</mat-option>
+          <mat-option value="Civil">Civil</mat-option>
+          <mat-option value="EEE">EEE</mat-option>
+          <mat-option value="ECE">ECE</mat-option>
+          <mat-option value="MCA">MCA</mat-option>
           <mat-option value="Science and Humanities"
             >Science and Humanities</mat-option
           >

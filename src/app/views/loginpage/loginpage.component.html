@@ -1,50 +1,59 @@
-<app-entryheader></app-entryheader>
-<div class="card border-dark">
-  <div class="card-header text-center">
-    <h3>Login</h3>
-  </div>
-  <div class="card-body">
-    <form #userForm="ngForm">
-      <div class="container innerFormContainer" id="formContents">
-        <form>
-          <div class="row-4 text-center formElement">
-            <mat-form-field>
-              <input
-                name="username"
-                [(ngModel)]="username"
-                type="text"
-                placeholder="Username"
-                (focus)="alterEmptyFieldState()"
-                matInput
-              />
-            </mat-form-field>
-          </div>
+<div style="z-index: 2;">
+  <app-entryheader></app-entryheader>
+</div>
+<div class="fullContainer">
+  <!-- <particles
+    [params]="myParams"
+    [style]="myStyle"
+    [width]="width"
+    [height]="height"
+  ></particles> -->
+  <div class="card " style="z-index: 2;" [@flyFromBottom]>
+    <div class="card-header text-center">
+      <h3>Login</h3>
+    </div>
+    <div class="card-body">
+      <form #userForm="ngForm">
+        <div class="container innerFormContainer" id="formContents">
+          <form>
+            <div class="row-4 text-center formElement">
+              <mat-form-field>
+                <input
+                  name="username"
+                  [(ngModel)]="username"
+                  type="text"
+                  placeholder="Username"
+                  (focus)="alterEmptyFieldState()"
+                  matInput
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="row-4 text-center formElement">
+              <mat-form-field>
+                <input
+                  name="password"
+                  type="password"
+                  [(ngModel)]="password"
+                  placeholder="Password"
+                  (focus)="alterEmptyFieldState()"
+                  matInput
+                />
+              </mat-form-field>
+            </div>
+          </form>
 
           <div class="row-4 text-center formElement">
-            <mat-form-field>
-              <input
-                name="password"
-                type="password"
-                [(ngModel)]="password"
-                placeholder="Password"
-                (focus)="alterEmptyFieldState()"
-                matInput
-              />
-            </mat-form-field>
+            <button
+              mat-button
+              [disableRipple]="!ripples"
+              (click)="routeToHomePage()"
+              style="background-color: rgb(77, 187, 77);color:white"
+            >
+              Login
+            </button>
           </div>
-        </form>
-
-        <div class="row-4 text-center formElement">
-          <button
-            mat-button
-            [disableRipple]="!ripples"
-            (click)="routeToHomePage()"
-            style="background-color: rgb(77, 187, 77);color:white"
-          >
-            Login
-          </button>
-        </div>
-        <!-- <div class="row justify-content-center alertRow">
+          <!-- <div class="row justify-content-center alertRow">
           <div
             *ngIf="emptyField == true"
             class="alert alert-danger align-self-center col-6 text-center"
@@ -60,7 +69,8 @@
             Username/Password Mismatch!
           </div>
         </div> -->
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

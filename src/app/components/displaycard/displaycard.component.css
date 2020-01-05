@@ -7,9 +7,9 @@
     var(--secondary-color)
   );
   border-radius: 35px;
-  box-shadow: 2px 0px 2px grey;
   margin: 6%;
   cursor: pointer;
+  animation: float 1.8s ease-in-out infinite;
 }
 div {
   padding: 4%;
@@ -23,4 +23,18 @@ div {
 }
 button {
   border: none;
+}
+@keyframes float {
+  0% {
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    transform: translatey(-8px);
+  }
+  100% {
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
 }
