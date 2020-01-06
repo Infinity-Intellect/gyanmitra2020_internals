@@ -12,9 +12,13 @@ import { MatSnackBar } from "@angular/material";
   selector: "app-loginpage",
   templateUrl: "./loginpage.component.html",
   styleUrls: ["./loginpage.component.css"],
-  animations: [Animations.swoopIn, Animations.fadeInOut]
+  animations: [Animations.swoopIn, Animations.fadeInOut, Animations.flyIn]
 })
 export class LoginpageComponent implements OnInit {
+  // myStyle: object = {};
+  // myParams: object = {};
+  // width: number = 100;
+  // height: number = 100;
   constructor(
     private router: Router,
     private service: LoginpageService,
@@ -29,7 +33,78 @@ export class LoginpageComponent implements OnInit {
 
   emptyField: boolean = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.myStyle = {
+    //   width: "100%",
+    //   height: "100%",
+    //   top: 0,
+    //   left: 0,
+    //   right: 0,
+    //   bottom: 0
+    // };
+    // this.myParams = {
+    //   particles: {
+    //     number: {
+    //       value: 300,
+    //       density: {
+    //         enable: false,
+    //         value_area: 600
+    //       }
+    //     },
+    //     color: {
+    //       value: "#ffffff"
+    //     },
+    //     size: {
+    //       value: 3,
+    //       random: true
+    //     },
+    //     shape: {
+    //       type: "polygon",
+    //       polygon: {
+    //         nb_sides: 5
+    //       }
+    //     },
+    //     line_linked: {
+    //       enable: false,
+    //       color: "#ffffff"
+    //     },
+    //     move: {
+    //       enable: true,
+    //       speed: 1,
+    //       direction: "bottom-left",
+    //       out_mode: "out",
+    //       bounce: false
+    //     },
+    //     interactivity: {
+    //       detect_on: "window",
+    //       events: {
+    //         onhover: {
+    //           enable: true,
+    //           mode: ["repulse", "grab"]
+    //         },
+    //         onclick: {
+    //           enable: true,
+    //           mode: "push"
+    //         },
+    //         resize: true
+    //       },
+    //       modes: {
+    //         repulse: {
+    //           distance: 400,
+    //           duration: 0.4
+    //         },
+    //         grab: {
+    //           distance: 2
+    //         },
+    //         push: {
+    //           particles_nb: 20
+    //         }
+    //       }
+    //     }
+    //   }
+    // };
+  }
+
   routeToHomePage = () => {
     if (!this.username || !this.password) {
       this.emptyField = true;

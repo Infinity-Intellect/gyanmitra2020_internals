@@ -11,5 +11,6 @@ export class DescriptiondialogComponent implements OnInit {
   description = this.data.description;
   ngOnInit() {
     this.description = this.description.split("\\n");
+    this.description = this.description;
   }
 }

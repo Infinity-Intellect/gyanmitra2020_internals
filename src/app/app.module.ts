@@ -41,7 +41,11 @@ import { AttendanceButtonComponent } from "./components/attendance-button/attend
 import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
 import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdialog.component";
 import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
+<<<<<<< HEAD
 import { ExcelService } from './service/excel/excel.service';
+=======
+import { TimerComponent } from './components/timer/timer.component';
+>>>>>>> d2166e2d6289d8a2767c80eb7c74d2faea77f011
 
 @NgModule({
   declarations: [
@@ -61,7 +65,8 @@ import { ExcelService } from './service/excel/excel.service';
     AttendanceButtonComponent,
     PaymentButtonComponent,
     ViewteamdialogComponent,
-    FilterByTitlePipe
+    FilterByTitlePipe,
+    TimerComponent
   ],
   imports: [
     BrowserModule,

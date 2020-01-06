@@ -76,3 +76,10 @@ li:hover a {
 .innerCardContainer {
   margin-top: 5%;
 }
+.welcomeBar {
+  padding: 2%;
+  font-size: 1.5em;
+}
+.mat-form-field-label {
+  color: black !important;
+}

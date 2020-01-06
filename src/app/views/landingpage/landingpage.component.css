@@ -1,9 +1,13 @@
-#header {
-  padding: 3%;
+.fullContainer {
+  height: 100%;
+  background-image: url("../../../assets/GM.gif");
+  background-size: cover;
+  top: 0;
 }
-#buttonsContainer {
+
+/* #buttonsContainer {
   margin-top: 5%;
-}
+} */
 #loginButton {
   background: none;
   border: none;
@@ -16,6 +20,7 @@
   font-size: 1.5em;
   animation: floatLogin 1.8s ease-in-out infinite;
   transition-duration: 0.5s;
+  margin-top: 10%;
 }
 #loginButton:hover {
   box-shadow: 2px 2px 2px gray;
@@ -28,43 +33,18 @@
 #loginButton:active {
   background-color: rgba(22, 12, 168, 0.424);
 }
-#signupButton {
-  background: none;
-  border: none;
-  outline: none;
-  background-color: white;
-  color: black;
-  border: solid;
-  border-width: 4px;
-  border-color: var(--secondary-color);
-  width: 170px;
-  height: 100px;
-  border-radius: 15px;
-  font-size: 1.5em;
-  transition-duration: 0.5s;
-  animation: floatSignup 1.5s ease-in-out infinite;
-}
-#signupButton:hover {
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  box-shadow: 2px 2px 2px gray;
-}
-#signupButton:active {
-  background-color: rgba(0, 0, 0, 0.424);
-}
 
 @keyframes floatLogin {
   0% {
-    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 5px 15px 0px rgba(255, 255, 255, 0.6);
     transform: translatey(0px);
   }
   50% {
-    box-shadow: 0 15px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 15px 0px rgba(255, 255, 255, 0.2);
     transform: translatey(-8px);
   }
   100% {
-    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 5px 15px 0px rgba(255, 255, 255, 0.6);
     transform: translatey(0px);
   }
 }

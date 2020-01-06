@@ -1,11 +1,20 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  OnChanges,
+  SimpleChange,
+  SimpleChanges
+} from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
 import { ParticlesModule } from "angular-particle";
 
 @Component({
   selector: "app-landingpage",
   templateUrl: "./landingpage.component.html",
-  styleUrls: ["./landingpage.component.css"]
+  styleUrls: ["./landingpage.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingpageComponent implements OnInit {
   myStyle: object = {};
@@ -16,6 +25,8 @@ export class LandingpageComponent implements OnInit {
   constructor(private cookie: CookieService) {
     localStorage.removeItem("adminLoggedIn");
     localStorage.removeItem("userLoggedIn");
+    let countDownDate = new Date("Jan 24, 2020 00:00:00");
+    let interval = setInterval(this.countDownTimer, 1000, countDownDate);
   }
 
   remainingTime;
@@ -26,14 +37,26 @@ export class LandingpageComponent implements OnInit {
   countDownTimer(countDownDate) {
     this.remainingTime = countDownDate.getTime() - new Date().getTime();
     this.remainingDays = Math.floor(this.remainingTime / (1000 * 60 * 60 * 24));
+    this.remainingMinutes = Math.floor(
+      (this.remainingTime % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    this.remainingHours = Math.floor(
+      (this.remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
     this.remainingSeconds = Math.floor(
       (this.remainingTime % (1000 * 60)) / 1000
     );
-    console.log(this.remainingDays + ":" + this.remainingSeconds);
+    console.log(
+      this.remainingDays +
+        ":" +
+        this.remainingHours +
+        ":" +
+        this.remainingMinutes +
+        ":" +
+        this.remainingSeconds
+    );
   }
   ngOnInit() {
-    let countDownDate = new Date("Jan 24, 2020 00:00:00");
-    let interval = setInterval(this.countDownTimer, 1000, countDownDate);
     this.myStyle = {
       position: "fixed",
       width: "100%",
@@ -47,13 +70,61 @@ export class LandingpageComponent implements OnInit {
     this.myParams = {
       particles: {
         number: {
-          value: 200
+          value: 300,
+          density: {
+            enable: false,
+            value_area: 600
+          }
         },
         color: {
-          value: "#ff0000"
+          value: "#ffffff"
+        },
+        size: {
+          value: 3,
+          random: true
         },
         shape: {
-          type: "triangle"
+          type: "polygon",
+          polygon: {
+            nb_sides: 5
+          }
+        },
+        line_linked: {
+          enable: false,
+          color: "#ffffff"
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "bottom-left",
+          out_mode: "out",
+          bounce: false
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: {
+              enable: true,
+              mode: ["repulse", "grab"]
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            repulse: {
+              distance: 400,
+              duration: 0.4
+            },
+            grab: {
+              distance: 2
+            },
+            push: {
+              particles_nb: 20
+            }
+          }
         }
       }
     };

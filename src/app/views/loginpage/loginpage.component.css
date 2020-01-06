@@ -1,3 +1,6 @@
+.fullContainer {
+  top: 0;
+}
 .formElement {
   padding: 4%;
 }
@@ -42,3 +45,12 @@ a:hover {
 ::ng-deep .red-snackbar button {
   color: pink;
 }
+/* input {
+  color: white;
+}
+::ng-deep .mat-form-field-label {
+  color: white !important;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: wheat !important;
+} */

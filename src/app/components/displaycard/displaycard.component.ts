@@ -64,22 +64,16 @@ export class DisplaycardComponent implements OnInit, OnChanges {
   currentCard: any;
   admissionNumber = this.cookie.get("username");
 
-  ngOnChanges(changes: SimpleChanges) {
-    //console.log(changes.event_workshopdata.currentValue);
-    //console.log(changes.event_workshopdata.currentValue.isPresent);
-    this.enableCartButtonStatus(changes.event_workshopdata.currentValue);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   ngOnInit() {
     //console.log(this.event_workshopdata);
-    //console.log("Display card on init");
     this.enableCartButtonStatus(this.event_workshopdata);
-    //console.log(this.event_workshopdata.isPresent + " " + this.cartStatus);
     this.hasCheckedOut = this.event_workshopdata.hasCheckedOut;
   }
   enableCartButtonStatus(data) {
     //console.log(data);
-    console.log(data.isPresent);
+    //console.log(data.isPresent);
     if (data.isPresent) {
       this.cartStatus = "Remove";
     } else {
@@ -92,6 +86,7 @@ export class DisplaycardComponent implements OnInit, OnChanges {
     });
   }
   cartStatusChange(event: any) {
+    this.fireConfetti(event);
     event.stopPropagation();
     //this.cartCount.emit(true);
     if (this.cartStatus === "Remove") {
@@ -165,11 +160,34 @@ export class DisplaycardComponent implements OnInit, OnChanges {
     }
   }
   openDescriptionDialog(event: any) {
+    this.fireConfetti(event);
     event.stopPropagation();
     this.dialog.open(DescriptiondialogComponent, {
       width: "500px",
       height: "500px",
       data: { description: this.event_workshopdata.description }
+    });
+  }
+
+  confetti(args: any) {
+    return window["confetti"].apply(this, arguments);
+  }
+  fireConfetti(event: any) {
+    var x = event.clientX;
+    var y = event.clientY;
+    const pageWidth = window.innerWidth;
+    const pageHeight = window.innerHeight;
+    x = Math.abs(x - pageWidth) / pageWidth;
+    y = Math.abs(y - pageHeight) / pageHeight;
+    console.log(x + " " + y);
+    this.confetti({
+      angle: 90,
+      spread: 20,
+      particleCount: 100,
+      origin: {
+        x: 1 - x,
+        y: 1 - y
+      }
     });
   }
 }
