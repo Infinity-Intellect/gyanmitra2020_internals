@@ -1,30 +1,41 @@
 <app-entryheader></app-entryheader>
 <div class="row contentRow">
   <div class="col-3">
-    Event/Workshop
-    <select [(ngModel)] = "Name">
-      <option *ngFor = "let event of eventData" value = {{event.id}}>{{event.name}}</option>
-      <option *ngFor = "let workshop of workshopData" value = {{workshop.id}}>{{workshop.name}}</option>
-    </select>
+    <mat-form-field>
+    <mat-label>Event/Workshop</mat-label>
+    <mat-select [(ngModel)] = "Name">
+      <mat-option *ngFor = "let event of eventData" value = {{event.id}}>{{event.name}}</mat-option>
+      <mat-option *ngFor = "let workshop of workshopData" value = {{workshop.id}}>{{workshop.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
   </div>
   <div class="col-2">
-  Department: 
-    <select [(ngModel)] = "Department">
-      <option selected value = "ALL">ALL</option>
-      <option value = "BE/CSE">BE/CSE</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-      <option value = "BE/CIVIL">BE/CIVIL</option>
-    </select>
+    <mat-form-field>
+      <mat-label>Department</mat-label>
+    <mat-select [(ngModel)] = "Department" class = "mdb-select md-form colorful-select dropdown-primary">
+      <mat-option selected value = "ALL">ALL</mat-option>
+      <mat-option value = "BE/CSE">BE/CSE</mat-option>
+      <mat-option value = "BE/CIVIL">BE/CIVIL</mat-option>
+      <mat-option value = "BE/EEE">BE/EEE</mat-option>
+      <mat-option value = "BE/ECE">BE/ECE</mat-option>
+      <mat-option value = "BE/MECH">BE/MECH</mat-option>
+      <mat-option value = "BTECH/IT">BTECH/IT</mat-option>
+      <mat-option value = "BTECH/BT">BTECH/BT</mat-option>
+      <mat-option value = "ME/SE">ME/SE</mat-option>
+      <mat-option value = "ME/PED">ME/PED</mat-option>
+      <mat-option value = "ME/COMM">ME/COMM</mat-option>
+      <mat-option value = "ME/VLSI">ME/VLSI</mat-option>
+      <mat-option value = "ME/CSE">ME/CSE</mat-option>
+      <mat-option value = "ME/ISE">ME/ISE</mat-option>
+      <mat-option value = "MTECH/BT">MTECH/BT</mat-option>
+      <mat-option value = "MCA">MCA</mat-option>
+      <mat-option value = "MBA">MBA</mat-option>
+    </mat-select>
+  </mat-form-field>
   </div>
-  <div class="col-3 justify-content-right"><input placeholder="Search" type="text" /></div>
+  <div class="col-3 justify-content-right">
+    <!-- <input placeholder="Search" type="text" /> -->
+  </div>
   <div class="col-2 text-right">
     <button class="btn btn-primary" (click)="getStudentDetailsByFilter()">Fetch Results</button>
   </div>

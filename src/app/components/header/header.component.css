@@ -33,8 +33,6 @@
   padding-top: 10%;
 }
 #sidenav:hover {
-  color: white;
-  position: fixed;
   background-image: linear-gradient(
     to top,
     rgb(62, 16, 149),

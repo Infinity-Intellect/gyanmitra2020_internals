@@ -9,6 +9,8 @@ import { ExcelService } from 'src/app/service/excel/excel.service';
   styleUrls: ["./adminpage.component.css"]
 })
 export class AdminpageComponent implements OnInit {
+  excelDataContainer: Array<any> = [];
+  excelData:any[] = [];
   isDataPresent:boolean = false
   attendanceStatus: boolean
   adminData: any;
@@ -59,6 +61,18 @@ export class AdminpageComponent implements OnInit {
   }
   generateExcelSheet(){
     this.fileName = this.Department + this.Name;
-    this.excelService.exportAsExcelFile(this.studentData,this.fileName)    
+    var sno = 1;
+    this.studentData.forEach(element => {
+      this.excelData["S.No."] = sno;
+      this.excelData["Roll Number"] = element["rollNumber"];
+      this.excelData["Name"] = element["studentName"];
+      this.excelData["Department"] = element["program"];
+      this.excelData["Event Workshop"] = element["name"];
+      this.excelDataContainer.push(this.excelData);
+      sno = sno + 1;
+    });
+    // console.log(this.studentData);
+    // console.log(this.excelDataContainer);
+    this.excelService.exportAsExcelFile(this.excelDataContainer,this.fileName)    
   }
 }
