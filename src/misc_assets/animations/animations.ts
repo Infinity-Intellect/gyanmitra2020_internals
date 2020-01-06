@@ -65,5 +65,24 @@ export const Animations = {
         ])
       )
     ])
+  ]),
+  blink: trigger("blink", [
+    transition(":enter", [
+      animate(
+        1000,
+        keyframes([
+          style({ opacity: 0 }),
+          style({ opacity: 1 }),
+          style({ opacity: 0 }),
+          style({ opacity: 1 }),
+          style({ opacity: 0 }),
+          style({ opacity: 1 }),
+          style({ opacity: 0 }),
+          style({ opacity: 1 }),
+          style({ opacity: 0 }),
+          style({ opacity: 1 })
+        ])
+      )
+    ])
   ])
 };

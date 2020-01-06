@@ -19,6 +19,8 @@ import { CookieService } from "ngx-cookie-service";
   styleUrls: ["./homepage.component.css"],
   animations: [
     Animations.shiftContents,
+    Animations.blink,
+    Animations.fadeInOut,
     trigger("eventclick", [
       state("event", style({ borderColor: "green", borderWidth: "4px" })),
       state("workshop", style({ borderColor: "grey", borderWidth: "3px" })),
@@ -84,7 +86,7 @@ export class HomepageComponent implements OnInit {
       }
     });
   }
-  fireConfetti(event: any) {
+  fireConfettiOnClick(event: any) {
     this.confetti({
       angle: 180,
       spread: 100,
@@ -95,11 +97,11 @@ export class HomepageComponent implements OnInit {
       }
     });
   }
+
   ngOnInit() {
     this.confettiAnimation();
     this.hasProcessed = false;
     this.loading = true;
-    console.log("In ngOnit");
     this.fetchStudentDetails();
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
@@ -114,7 +116,6 @@ export class HomepageComponent implements OnInit {
     });
   }
   fetchEventDetails() {
-    console.log("Fetching event details ...");
     this.service.getEvents().subscribe(res => {
       this.eventData = res;
     });
@@ -259,7 +260,6 @@ export class HomepageComponent implements OnInit {
     });
   }
   filterData() {
-    console.log(this.selectedDepartment);
     if (this.selectedDepartment === "All") {
       this.filteredEventData = this.eventData;
       this.filteredWorkshopData = this.workshopData;

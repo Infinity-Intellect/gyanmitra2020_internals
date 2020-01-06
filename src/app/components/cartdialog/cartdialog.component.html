@@ -65,18 +65,17 @@
               <ng-container *ngIf="event.hasCheckedOut">
                 <td>
                   <div class="row">
-                    <div class="col">
+                    <div class="col" *ngIf="event.isInTeam === 'Yes'">
                       <button
                         class="btn btn-success btn-sm"
                         (click)="openViewTeamDialog(event)"
                         matTooltip="View your team"
-                        *ngIf="event.isInTeam === 'Yes'"
                       >
                         View Team
                       </button>
                     </div>
                     <div class="col">
-                      <div class="alert alert-success text-center">
+                      <div class="alert alert-success ">
                         Added !
                       </div>
                     </div>
@@ -122,8 +121,8 @@
               </ng-container>
               <ng-container *ngIf="workshop.hasCheckedOut">
                 <td>
-                  <div class="alert alert-success text-center">
-                    Added !
+                  <div class="alert alert-success">
+                    Added!
                   </div>
                 </td>
               </ng-container>

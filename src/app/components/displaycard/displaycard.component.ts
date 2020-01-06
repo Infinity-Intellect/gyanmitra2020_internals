@@ -86,6 +86,7 @@ export class DisplaycardComponent implements OnInit, OnChanges {
     });
   }
   cartStatusChange(event: any) {
+    this.fireConfetti(event);
     event.stopPropagation();
     //this.cartCount.emit(true);
     if (this.cartStatus === "Remove") {
@@ -159,7 +160,7 @@ export class DisplaycardComponent implements OnInit, OnChanges {
     }
   }
   openDescriptionDialog(event: any) {
-    console.log(event);
+    this.fireConfetti(event);
     event.stopPropagation();
     this.dialog.open(DescriptiondialogComponent, {
       width: "500px",
@@ -172,13 +173,20 @@ export class DisplaycardComponent implements OnInit, OnChanges {
     return window["confetti"].apply(this, arguments);
   }
   fireConfetti(event: any) {
+    var x = event.clientX;
+    var y = event.clientY;
+    const pageWidth = window.innerWidth;
+    const pageHeight = window.innerHeight;
+    x = Math.abs(x - pageWidth) / pageWidth;
+    y = Math.abs(y - pageHeight) / pageHeight;
+    console.log(x + " " + y);
     this.confetti({
-      angle: 180,
-      spread: 100,
+      angle: 90,
+      spread: 20,
       particleCount: 100,
       origin: {
-        x: 0.5,
-        y: 0.5
+        x: 1 - x,
+        y: 1 - y
       }
     });
   }
