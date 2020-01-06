@@ -8,6 +8,7 @@
 }
 .eventsButton,
 .workshopButton {
+  width: 100%;
   outline: none;
   border: none;
   border-bottom: solid;

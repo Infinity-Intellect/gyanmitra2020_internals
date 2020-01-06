@@ -1,6 +1,6 @@
 <app-entryheader></app-entryheader>
 <div class="row contentRow">
-  <div class="col-4">
+  <div class="col-3">
     Event/Workshop
     <select [(ngModel)] = "Name">
       <option *ngFor = "let event of eventData" value = {{event.id}}>{{event.name}}</option>
@@ -13,28 +13,43 @@
       <option selected value = "ALL">ALL</option>
       <option value = "BE/CSE">BE/CSE</option>
       <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
+      <option value = "BE/CIVIL">BE/CIVIL</option>
     </select>
   </div>
-  <div class="col-4 text-right"><input type="text" /></div>
+  <div class="col-3 justify-content-right"><input placeholder="Search" type="text" /></div>
   <div class="col-2 text-right">
     <button class="btn btn-primary" (click)="getStudentDetailsByFilter()">Fetch Results</button>
   </div>
+  <div class="col-2 text-right">
+    <button class="btn btn-primary" (click)="generateExcelSheet()">Generate Spreadsheet</button>
+  </div>
 </div>
-<div>
-  <table>
-    <th>Admission No.</th>
-    <th>Name</th>
-    <th>Department</th>
-    <th>Event/Workshop</th>
-    <tr *ngFor = "let student of studentData">
-      <td>{{student.admissionNumber}}</td>
-      <td>{{student.studentName}}</td>
-      <td>{{student.program}}</td>
-      <td *ngIf = "student.workshopId != null">{{student.workshopId}}</td>
-      <td *ngIf = "student.eventId != null">{{student.eventId}}</td>
-      <td *ngIf = "student.workshopId != null"><app-payment-button [studentData] = "student"></app-payment-button></td>
-      <td *ngIf = "student.workshopId != null"><app-attendance-button [studentData] = "student"></app-attendance-button></td>
-      <td *ngIf = "student.eventId != null"><app-attendance-button [studentData] = "student"></app-attendance-button></td>
-    </tr>
-  </table>
+<div class = contentRow>
+  <ng-container *ngIf = "isDataPresent == true">
+    <table class = "table table-striped">
+      <th>Admission No.</th>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Event/Workshop</th>
+      <tr *ngFor = "let student of studentData">
+        <td>{{student.admissionNumber}}</td>
+        <td>{{student.studentName}}</td>
+        <td>{{student.program}}</td>
+        <td *ngIf = "student.workshopId != null">{{student.workshopId}}</td>
+        <td *ngIf = "student.eventId != null">{{student.eventId}}</td>
+        <td *ngIf = "student.workshopId != null"><app-payment-button [studentData] = "student"></app-payment-button></td>
+        <td *ngIf = "student.workshopId != null"><app-attendance-button [studentData] = "student"></app-attendance-button></td>
+        <td *ngIf = "student.eventId != null"><app-attendance-button [studentData] = "student"></app-attendance-button></td>
+      </tr>
+    </table>
+  </ng-container>
+  <div class = "justify-content-center" *ngIf = "isDataPresent == false">No records found</div>
 </div>

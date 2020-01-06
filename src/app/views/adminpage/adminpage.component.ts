@@ -2,12 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
 import { HomepageService } from 'src/app/service/homepage/homepage.service';
 import { AdminService } from 'src/app/service/admin/admin.service';
+import { ExcelService } from 'src/app/service/excel/excel.service';
 @Component({
   selector: "app-adminpage",
   templateUrl: "./adminpage.component.html",
   styleUrls: ["./adminpage.component.css"]
 })
 export class AdminpageComponent implements OnInit {
+  isDataPresent:boolean = false
   attendanceStatus: boolean
   adminData: any;
   studentData: any[];
@@ -16,7 +18,8 @@ export class AdminpageComponent implements OnInit {
   Name: string;
   Department: string;
   loading: boolean = true;
-  constructor(private cookie: CookieService, private adminService: AdminService, private homeService:HomepageService) {
+  fileName:string = "ALL";
+  constructor(private cookie: CookieService, private adminService: AdminService, private homeService:HomepageService, private excelService:ExcelService) {
     this.adminData = { name: this.cookie.get("name") };
   }
   ngOnInit() {
@@ -27,7 +30,14 @@ export class AdminpageComponent implements OnInit {
   }
   fetchStudentDetails(department,id) {
     this.adminService.getStudentDetails(department,id).subscribe(res => {
-      this.studentData = res;
+      if(res.message != "No Records found!"){
+        this.studentData = res;
+        this.isDataPresent = true;
+      }
+      else{
+        this.studentData = [];
+        this.isDataPresent = false;
+      }
       console.log(this.studentData)
     })
   }
@@ -46,5 +56,9 @@ export class AdminpageComponent implements OnInit {
   }
   MakePayment($event){
     console.log($event.target.value);
+  }
+  generateExcelSheet(){
+    this.fileName = this.Department + this.Name;
+    this.excelService.exportAsExcelFile(this.studentData,this.fileName)    
   }
 }

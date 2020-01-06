@@ -32,6 +32,18 @@
   width: 15%;
   padding-top: 10%;
 }
+#sidenav:hover {
+  color: white;
+  position: fixed;
+  background-image: linear-gradient(
+    to top,
+    rgb(62, 16, 149),
+    var(--secondary-color)
+  );
+  height: 100%;
+  width: 15%;
+  padding-top: 10%;
+}
 ul {
   list-style-type: none;
   font-size: 20px;

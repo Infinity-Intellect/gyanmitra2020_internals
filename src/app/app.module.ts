@@ -41,6 +41,7 @@ import { AttendanceButtonComponent } from "./components/attendance-button/attend
 import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
 import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdialog.component";
 import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
+import { ExcelService } from './service/excel/excel.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
     LoginpageService,
     AuthGuard,
     CookieService,
-    AdminService
+    AdminService,
+    ExcelService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

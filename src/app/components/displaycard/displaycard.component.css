@@ -11,6 +11,13 @@
   margin: 6%;
   cursor: pointer;
 }
+.displayCardContainer:hover {
+  background-image: linear-gradient(
+    to top,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+}
 div {
   padding: 4%;
   color: white;

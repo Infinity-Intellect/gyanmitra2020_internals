@@ -14,3 +14,10 @@ a:hover {
     var(--secondary-color)
   );
 }
+.outercontainer:hover {
+  background-image: linear-gradient(
+    to left,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
