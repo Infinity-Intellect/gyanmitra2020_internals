@@ -1,6 +1,6 @@
 .fullContainer {
   height: 100%;
-  background-image: url("../../../assets/GM.gif");
+  background-image: url("../../../assets/glitch_refined.gif");
   background-size: cover;
   top: 0;
 }
@@ -8,6 +8,10 @@
 /* #buttonsContainer {
   margin-top: 5%;
 } */
+#login {
+  position: fixed;
+  margin-top: 30%;
+}
 #loginButton {
   background: none;
   border: none;
@@ -20,7 +24,6 @@
   font-size: 1.5em;
   animation: floatLogin 1.8s ease-in-out infinite;
   transition-duration: 0.5s;
-  margin-top: 10%;
 }
 #loginButton:hover {
   box-shadow: 2px 2px 2px gray;

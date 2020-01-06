@@ -22,13 +22,25 @@ import { CookieService } from "ngx-cookie-service";
     Animations.blink,
     Animations.fadeInOut,
     trigger("eventclick", [
-      state("event", style({ borderColor: "green", borderWidth: "4px" })),
+      state(
+        "event",
+        style({
+          borderColor: "green",
+          borderWidth: "4px"
+        })
+      ),
       state("workshop", style({ borderColor: "grey", borderWidth: "3px" })),
       transition("event=>workshop", animate("0.1s")),
       transition("workshop=>event", animate("0.1s"))
     ]),
     trigger("workshopclick", [
-      state("workshop", style({ borderColor: "green", borderWidth: "4px" })),
+      state(
+        "workshop",
+        style({
+          borderColor: "green",
+          borderWidth: "4px"
+        })
+      ),
       state("event", style({ borderColor: "grey", borderWidth: "3px" })),
       transition("event=>workshop", animate("0.1s")),
       transition("workshop=>event", animate("0.1s"))

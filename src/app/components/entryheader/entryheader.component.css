@@ -5,19 +5,28 @@ a {
   color: white;
 }
 a:hover {
-  color: var(--secondary-color);
+  color: orangered;
 }
 .outercontainer {
-  background-image: linear-gradient(
-    to right,
-    var(--primary-color),
-    var(--secondary-color)
-  );
+  background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: smoothtransition 8s ease infinite;
 }
-.outercontainer:hover {
+/* .outercontainer:hover {
   background-image: linear-gradient(
     to left,
     var(--primary-color),
     var(--secondary-color)
   );
+} */
+@keyframes smoothtransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

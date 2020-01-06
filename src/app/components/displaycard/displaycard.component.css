@@ -12,11 +12,15 @@
   animation: float 1.8s ease-in-out infinite;
 }
 .displayCardContainer:hover {
-  background-image: linear-gradient(
-    to top,
-    var(--secondary-color),
-    var(--primary-color)
+  background: linear-gradient(
+    -45deg,
+    var(--primary-color),
+    rgb(49, 7, 146),
+    rgb(127, 4, 131),
+    var(--secondary-color)
   );
+  background-size: 400% 400%;
+  animation: smoothtransition 8s ease infinite;
 }
 div {
   padding: 4%;
@@ -43,5 +47,16 @@ button {
   100% {
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
     transform: translatey(0px);
+  }
+}
+@keyframes smoothtransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
