@@ -1,1 +1,2 @@
-<button (click)=MarkAttendence($event)>{{buttonStatus}}</button>
+<button class = "btn btn-danger" *ngIf = "buttonStatus == 'Absent'" (click)=MarkPayment($event)>{{buttonStatus}}</button>
+<button class = "btn btn-success" *ngIf = "buttonStatus == 'Present'" (click)=MarkPayment($event)>{{buttonStatus}}</button>

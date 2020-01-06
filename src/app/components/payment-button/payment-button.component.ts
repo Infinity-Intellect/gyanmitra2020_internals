@@ -40,7 +40,7 @@ export class PaymentButtonComponent implements OnInit {
         this.buttonStatus = "Paid"
     });
   }
-  MarkAttendence($event){
+  MarkPayment($event){
     this.UpdatePayment();
   }
 }
