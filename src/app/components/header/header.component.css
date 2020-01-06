@@ -1,9 +1,14 @@
-#header {
-  background-image: linear-gradient(
-    to right,
+.header {
+  background: linear-gradient(
+    90deg,
     var(--primary-color),
+    rgb(187, 7, 187),
+    rgb(4, 4, 170),
     var(--secondary-color)
   );
+  background-size: 400% 400%;
+  animation: smoothtransition 8s ease infinite;
+
   color: white;
   z-index: 1;
 }
@@ -24,20 +29,34 @@
   color: white;
   position: fixed;
   background-image: linear-gradient(
-    to bottom,
-    rgb(62, 16, 149),
+    to right,
+    var(--primary-color),
     var(--secondary-color)
   );
+  background-size: 400% 400%;
   height: 100%;
   width: 15%;
   padding-top: 10%;
 }
 #sidenav:hover {
+<<<<<<< HEAD
   background-image: linear-gradient(
     to top,
     rgb(62, 16, 149),
+=======
+  color: white;
+  position: fixed;
+  background: linear-gradient(
+    -45deg,
+    var(--primary-color),
+    rgb(187, 7, 187),
+    rgb(4, 4, 170),
+>>>>>>> bc150692e91e4d3594933f165ff1a892452c9ee8
     var(--secondary-color)
   );
+  background-size: 400% 400%;
+  animation: smoothtransition 2s ease infinite;
+
   height: 100%;
   width: 15%;
   padding-top: 10%;
@@ -61,4 +80,15 @@ a {
 li:hover {
   background-color: rgb(107, 10, 187);
   font-weight: bolder;
+}
+@keyframes smoothtransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
