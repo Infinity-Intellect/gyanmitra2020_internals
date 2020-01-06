@@ -15,12 +15,12 @@
   background: linear-gradient(
     -45deg,
     var(--primary-color),
-    rgb(49, 7, 146),
-    rgb(127, 4, 131),
-    var(--secondary-color)
+    rgb(60, 13, 170),
+    var(--secondary-color),
+    rgb(150, 25, 155)
   );
   background-size: 400% 400%;
-  animation: smoothtransition 8s ease infinite;
+  animation: smoothtransition 2s ease infinite;
 }
 div {
   padding: 4%;

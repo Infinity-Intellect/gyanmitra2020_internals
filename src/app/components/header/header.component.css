@@ -39,11 +39,6 @@
   padding-top: 10%;
 }
 #sidenav:hover {
-<<<<<<< HEAD
-  background-image: linear-gradient(
-    to top,
-    rgb(62, 16, 149),
-=======
   color: white;
   position: fixed;
   background: linear-gradient(
@@ -51,7 +46,6 @@
     var(--primary-color),
     rgb(187, 7, 187),
     rgb(4, 4, 170),
->>>>>>> bc150692e91e4d3594933f165ff1a892452c9ee8
     var(--secondary-color)
   );
   background-size: 400% 400%;

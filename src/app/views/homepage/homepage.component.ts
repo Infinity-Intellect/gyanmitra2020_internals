@@ -111,6 +111,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
+    //document.body.style.backgroundImage = "url('../../../assets/18.jpg')";
     this.confettiAnimation();
     this.hasProcessed = false;
     this.loading = true;

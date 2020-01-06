@@ -73,7 +73,7 @@ export class LandingpageComponent implements OnInit {
           value: 300,
           density: {
             enable: false,
-            value_area: 600
+            value_area: 1000
           }
         },
         color: {
@@ -86,7 +86,7 @@ export class LandingpageComponent implements OnInit {
         shape: {
           type: "polygon",
           polygon: {
-            nb_sides: 5
+            nb_sides: 8
           }
         },
         line_linked: {
@@ -95,7 +95,7 @@ export class LandingpageComponent implements OnInit {
         },
         move: {
           enable: true,
-          speed: 1,
+          speed: 7,
           direction: "bottom-left",
           out_mode: "out",
           bounce: false
