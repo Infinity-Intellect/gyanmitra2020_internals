@@ -18,6 +18,7 @@ export class TimerComponent implements OnInit, OnChanges {
   @Input() hours;
   @Input() minutes;
   @Input() seconds;
+
   ngOnChanges(changes: SimpleChanges) {}
   ngOnInit() {}
 }

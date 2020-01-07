@@ -3,24 +3,56 @@
   <form>
     <div class="container innerFormContainer" id="formContents">
       <div class="row-3 text-center formElement">
-        <input type="text" placeholder="Admission Number" [(ngModel)] = "admissionNumber" name = "admissionNumber" (focus)="alterEmptyFieldState()"/>
+        <input
+          type="text"
+          placeholder="Admission Number"
+          [(ngModel)]="admissionNumber"
+          name="admissionNumber"
+          (focus)="alterEmptyFieldState()"
+        />
       </div>
       <div class="row-3 text-center formElement">
-        <input type="text" placeholder="Name" [(ngModel)] = "name" name = "name" (focus)="alterEmptyFieldState()"/>
+        <input
+          type="text"
+          placeholder="Name"
+          [(ngModel)]="name"
+          name="name"
+          (focus)="alterEmptyFieldState()"
+        />
       </div>
       <div class="row-3 text-center formElement">
-        <input type="password" name = "password" placeholder="Password" [(ngModel)] = "password" (focus)="alterEmptyFieldState()"/>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          (focus)="alterEmptyFieldState()"
+        />
       </div>
       <div class="row-3 text-center formElement">
-        <input type="password" name = "CPassword" placeholder="Confirm Password" [(ngModel)] = "CPassword" (focus)="alterEmptyFieldState()"/>
+        <input
+          type="password"
+          name="CPassword"
+          placeholder="Confirm Password"
+          [(ngModel)]="CPassword"
+          (focus)="alterEmptyFieldState()"
+        />
       </div>
       <div class="row-3 text-center formElement">
-        <input type="submit" value="Register" (click)="routeToHomePage()"/>
+        <input type="submit" value="Register" (click)="routeToHomePage()" />
       </div>
-      <div *ngIf="emptyField == true" [@fadeInOut]="missingFieldAlert" class="alert alert-danger col-4 offset-4">
+      <div
+        *ngIf="emptyField == true"
+        [@fadeInOut]="missingFieldAlert"
+        class="alert alert-danger col-4 offset-4"
+      >
         Empty Field!
       </div>
-      <div *ngIf="passwordMatch == false" [@fadeInOut]="passwordMissmathAlert" class="alert alert-danger col-4 offset-4">
+      <div
+        *ngIf="passwordMatch == false"
+        [@fadeInOut]="passwordMismatchAlert"
+        class="alert alert-danger col-4 offset-4"
+      >
         Password missmatch!
       </div>
     </div>
