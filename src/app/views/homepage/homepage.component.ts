@@ -111,7 +111,10 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    //document.body.style.backgroundImage = "url('../../../assets/18.jpg')";
+    document.body.style.backgroundImage = "url('../../../assets/20590.jpg')";
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.backgroundSize = "cover";
+
     this.confettiAnimation();
     this.hasProcessed = false;
     this.loading = true;
@@ -190,7 +193,7 @@ export class HomepageComponent implements OnInit {
             if (this.cookie.get("hasNotified") === "false") {
               this.cookie.set("hasNotified", "true");
               this.snackbar.open(
-                "You have pending team requests, head over to your cart",
+                "Your team status is pending, head over to your cart",
                 "Close",
                 {
                   duration: 2500

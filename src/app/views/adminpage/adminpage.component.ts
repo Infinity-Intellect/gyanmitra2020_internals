@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
-import { HomepageService } from 'src/app/service/homepage/homepage.service';
-import { AdminService } from 'src/app/service/admin/admin.service';
-import { ExcelService } from 'src/app/service/excel/excel.service';
+import { HomepageService } from "src/app/service/homepage/homepage.service";
+import { AdminService } from "src/app/service/admin/admin.service";
+import { ExcelService } from "src/app/service/excel/excel.service";
 @Component({
   selector: "app-adminpage",
   templateUrl: "./adminpage.component.html",
@@ -10,9 +10,9 @@ import { ExcelService } from 'src/app/service/excel/excel.service';
 })
 export class AdminpageComponent implements OnInit {
   excelDataContainer: Array<any> = [];
-  excelData:any[] = [];
-  isDataPresent:boolean = false
-  attendanceStatus: boolean
+  excelData: any[] = [];
+  isDataPresent: boolean = false;
+  attendanceStatus: boolean;
   adminData: any;
   studentData: any[];
   eventData: any[];
@@ -20,28 +20,33 @@ export class AdminpageComponent implements OnInit {
   Name: string;
   Department: string;
   loading: boolean = true;
-  fileName:string = "ALL";
-  constructor(private cookie: CookieService, private adminService: AdminService, private homeService:HomepageService, private excelService:ExcelService) {
+  fileName: string = "ALL";
+  studentToSearch = "";
+  constructor(
+    private cookie: CookieService,
+    private adminService: AdminService,
+    private homeService: HomepageService,
+    private excelService: ExcelService
+  ) {
     this.adminData = { name: this.cookie.get("name") };
   }
   ngOnInit() {
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
-    this.fetchStudentDetails("ALL","W001");
+    //this.fetchStudentDetails("ALL", "W001");
     this.loading = false;
   }
-  fetchStudentDetails(department,id) {
-    this.adminService.getStudentDetails(department,id).subscribe(res => {
-      if(res.message != "No Records found!"){
+  fetchStudentDetails(department, id) {
+    this.adminService.getStudentDetails(department, id).subscribe(res => {
+      if (res.message != "No Records found!") {
         this.studentData = res;
         this.isDataPresent = true;
-      }
-      else{
+      } else {
         this.studentData = [];
         this.isDataPresent = false;
       }
-      console.log(this.studentData)
-    })
+      console.log(this.studentData);
+    });
   }
   fetchEventDetails() {
     this.homeService.getEvents().subscribe(res => {
@@ -53,26 +58,29 @@ export class AdminpageComponent implements OnInit {
       this.workshopData = res;
     });
   }
-  getStudentDetailsByFilter(){
-    this.fetchStudentDetails(this.Department,this.Name);
+  getStudentDetailsByFilter() {
+    this.fetchStudentDetails(this.Department, this.Name);
   }
-  MakePayment($event){
+  MakePayment($event) {
     console.log($event.target.value);
   }
-  generateExcelSheet(){
-    this.fileName = this.Department + this.Name;
+  generateExcelSheet() {
+    this.excelDataContainer = [];
+    this.fileName =
+      this.Department + "_" + this.studentData[0].name + "_" + this.Name;
     var sno = 1;
     this.studentData.forEach(element => {
+      this.excelData = [];
       this.excelData["S.No."] = sno;
       this.excelData["Roll Number"] = element["rollNumber"];
       this.excelData["Name"] = element["studentName"];
       this.excelData["Department"] = element["program"];
-      this.excelData["Event Workshop"] = element["name"];
+      this.excelData["Event/Workshop"] = element["name"];
       this.excelDataContainer.push(this.excelData);
       sno = sno + 1;
     });
     // console.log(this.studentData);
     // console.log(this.excelDataContainer);
-    this.excelService.exportAsExcelFile(this.excelDataContainer,this.fileName)    
+    this.excelService.exportAsExcelFile(this.excelDataContainer, this.fileName);
   }
 }

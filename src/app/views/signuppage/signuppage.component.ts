@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Animations } from "src/misc_assets/animations/animations";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-signuppage",
@@ -16,12 +16,19 @@ export class SignuppageComponent implements OnInit {
   name: string;
   emptyField: boolean = false;
   passwordMatch: boolean = true;
+  missingFieldAlert;
+  passwordMismatchAlert;
 
   ngOnInit() {}
   routeToHomePage = () => {
-    if (!this.admissionNumber || !this.password || !this.CPassword || !this.name) {
+    if (
+      !this.admissionNumber ||
+      !this.password ||
+      !this.CPassword ||
+      !this.name
+    ) {
       this.emptyField = true;
-    } else if(this.password != this.CPassword){
+    } else if (this.password != this.CPassword) {
       this.passwordMatch = false;
     } else {
       this.router.navigate(["/home"]);

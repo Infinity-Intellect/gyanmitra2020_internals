@@ -43,6 +43,7 @@ import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdia
 import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
 import { ExcelService } from './service/excel/excel.service';
 import { TimerComponent } from './components/timer/timer.component';
+import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { TimerComponent } from './components/timer/timer.component';
     PaymentButtonComponent,
     ViewteamdialogComponent,
     FilterByTitlePipe,
-    TimerComponent
+    TimerComponent,
+    FilterByNamePipe
   ],
   imports: [
     BrowserModule,
