@@ -8,15 +8,15 @@ import { url } from "../../../url";
 export class HomepageService {
   constructor(private http: HttpClient) {}
   public getEvents() {
-    const _url = url +"/event/getAll";
-    return this.http.get<any[]>(_url);
+    const _url = url + "/event/getAll";
+    return this.http.post<any[]>(_url, { msg: "hello" });
   }
   public getWorkshops() {
-    const _url = url+"/workshop/getAll";
+    const _url = url + "/workshop/getAll";
     return this.http.get<any[]>(_url);
   }
   public getStudent(admNumber) {
-    const _url = url + "/student/getByAdmissionNumber/";
+    const _url = url + "/student/getByAdmissionNumber";
     return this.http.get<any>(_url, { params: { admissionNumber: admNumber } });
   }
   public getWorkshopRegisteredDetails(amdissionNumber) {
