@@ -9,26 +9,22 @@ export class HomepageService {
   constructor(private http: HttpClient) {}
   public getEvents() {
     const _url = url +"/event/getAll";
-    return this.http.get<any[]>(_url);
+    return this.http.post<any[]>(_url,{});
   }
   public getWorkshops() {
     const _url = url+"/workshop/getAll";
-    return this.http.get<any[]>(_url);
+    return this.http.post<any[]>(_url,{});
   }
   public getStudent(admNumber) {
     const _url = url + "/student/getByAdmissionNumber/";
-    return this.http.get<any>(_url, { params: { admissionNumber: admNumber } });
+    return this.http.post<any>(_url,{ admissionNumber: admNumber });
   }
   public getWorkshopRegisteredDetails(amdissionNumber) {
     const _url = url + "/workshopregister/getRegisteredWorkshops";
-    return this.http.get<any>(_url, {
-      params: { admissionNumber: amdissionNumber }
-    });
+    return this.http.post<any>(_url,{ admissionNumber: amdissionNumber });
   }
   public getEventRegisteredDetails(admissionNumber) {
     const _url = url + "/eventregister/getRegisteredEvents";
-    return this.http.get<any>(_url, {
-      params: { admissionNumber: admissionNumber }
-    });
+    return this.http.post<any>(_url, { admissionNumber: admissionNumber });
   }
 }
