@@ -103,6 +103,7 @@ export class LoginpageComponent implements OnInit {
     //     }
     //   }
     // };
+    this.cookie.deleteAll();
   }
 
   routeToHomePage = () => {

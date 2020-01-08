@@ -10,9 +10,7 @@ export class ViewteamdialogService {
 
   public getTeamDetails(admissionNumber: string, eventId: string) {
     const _url = url + "/team/getTeamMemberDetails";
-    return this.http.get<any>(_url, {
-      params: { admissionNumber: admissionNumber, eventId: eventId }
-    });
+    return this.http.post<any>(_url, { admissionNumber: admissionNumber, eventId: eventId });
   }
   public confirmParticipation(admissionNumber: any, eventId: any) {
     const _url = url + "/team/confirmParticipation";
