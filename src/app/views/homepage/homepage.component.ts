@@ -85,6 +85,7 @@ export class HomepageComponent implements OnInit {
     private router: Router
   ) {
     this.studentAdmissionNumber = this.cookie.get("username");
+    localStorage.removeItem("fromLanding");
   }
   confettiAnimation() {
     let date = Date.now();

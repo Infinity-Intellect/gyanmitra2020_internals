@@ -1,8 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
-import {AngularFontAwesomeModule} from 'angular-font-awesome'
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -35,6 +33,7 @@ import { CartdialogComponent } from "./components/cartdialog/cartdialog.componen
 import { LoginpageService } from "./service/loginpage/loginpage.service";
 import { GradientbuttonComponent } from "./components/gradientbutton/gradientbutton.component";
 import { AuthGuard } from "./auth.guard";
+import { AuthloginGuard } from "./authlogin.guard";
 import { CookieService } from "ngx-cookie-service";
 import { ParticlesModule } from "angular-particle";
 import { ManageteamdialogComponent } from "./components/manageteamdialog/manageteamdialog.component";
@@ -43,9 +42,10 @@ import { AttendanceButtonComponent } from "./components/attendance-button/attend
 import { PaymentButtonComponent } from "./components/payment-button/payment-button.component";
 import { ViewteamdialogComponent } from "./components/viewteamdialog/viewteamdialog.component";
 import { FilterByTitlePipe } from "./pipes/filter-by-title.pipe";
-import { ExcelService } from './service/excel/excel.service';
-import { TimerComponent } from './components/timer/timer.component';
-import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
+import { ExcelService } from "./service/excel/excel.service";
+import { TimerComponent } from "./components/timer/timer.component";
+import { FilterByNamePipe } from "./pipes/filter-by-name.pipe";
+import { AuthadminGuard } from "./authadmin.guard";
 
 @NgModule({
   declarations: [
@@ -86,8 +86,7 @@ import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
     MatButtonModule,
     MatTooltipModule,
     MatSelectModule,
-    MatProgressSpinnerModule,
-    AngularFontAwesomeModule
+    MatProgressSpinnerModule
   ],
   providers: [
     HomepageService,
@@ -95,7 +94,9 @@ import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
     AuthGuard,
     CookieService,
     AdminService,
-    ExcelService
+    ExcelService,
+    AuthadminGuard,
+    AuthloginGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [
