@@ -26,39 +26,23 @@ export class LandingpageComponent implements OnInit {
     localStorage.removeItem("adminLoggedIn");
     localStorage.removeItem("userLoggedIn");
   }
-  counterStatus: Boolean = false;
-  remainingTime;
-  remainingDays: any = 0;
-  remainingHours: any = 0;
-  remainingMinutes: any = 0;
-  remainingSeconds: Number = 0;
-  countDownTimer(countDownDate) {
-    this.counterStatus = true;
-    this.remainingTime = countDownDate.getTime() - new Date().getTime();
-    this.remainingDays = Math.floor(this.remainingTime / (1000 * 60 * 60 * 24));
-    this.remainingMinutes = Math.floor(
-      (this.remainingTime % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    this.remainingHours = Math.floor(
-      (this.remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    this.remainingSeconds = Math.floor(
-      (this.remainingTime % (1000 * 60)) / 1000
-    );
-    console.log(
-      this.remainingDays +
-        ":" +
-        this.remainingHours +
-        ":" +
-        this.remainingMinutes +
-        ":" +
-        this.remainingSeconds
-    );
-    this.counterStatus = false;
-  }
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+
   ngOnInit() {
-    let countDownDate = new Date("Jan 24, 2020 00:00:00");
-    setInterval(this.countDownTimer, 1000, countDownDate);
+    setInterval(()=>{
+      var t = Date.parse("January 24, 2020 09:00:00 GMT+0530") - Date.parse(new Date().toString());
+      var seconds = Math.floor((t / 1000) % 60);
+      var minutes = Math.floor((t / 1000 / 60) % 60);
+      var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+      var days = Math.floor(t / (1000 * 60 * 60 * 24));
+      this.days = days;
+      this.hours = hours;
+      this.minutes = minutes;
+      this.seconds = seconds;
+    },1000)
     this.myStyle = {
       position: "fixed",
       width: "100%",

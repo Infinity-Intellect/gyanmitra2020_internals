@@ -8,14 +8,13 @@
     [width]="width"
     [height]="height"
   ></particles> -->
-  <div class="card " style="z-index: 2;" [@flyFromBottom]>
+  <div class="card " style="z-index: 2;">
     <div class="card-header text-center">
       <h3>Login</h3>
     </div>
     <div class="card-body">
       <form #userForm="ngForm">
         <div class="container innerFormContainer" id="formContents">
-          <form>
             <div class="row-4 text-center formElement">
               <mat-form-field>
                 <input
@@ -41,10 +40,8 @@
                 />
               </mat-form-field>
             </div>
-          </form>
-
           <div class="row-4 text-center formElement">
-            <button
+            <button type = "submit"
               mat-button
               [disableRipple]="!ripples"
               (click)="routeToHomePage()"

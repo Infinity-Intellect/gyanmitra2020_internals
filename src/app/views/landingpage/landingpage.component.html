@@ -13,19 +13,17 @@
         >
       </div>
     </div>
-    <!-- <div class="row justify-content-center">
-      Countdown&nbsp;
-      <timer
-        [days]="remainingDays"
-        [hours]="remainingHours"
-        [minutes]="remainingMinutes"
-        [seconds]="remainingSeconds"
-      ></timer>
-    </div> -->
-    <!-- <div style="color: white;" *ngIf="counterStatus === false">
-      Counter:{{ remainingDays }}:{{ remainingHours }}:{{ remainingMinutes }}:{{
-        remainingSeconds
-      }}
-    </div> -->
+    <div>
+      <div class="col-4 offset-8 counter">
+          <span class="value" style = "color: white;">{{days}}
+          <span class = "title">days </span></span>
+          <span class="value" style = "color: white;" >{{hours}}
+          <span class = "title">hours </span></span>
+          <span class="value" style = "color: white;">{{minutes}}
+          <span class = "title">minutes </span></span>
+          <span class="value" style = "color: white;">{{seconds}}
+          <span class = "title">seconds remaining</span></span>
+      </div>
+    </div>
   </div>
 </div>

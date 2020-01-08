@@ -5,6 +5,25 @@
   background-repeat: no-repeat;
   top: 0;
 }
+.counter{
+  font-family: cursive;
+  text-align: center;
+  position: fixed;
+  top: 1%;
+  width: 30%;
+  height: 6%;
+  font-size: 1em;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    red,
+    indigo,
+    green,
+    blue
+  );
+  background-size: 400% 400%;
+  animation: smoothtransition 4s ease infinite;
+}
 
 /* #buttonsContainer {
   margin-top: 5%;
@@ -66,5 +85,17 @@
   100% {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
     transform: translatey(-8px);
+  }
+}
+
+@keyframes smoothtransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
