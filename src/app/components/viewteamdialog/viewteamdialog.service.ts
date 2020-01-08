@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ViewteamdialogService {
   constructor(private http: HttpClient) {}
-
+  //earlier get now post
   public getTeamDetails(admissionNumber: string, eventId: string) {
     const _url = url + "/team/getTeamMemberDetails";
     return this.http.post<any>(_url, { admissionNumber: admissionNumber, eventId: eventId });

@@ -1,30 +1,35 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { url } from '../../../url';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { url } from "../../../url";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AdminService {
-  constructor(private http:HttpClient) {}
-  public getStudentDetails(department: string,eventId: string){
+  //earlier get now post
+  constructor(private http: HttpClient) {}
+  public getStudentDetails(department: string, eventId: string) {
     const _url = url + "/admin/getRegisteredStudents";
-    return this.http.post<any>(_url, { department:department, id:eventId });
+    return this.http.post<any>(_url, { department: department, id: eventId });
   }
-  public updateAttendance(admissionNumber: string,id: string,status: boolean) {
+  public updateAttendance(
+    admissionNumber: string,
+    id: string,
+    status: boolean
+  ) {
     const _url = url + "/admin/updateAttendance";
-    return this.http.post<any>(_url,{
-      admissionNumber:admissionNumber,
-      id:id,
-      status:status
-    })
+    return this.http.post<any>(_url, {
+      admissionNumber: admissionNumber,
+      id: id,
+      status: status
+    });
   }
-  public updatePayment(admissionNumber: string,id: string,status: boolean) {
+  public updatePayment(admissionNumber: string, id: string, status: boolean) {
     const _url = url + "/admin/updatePayment";
-    return this.http.post<any>(_url,{
-      admissionNumber:admissionNumber,
-      id:id,
-      status:status
-    })
+    return this.http.post<any>(_url, {
+      admissionNumber: admissionNumber,
+      id: id,
+      status: status
+    });
   }
 }
