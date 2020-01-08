@@ -16,7 +16,7 @@ export class AdminpageComponent implements OnInit {
   adminData: any;
   studentData: any[];
   eventData: any[];
-  workshopData: any[];
+  workshopData;
   Name: string;
   Department: string;
   loading: boolean = true;
@@ -56,6 +56,7 @@ export class AdminpageComponent implements OnInit {
   fetchWorkshopDetails() {
     this.homeService.getWorkshops().subscribe(res => {
       this.workshopData = res;
+      console.log(this.workshopData);
     });
   }
   getStudentDetailsByFilter() {

@@ -22,7 +22,6 @@ export class AuthloginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log(this.auth.isFromLandingPage + " fromlanding");
     if (!this.auth.isFromLandingPage) {
       this.router.navigateByUrl("/");
       return false;

@@ -8,27 +8,31 @@ import { url } from "../../../url";
 export class HomepageService {
   constructor(private http: HttpClient) {}
   public getEvents() {
-    const _url = url +"/event/getAll";
-    return this.http.post<any[]>(_url,{});
+    const _url = url + "/event/getAll";
+    return this.http.get<any[]>(_url);
   }
-  //earlier get now post
+
   public getWorkshops() {
-    const _url = url+"/workshop/getAll";
-    return this.http.post<any[]>(_url,{});
+    const _url = url + "/workshop/getAll";
+    return this.http.get<any[]>(_url);
   }
-  //earlier get now post
+
   public getStudent(admNumber) {
     const _url = url + "/student/getByAdmissionNumber/";
-    return this.http.post<any>(_url,{ admissionNumber: admNumber });
+    return this.http.get<any>(_url, { params: { admissionNumber: admNumber } });
   }
-  //earlier get now post
+
   public getWorkshopRegisteredDetails(amdissionNumber) {
     const _url = url + "/workshopregister/getRegisteredWorkshops";
-    return this.http.post<any>(_url,{ admissionNumber: amdissionNumber });
+    return this.http.get<any>(_url, {
+      params: { admissionNumber: amdissionNumber }
+    });
   }
-  //earlier get now post
+
   public getEventRegisteredDetails(admissionNumber) {
     const _url = url + "/eventregister/getRegisteredEvents";
-    return this.http.post<any>(_url, { admissionNumber: admissionNumber });
+    return this.http.get<any>(_url, {
+      params: { admissionNumber: admissionNumber }
+    });
   }
 }
