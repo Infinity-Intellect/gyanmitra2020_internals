@@ -13,6 +13,10 @@ export class AuthService {
     localStorage.getItem("adminLoggedIn") || "false"
   );
 
+  fromLandingStatus = JSON.parse(
+    localStorage.getItem("fromLanding") || "false"
+  );
+
   get isUserLoggedIn() {
     return JSON.parse(
       localStorage.getItem("userLoggedIn") || this.userLoggedInStatus.toString()
@@ -23,6 +27,12 @@ export class AuthService {
     return JSON.parse(
       localStorage.getItem("adminLoggedIn") ||
         this.adminLoggedInStatus.toString()
+    );
+  }
+
+  get isFromLandingPage() {
+    return JSON.parse(
+      localStorage.getItem("fromLanding") || this.fromLandingStatus.toString()
     );
   }
 

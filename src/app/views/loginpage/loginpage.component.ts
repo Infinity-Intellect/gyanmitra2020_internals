@@ -104,6 +104,8 @@ export class LoginpageComponent implements OnInit {
     //   }
     // };
     this.cookie.deleteAll();
+    localStorage.removeItem("userLoggedIn");
+    localStorage.removeItem("adminLoggedIn");
   }
 
   routeToHomePage = () => {

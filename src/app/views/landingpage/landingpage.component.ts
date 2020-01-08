@@ -117,5 +117,6 @@ export class LandingpageComponent implements OnInit {
 
     this.cookie.deleteAll();
     localStorage.removeItem("loggedIn");
+    localStorage.setItem("fromLanding", "true");
   }
 }
