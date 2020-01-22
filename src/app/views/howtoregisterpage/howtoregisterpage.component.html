@@ -1,0 +1,34 @@
+<app-header (navbarStateEvent)="receiveNavbarState($event)"></app-header>
+
+<div [@shiftContents]="navbarState" class="container faqContainer">
+  <div class="row justify-content-center ">
+    <div class="card cardStyle" style="width: 100rem;">
+      <img
+        class="card-img-top"
+        src="../../../assets/inner__wh.png"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center ">
+    <div class="card cardStyle">
+      <img
+        class="card-img-top"
+        src="../../../assets/inner__wh.png"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

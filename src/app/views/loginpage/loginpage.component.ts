@@ -12,7 +12,12 @@ import { MatSnackBar } from "@angular/material";
   selector: "app-loginpage",
   templateUrl: "./loginpage.component.html",
   styleUrls: ["./loginpage.component.css"],
-  animations: [Animations.swoopIn, Animations.fadeInOut, Animations.flyIn]
+  animations: [
+    Animations.swoopIn,
+    Animations.fadeInOut,
+    Animations.flyIn,
+    Animations.blink
+  ]
 })
 export class LoginpageComponent implements OnInit {
   // myStyle: object = {};

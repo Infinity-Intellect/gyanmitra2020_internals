@@ -28,6 +28,9 @@ a {
 a:hover {
   color: grey;
 }
+.information {
+  animation: blink 0.8s infinite;
+}
 @keyframes border-change {
   from {
     border-bottom-color: black;
@@ -36,6 +39,17 @@ a:hover {
   to {
     border-bottom-color: green;
     border-width: 5px;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
   }
 }
 ::ng-deep .red-snackbar {
