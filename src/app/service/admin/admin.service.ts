@@ -32,4 +32,20 @@ export class AdminService {
       status: status
     });
   }
+  public fetchEventRegisteredStudents(){
+    const _url = url + "/admin/getEventRegisteredStudents";
+    return this.http.get<any>(_url);
+  }
+  public fetchWorkshopRegisteredStudents(){
+    const _url = url + "/admin/getWOrkshopRegisteredStudents";
+    return this.http.get<any>(_url);
+  }
+  public fetchEventRegistrationCount(){
+    const _url = url + "/admin/getEventCount";
+    return this.http.get<any>(_url);
+  }
+  public fetchWorkshopRegistrationCount(){
+    const _url = url + "/admin/getWorkshopCount";
+    return this.http.get<any>(_url);
+  }
 }

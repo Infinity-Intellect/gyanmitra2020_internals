@@ -9,6 +9,8 @@ import { ExcelService } from "src/app/service/excel/excel.service";
   styleUrls: ["./adminpage.component.css"]
 })
 export class AdminpageComponent implements OnInit {
+  eventCount: number = 0;
+  workshopCount: number = 0;
   excelDataContainer: Array<any> = [];
   excelData: any[] = [];
   isDataPresent: boolean = false;
@@ -17,6 +19,8 @@ export class AdminpageComponent implements OnInit {
   studentData: any[];
   eventData: any[];
   workshopData: any[];
+  eventRegData: any[];
+  workshopRegData: any[];
   Name: string;
   Department: string;
   loading: boolean = true;
@@ -33,8 +37,51 @@ export class AdminpageComponent implements OnInit {
   ngOnInit() {
     this.fetchEventDetails();
     this.fetchWorkshopDetails();
-    //this.fetchStudentDetails("ALL", "W001");
-    this.loading = false;
+    this.fetchInfo();
+    this.fetchEventCount();
+    this.fetchWorkshopCount();
+  }
+  fetchEventCount(){
+    this.adminService.fetchEventRegistrationCount().subscribe(res => {
+      if(res.message == 'failed'){
+      } else {
+        this.eventCount = res.count;
+        console.log(this.eventCount);
+      }
+    })
+  }
+  fetchWorkshopCount(){
+    this.adminService.fetchWorkshopRegistrationCount().subscribe(res => {
+      if(res.message == 'failed'){
+      } else {
+        this.workshopCount = res.count;
+        console.log(this.workshopCount)
+      }
+    })
+  }
+  fetchInfo(){
+    this.studentData = [];
+    this.adminService.fetchEventRegisteredStudents().subscribe(res => {
+      if (res.message == "No Records found!") {
+      } else {
+        this.eventRegData = res;
+        this.eventRegData.forEach(eveData => {
+          this.studentData.push(eveData);
+          this.isDataPresent = true;
+        })
+      }
+      this.adminService.fetchWorkshopRegisteredStudents().subscribe(res => {
+        if (res.message == "No Records found!") {
+        } else {
+          this.workshopRegData = res;
+          this.workshopRegData.forEach(workData => {
+            this.studentData.push(workData);
+            this.isDataPresent = true;
+          })
+        }
+        console.log(this.studentData);
+      })
+    })
   }
   fetchStudentDetails(department, id) {
     this.adminService.getStudentDetails(department, id).subscribe(res => {

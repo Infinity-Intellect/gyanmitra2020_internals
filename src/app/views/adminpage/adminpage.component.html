@@ -59,16 +59,25 @@
   </div>
 </div>
 <div class="contentRow">
+  Total No. of event registrations: {{eventCount}} <br/> Total No. of workshop registrations: {{workshopCount}}
+</div>
+<div class="contentRow">
   <ng-container *ngIf="isDataPresent == true">
     <table class="table table-striped">
+      <th>S.No.</th>
       <th>Admission No.</th>
       <th>Name</th>
       <th>Department</th>
+      <th>Year</th>
+      <th>Section</th>
       <th>Event/Workshop</th>
-      <tr *ngFor="let student of studentData | filterByName: studentToSearch">
+      <tr *ngFor="let student of studentData | filterByName: studentToSearch ; index as i ">
+        <td>{{i+1}}.</td>
         <td>{{ student.admissionNumber }}</td>
         <td>{{ student.studentName }}</td>
         <td>{{ student.program }}</td>
+        <td>{{student.year}}</td>
+        <td>'{{student.section}}'</td>
         <td *ngIf="student.workshopId != null">{{ student.name }}</td>
         <td *ngIf="student.eventId != null">{{ student.name }}</td>
         <td *ngIf="student.workshopId != null">
@@ -90,4 +99,5 @@
   <div class="justify-content-center" *ngIf="isDataPresent == false">
     No records found
   </div>
+
 </div>
