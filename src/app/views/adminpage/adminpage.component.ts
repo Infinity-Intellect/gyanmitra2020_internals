@@ -103,6 +103,7 @@ export class AdminpageComponent implements OnInit {
   fetchWorkshopDetails() {
     this.homeService.getWorkshops().subscribe(res => {
       this.workshopData = res;
+      console.log(this.workshopData);
     });
   }
   getStudentDetailsByFilter() {

@@ -6,7 +6,9 @@
 
 <div [@shiftContents]="navbarState" class="container col-9 cardContainer">
   <div *ngIf="studentData" class="row justify-content-center welcomeBar" @blink>
-    <div class="offset-1">Welcom<span title="md">e</span> {{ studentData?.studentName }}</div>
+    <div class="offset-1">
+      Welcom<span title="md">e</span> {{ studentData?.studentName }}
+    </div>
   </div>
   <div class="row justify-content-center navContainer">
     <div class="col-6 text-right">

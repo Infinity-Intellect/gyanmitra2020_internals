@@ -8,10 +8,11 @@ import { url } from "src/url";
 export class ManageteamdialogService {
   constructor(private http: HttpClient) {}
 
-  //earlier get now post route
   public doStudentsExist(admissionNumbers: string[]) {
     const _url = url + "/student/doStudentsExist";
-    return this.http.post<any>(_url, { admissionNumbers: admissionNumbers });
+    return this.http.get<any>(_url, {
+      params: { admissionNumbers: admissionNumbers }
+    });
   }
 
   public createTeam(admissionNumbers: string[], eventId: string) {
@@ -22,9 +23,10 @@ export class ManageteamdialogService {
     });
   }
 
-  //earlier get now post
   public isInTeam(admissionNumbers: any[], eventId: string) {
     const _url = url + "/team/isInTeam";
-    return this.http.post<any>(_url,{ admissionNumbers: admissionNumbers, eventId: eventId });
+    return this.http.get<any>(_url, {
+      params: { admissionNumbers: admissionNumbers, eventId: eventId }
+    });
   }
 }

@@ -6,11 +6,12 @@ import { url } from "../../../url";
   providedIn: "root"
 })
 export class AdminService {
-  //earlier get now post
   constructor(private http: HttpClient) {}
   public getStudentDetails(department: string, eventId: string) {
     const _url = url + "/admin/getRegisteredStudents";
-    return this.http.post<any>(_url, { department: department, id: eventId });
+    return this.http.get<any>(_url, {
+      params: { department: department, id: eventId }
+    });
   }
   public updateAttendance(
     admissionNumber: string,

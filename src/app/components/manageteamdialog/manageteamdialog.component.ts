@@ -100,13 +100,12 @@ export class ManageteamdialogComponent implements OnInit {
           if (data.message === "Not found") {
             this.isThereNonExistentAdmissionNumber = true;
             this.membersName = [];
-            console.log(data);
           } else {
             const members = data.members;
             this.membersSize = 1;
             for (let i = 1; i < members.length; i++) {
               this.membersName[i - 1] = members[i].studentName;
-              console.log(this.membersName);
+
               this.membersSize += 1;
             }
             this.buttonStatus = "Request";
