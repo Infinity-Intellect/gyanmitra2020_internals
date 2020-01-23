@@ -124,6 +124,7 @@ export class AdminpageComponent implements OnInit {
       this.excelData["Name"] = element["studentName"];
       this.excelData["Department"] = element["program"];
       this.excelData["Event/Workshop"] = element["name"];
+      this.excelData["Attendace Status"] = element["hasAttended"];
       this.excelDataContainer.push(this.excelData);
       sno = sno + 1;
     });

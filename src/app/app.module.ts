@@ -46,6 +46,7 @@ import { ExcelService } from "./service/excel/excel.service";
 import { TimerComponent } from "./components/timer/timer.component";
 import { FilterByNamePipe } from "./pipes/filter-by-name.pipe";
 import { AuthadminGuard } from "./authadmin.guard";
+import { HowtoregisterpageComponent } from './views/howtoregisterpage/howtoregisterpage.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { AuthadminGuard } from "./authadmin.guard";
     ViewteamdialogComponent,
     FilterByTitlePipe,
     TimerComponent,
-    FilterByNamePipe
+    FilterByNamePipe,
+    HowtoregisterpageComponent
   ],
   imports: [
     BrowserModule,

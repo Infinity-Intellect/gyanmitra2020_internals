@@ -66,14 +66,20 @@
     <table class="table table-striped">
       <th>S.No.</th>
       <th>Admission No.</th>
+      <th *ngIf = "studentData[0].team!=null">Team Id</th>
       <th>Name</th>
       <th>Department</th>
       <th>Year</th>
       <th>Section</th>
       <th>Event/Workshop</th>
+      <th *ngIf="studentData[0].workshopId != null">Payment Status</th>
+      <th>Attendance Status</th>
       <tr *ngFor="let student of studentData | filterByName: studentToSearch ; index as i ">
         <td>{{i+1}}.</td>
         <td>{{ student.admissionNumber }}</td>
+        <ng-container *ngFor = "let team of student.team">
+        <td *ngIf = "team.eventId == Name">{{team.teamId}}</td>
+        </ng-container>
         <td>{{ student.studentName }}</td>
         <td>{{ student.program }}</td>
         <td>{{student.year}}</td>
@@ -99,5 +105,4 @@
   <div class="justify-content-center" *ngIf="isDataPresent == false">
     No records found
   </div>
-
 </div>
