@@ -88,6 +88,7 @@ export class AdminpageComponent implements OnInit {
       if (res.message != "No Records found!") {
         this.studentData = res;
         this.isDataPresent = true;
+        this.mapTeamIdToStudentData();
       } else {
         this.studentData = [];
         this.isDataPresent = false;
@@ -112,15 +113,35 @@ export class AdminpageComponent implements OnInit {
   MakePayment($event) {
     console.log($event.target.value);
   }
+  mapTeamIdToStudentData(){
+    for(var i = 0;i < this.studentData.length;i++){
+      this.studentData[i].team.forEach(team => {
+        if(team.eventId === this.Name){
+          this.studentData[i]["teamId"] = team.teamId;
+        }
+      })
+    }
+    this.studentData.sort((student1,student2)=> {
+      if(student1.teamId > student2.teamId){
+        return -1;
+      } else if(student1.teamId > student2.teamId){
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+  }
   generateExcelSheet() {
     this.excelDataContainer = [];
     this.fileName =
       this.Department + "_" + this.studentData[0].name + "_" + this.Name;
     var sno = 1;
     this.studentData.forEach(element => {
+      console.log(element);
       this.excelData = [];
       this.excelData["S.No."] = sno;
       this.excelData["Roll Number"] = element["rollNumber"];
+      this.excelData["Team Id"] = element.teamId;
       this.excelData["Name"] = element["studentName"];
       this.excelData["Department"] = element["program"];
       this.excelData["Event/Workshop"] = element["name"];

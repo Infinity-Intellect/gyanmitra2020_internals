@@ -77,9 +77,7 @@
       <tr *ngFor="let student of studentData | filterByName: studentToSearch ; index as i ">
         <td>{{i+1}}.</td>
         <td>{{ student.admissionNumber }}</td>
-        <ng-container *ngFor = "let team of student.team">
-        <td *ngIf = "team.eventId == Name">{{team.teamId}}</td>
-        </ng-container>
+        <td *ngIf = "student.team != null">{{student.teamId}}</td>
         <td>{{ student.studentName }}</td>
         <td>{{ student.program }}</td>
         <td>{{student.year}}</td>
